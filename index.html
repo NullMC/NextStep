@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>NextStep</title>
+
+    <link rel="stylesheet" href="static/CSS/index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/CSS/index.css">
+    <link rel="icon" href="static/CSS/IMG/Logo NextStep.png" type="image/arrow-icon">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <img alt="logo" src="static/CSS/IMG/Logo NextStep.png">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">NextStep</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <img id="panettipitagora" src="static/CSS/IMG/BannerPanetti.png" alt="logo scuola">
+        </nav>
+    </header>
+    <div id="carouselExampleCaptions" class="carousel slide ">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="static/CSS/IMG/scuola.jpg" class="d-block w-100" alt="img">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Aiutiamo ad Orientare</h5>
+                    <p>Esplora la demo del nostro progetto</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="static/CSS/IMG/algoritmo.jpg" class="d-block w-100" alt="img2">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Compila il quiz e aiutati a scegliere</h5>
+                    <p>Il nostro algoritmo ti proprone un valido indirizzo da scegliere con un margine di errore
+                        vicinissimo allo 0!</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div class="container">
+
+        <img id="job1" src="static/CSS/IMG/Job1.png" alt="job1">
+        <form id="questionario">
+            <h2>1. Hobby/cosa ti piace fare:</h2>
+            <div class="form-group">
+                <label for="sport">Pratichi sport o attività extra scolastiche?</label>
+                <select class="form-control" id="sport" required>
+                    <option value="0">Nessuna</option>
+                    <option value="1">Sport di squadra</option>
+                    <option value="2">Sport individuali</option>
+                    <option value="3">Attività artistiche</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Hai mai pensato di trasformare il tuo hobby in un lavoro?</label>
+                <select class="form-control" id="hobbyLavoro" required>
+                    <option value="0">No</option>
+                    <option value="1">Sì</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Preferisci lavorare in gruppo o autonomamente?</label>
+                <select class="form-control" id="lavoro" required>
+                    <option value="1">Gruppo</option>
+                    <option value="2">Autonomamente</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Sei una persona che preferisce la parte teorica o la parte pratica?</label>
+                <select class="form-control" id="teoricaPratica" required>
+                    <option value="1">Teorica</option>
+                    <option value="2">Pratica</option>
+                </select>
+            </div>
+
+            <img id="job2" src="static/CSS/IMG/Job2.png" alt="job2">
+            <h2>2. Le tue passioni/il tuo sogno nel cassetto:</h2>
+            <div class="form-group">
+                <label>A cosa ambisci?</label>
+                <select class="form-control" id="ambizioni" required>
+                    <option value="1">Carriera</option>
+                    <option value="2">Viaggi</option>
+                    <option value="3">Famiglia</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>C’è un lavoro o un’attività che sogni fin da piccolo e credi tuttora?</label>
+                <select class="form-control" id="sogni" required>
+                    <option value="1">Sì</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Hai un obiettivo personale?</label>
+                <select class="form-control" id="obiettivo" required>
+                    <option value="1">Sì</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Cosa ti ispira nel tuo percorso?</label>
+                <select class="form-control" id="ispirazione" required>
+                    <option value="1">Persone</option>
+                    <option value="2">Libri</option>
+                    <option value="3">Esperienze</option>
+                </select>
+            </div>
+
+            <img id="job3" src="static/CSS/IMG/Job3.png" alt="job3">
+            <h2>3. Quanto sei ambizioso:</h2>
+            <div class="form-group">
+                <label>Quanto ti reputi ambizioso?</label>
+                <input type="range" class="form-control-range" id="ambizione" min="0" max="5" step="1" required>
+            </div>
+            <div class="form-group">
+                <label>Ti reputi una persona determinata?</label>
+                <div class="form-group">
+                    <label>Ti reputi una persona determinata?</label>
+                    <select class="form-control" id="determinazione" required>
+                        <option value="1">Poco</option>
+                        <option value="2">Leggermente</option>
+                        <option value="3">Sì</option>
+                        <option value="4">Abbastanza</option>
+                        <option value="5">Tanto</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Quanto credi in te stesso?</label>
+                    <select class="form-control" id="fiducia" required>
+                        <option value="1">Poco</option>
+                        <option value="2">Leggermente</option>
+                        <option value="3">Sì</option>
+                        <option value="4">Abbastanza</option>
+                        <option value="5">Tanto</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Quanto credi in te stesso?</label>
+                <div class="form-group">
+                    <label>Ti reputi una persona determinata?</label>
+                    <select class="form-control" id="determinazione" required>
+                        <option value="1">Poco</option>
+                        <option value="2">Leggermente</option>
+                        <option value="3">Sì</option>
+                        <option value="4">Abbastanza</option>
+                        <option value="5">Tanto</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Quanto credi in te stesso?</label>
+                    <select class="form-control" id="fiducia" required>
+                        <option value="1">Poco</option>
+                        <option value="2">Leggermente</option>
+                        <option value="3">Sì</option>
+                        <option value="4">Abbastanza</option>
+                        <option value="5">Tanto</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Dove ti vedresti tra 10 anni?</label>
+                <select class="form-control" id="futuro" required>
+                    <option value="1">In viaggio</option>
+                    <option value="2">In famiglia</option>
+                    <option value="3">In carriera</option>
+                </select>
+            </div>
+
+            <img id="job4" src="static/CSS/IMG/Job4.png" alt="job4">
+            <h2>4. Quali argomenti ti affascinano:</h2>
+            <div class="form-group">
+                <label>Hai argomenti che ti affascinano particolarmente?</label>
+                <select class="form-control" id="argomenti" p required>
+                    <option value="1">Tecnologia</option>
+                    <option value="2">Arte</option>
+                    <option value="3">Scienza</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Invia</button>
+        </form>
+        <div id="risultato" class="mt-4"></div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="hero">
+            <div class="image">
+                <img src="static/CSS/IMG/Logo NextStep.png" alt="">
+            </div>
+            <div class="terms">
+                <p>From an Hackathon project To the ultimate orientation tool</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script -->
+    <script src="static/JS/index.js"></script>
+</body>
+
+</html>

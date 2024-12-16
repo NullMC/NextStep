@@ -1,0 +1,50 @@
+.container {
+    margin-top: 5vh;
+    padding: 4vh;
+    margin: 4vh;
+
+
+}
+
+#job1 {
+    width: 30%;
+    height: auto;
+}
+
+#job2 {
+    width: 30%;
+
+    height: auto;
+    float: right;
+}
+
+#job3 {
+    width: 30%;
+
+    height: auto;
+}
+
+#job4 {
+    width: 30%;
+
+    height: auto;
+    float: right;
+}
+
+.form-group {
+    margin: 6vh;
+    width: 50%;
+}
+
+option {
+    margin: "2vh";
+}
+
+.carousel {
+    margin: 10%;
+
+}
+
+img {
+    border-radius: 10px;
+}
