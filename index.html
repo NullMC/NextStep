@@ -19,28 +19,24 @@
 
 <body>
     <!-- NAVBAR -->
-    <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand bg-body-tertiary">
             <img alt="logo" src="static/CSS/IMG/Logo NextStep.png">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">NextStep</a>
+                <a class="navbar-brand  inter" href="#">NextStep</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
-            <img id="panettipitagora" src="static/CSS/IMG/BannerPanetti.png" alt="logo scuola">
+            <a href="https://www.panettipitagora.edu.it/" target="_blank"><img id="panettipitagora" src="static/CSS/IMG/BannerPanetti.png" alt="logo scuola"></a>
         </nav>
-    </header>
     <div id="carouselExampleCaptions" class="carousel slide ">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
                 aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
                 aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -147,30 +143,6 @@
                 <input type="range" class="form-control-range" id="ambizione" min="0" max="5" step="1" required>
             </div>
             <div class="form-group">
-                <label>Ti reputi una persona determinata?</label>
-                <div class="form-group">
-                    <label>Ti reputi una persona determinata?</label>
-                    <select class="form-control" id="determinazione" required>
-                        <option value="1">Poco</option>
-                        <option value="2">Leggermente</option>
-                        <option value="3">Sì</option>
-                        <option value="4">Abbastanza</option>
-                        <option value="5">Tanto</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Quanto credi in te stesso?</label>
-                    <select class="form-control" id="fiducia" required>
-                        <option value="1">Poco</option>
-                        <option value="2">Leggermente</option>
-                        <option value="3">Sì</option>
-                        <option value="4">Abbastanza</option>
-                        <option value="5">Tanto</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Quanto credi in te stesso?</label>
                 <div class="form-group">
                     <label>Ti reputi una persona determinata?</label>
                     <select class="form-control" id="determinazione" required>
@@ -214,8 +186,11 @@
 
             <button type="submit" class="btn btn-primary">Invia</button>
         </form>
-        <div id="risultato" class="mt-4"></div>
     </div>
+    <h3 class="inter hidden m-4" id="hidden">
+        Indirizzo consigliato dal nostro algoritmo:
+    </h3>
+    <div id="risultato" class="m-4 inter"></div>
 
     <!-- FOOTER -->
     <footer>
