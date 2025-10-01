@@ -10,24 +10,54 @@
     <link rel="shortcut icon" href="static/CSS/IMG/Logo NextStep.png" type="image/x-icon">
 </head>
 <body>
+    <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo-container">
-                <a href="#"><img class="logo" src="static/CSS/IMG/Logo NextStep.png" alt="logo"></a>
+                <a href="#"><img class="logo" src="static/CSS/IMG/Logo NextStep.png" alt="NextStep Logo"></a>
                 <span class="brand-name">NextStep</span>
             </div>
             <div class="logo-container">
-                <img class="logo2" src="static/CSS/IMG/BannerPanetti.png" alt="logo-scuola">
+                <img class="logo-school" src="static/CSS/IMG/BannerPanetti.png" alt="Scuola Partner">
             </div>
         </div>
     </nav>
 
-    <div class="main-container">
-        <div class="hero-section">
-            <h1 class="hero-title">Il tuo futuro inizia qui</h1>
-            <p class="hero-subtitle">Scopri il percorso di studi perfetto per te con il nostro algoritmo avanzato</p>
+    <!-- Hero Carousel Section -->
+    <section class="hero-carousel">
+        <div class="carousel-container">
+            <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920');">
+                <div class="carousel-overlay"></div>
+                <div class="carousel-content">
+                    <h1 class="hero-title">Il tuo futuro inizia qui</h1>
+                    <p class="hero-subtitle">Siamo felici di averti qui - il tuo futuro inizia oggi</p>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=1920');">
+                <div class="carousel-overlay"></div>
+                <div class="carousel-content">
+                    <h1 class="hero-title">Il tuo futuro inizia qui</h1>
+                    <p class="hero-subtitle">Non dare retta a chi decide per te - questa è la TUA scelta</p>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1920');">
+                <div class="carousel-overlay"></div>
+                <div class="carousel-content">
+                    <h1 class="hero-title">Il tuo futuro inizia qui</h1>
+                    <p class="hero-subtitle">Fidati di te stesso, noi ti aiutiamo a trovare la strada giusta</p>
+                </div>
+            </div>
         </div>
+        <div class="carousel-dots">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </section>
 
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Quiz Container -->
         <div class="quiz-container">
             <div class="quiz-header">
                 <div class="quiz-progress">
@@ -172,7 +202,7 @@
                         </div>
                     </div>
 
-                    <!-- Pagina 3: Interessi Accademici e Dati Personali -->
+                    <!-- Pagina 3: Interessi Accademici -->
                     <div class="question-page" id="page-3">
                         <div class="question-section">
                             <h3 class="question-title">
@@ -262,6 +292,7 @@
             </div>
         </div>
 
+        <!-- Results Container -->
         <div class="results-container" id="results">
             <div class="results-header">
                 <h2 class="results-title">I tuoi risultati personalizzati</h2>
@@ -273,12 +304,21 @@
             </div>
 
             <div id="schools-section">
-                <h3 style="margin-bottom: 1.5rem; color: var(--primary-color);">
+                <h3 style="margin-bottom: 1.5rem; color: hsl(250, 70%, 60%);">
                     <i class="fas fa-school"></i> Istituti consigliati nella tua zona
                 </h3>
-                <div class="schools-grid" id="schools-grid">
-                    <!-- Le scuole verranno inserite qui dinamicamente -->
+                <div class="schools-carousel">
+                    <button class="carousel-btn prev-btn" onclick="prevSchool()">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="schools-carousel-container" id="schools-carousel">
+                        <!-- Le scuole verranno inserite qui dinamicamente -->
+                    </div>
+                    <button class="carousel-btn next-btn" onclick="nextSchool()">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
+                <div class="carousel-indicators" id="school-indicators"></div>
             </div>
 
             <div style="text-align: center; margin-top: 2rem;">
@@ -288,31 +328,62 @@
             </div>
         </div>
 
-        <div class="info-sections">
-            <div class="info-card">
-                <h3><i class="fas fa-info-circle"></i> Come funziona</h3>
-                <p>Il nostro questionario utilizza un algoritmo avanzato che analizza le tue risposte per identificare il percorso di studi più adatto alle tue caratteristiche, interessi e ambizioni. Basandosi su criteri scientifici di orientamento, ti fornisce consigli personalizzati e scuole nella tua zona.</p>
+        <!-- Info Carousel -->
+        <div class="info-carousel-section">
+            <h2 class="section-title">Perché scegliere NextStep</h2>
+            <div class="info-carousel">
+                <button class="carousel-btn info-prev-btn" onclick="prevInfo()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="info-carousel-container">
+                    <div class="info-slide active">
+                        <div class="info-card">
+                            <div class="info-icon"><i class="fas fa-info-circle"></i></div>
+                            <h3>Come funziona</h3>
+                            <p>Il nostro questionario utilizza un algoritmo avanzato che analizza le tue risposte per identificare il percorso di studi più adatto alle tue caratteristiche, interessi e ambizioni. Basandosi su criteri scientifici di orientamento, ti fornisce consigli personalizzati e scuole nella tua zona.</p>
+                        </div>
+                    </div>
+                    <div class="info-slide">
+                        <div class="info-card">
+                            <div class="info-icon"><i class="fas fa-shield-alt"></i></div>
+                            <h3>Privacy e Sicurezza</h3>
+                            <p>I tuoi dati personali sono utilizzati esclusivamente per fornire consigli di orientamento personalizzati. Non vengono condivisi con terze parti e sono trattati nel rispetto della normativa sulla privacy. L'utilizzo è completamente gratuito e a scopo puramente informativo.</p>
+                        </div>
+                    </div>
+                    <div class="info-slide">
+                        <div class="info-card">
+                            <div class="info-icon"><i class="fas fa-users"></i></div>
+                            <h3>Da studenti per studenti</h3>
+                            <p>NextStep nasce da un progetto hackathon sviluppato da studenti per aiutare altri studenti nella scelta del percorso scolastico. Crediamo che l'orientamento sia fondamentale per il successo formativo e vogliamo rendere questa decisione più consapevole e informata.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn info-next-btn" onclick="nextInfo()">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
-            
-            <div class="info-card">
-                <h3><i class="fas fa-shield-alt"></i> Privacy e Sicurezza</h3>
-                <p>I tuoi dati personali sono utilizzati esclusivamente per fornire consigli di orientamento personalizzati. Non vengono condivisi con terze parti e sono trattati nel rispetto della normativa sulla privacy. L'utilizzo è completamente gratuito e a scopo puramente informativo.</p>
-            </div>
-            
-            <div class="info-card">
-                <h3><i class="fas fa-users"></i> Da studenti per studenti</h3>
-                <p>NextStep nasce da un progetto hackathon sviluppato da studenti per aiutare altri studenti nella scelta del percorso scolastico. Crediamo che l'orientamento sia fondamentale per il successo formativo e vogliamo rendere questa decisione più consapevole e informata.</p>
+            <div class="carousel-indicators" id="info-indicators">
+                <span class="indicator active" onclick="currentInfo(0)"></span>
+                <span class="indicator" onclick="currentInfo(1)"></span>
+                <span class="indicator" onclick="currentInfo(2)"></span>
             </div>
         </div>
     </div>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-logo">NextStep</div>
-            <p>Da un progetto hackathon al tool di orientamento definitivo</p>
-            <p style="margin-top: 1rem; font-size: 0.875rem;">
-                © 2024 NextStep - Tutti i diritti riservati
-            </p>
+            <div class="footer-section">
+                <div class="footer-logo">NextStep</div>
+                <p>Da un progetto hackathon al tool di orientamento definitivo</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contatti</h4>
+                <p><i class="fas fa-envelope"></i> tenerelli.francesco@panettipitagora.edu.it</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 NextStep - Tutti i diritti riservati</p>
         </div>
     </footer>
 
