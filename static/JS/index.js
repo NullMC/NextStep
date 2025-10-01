@@ -386,13 +386,13 @@ function displaySchools(schools) {
     
     if (schools.length === 0) {
         schoolsCarousel.innerHTML = `
-            <div class="school-card">
-                <div style="text-align: center; padding: 2rem;">
-                    <i class="fas fa-exclamation-triangle" style="font-size: 2.5rem; color: #F59E0B; margin-bottom: 1rem;"></i>
-                    <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Nessuna scuola trovata</p>
-                    <p style="opacity: 0.8;">Non sono state trovate scuole corrispondenti nella tua zona.</p>
-                </div>
+
+            <div style="text-align: center; padding: 2rem;">
+                <i class="fas fa-exclamation-triangle" style="font-size: 2.5rem; color: #F59E0B; margin-bottom: 1rem;"></i>
+                <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Nessuna scuola trovata</p>
+                <p style="opacity: 0.8;">Non sono state trovate scuole corrispondenti nella tua zona.</p>
             </div>
+
         `;
         if (indicators) indicators.innerHTML = '';
         return;
