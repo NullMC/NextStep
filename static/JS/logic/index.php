@@ -122,13 +122,13 @@ try {
     $filteredSchools = [];
 
     foreach ($allSchools as $school) {
-        // Filtra per regione SOLO se specificata
+        // Filtra per regione
         $schoolRegione = normalizeString($school['regione']);
         $searchRegione = normalizeString($regione);
         if (!empty($searchRegione) && $schoolRegione !== $searchRegione) {
             continue;
         }
-        // Filtra per provincia (se specificata)
+        // Filtra per provincia
         if (!empty($provincia)) {
             $schoolProvincia = normalizeString($school['provincia']);
             $searchProvincia = normalizeString($provincia);
@@ -137,7 +137,7 @@ try {
                 continue;
             }
         }
-        // Filtra per tipologia (keywords)
+        // Filtra per keywords
         if (!empty($keywords[0])) {
             $matchFound = false;
             $schoolTipologia = normalizeString($school['tipologia']);
@@ -180,7 +180,7 @@ try {
                     'email' => $emailIdx
                 ]
             ],
-            'message' => 'Nessuna scuola trovata. Controlla i parametri di ricerca e la struttura del CSV.'
+            'message' => 'Nessuna scuola trovata'
         ], JSON_UNESCAPED_UNICODE);
     } else {
         echo json_encode([
