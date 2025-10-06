@@ -1,8 +1,14 @@
 <?php
 
+
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ob_start();
+
 header('Content-Type: application/json; charset=utf-8');
 
-// Funzione per normalizzare le stringhe
+
+
 function normalizeString($str) {
     if (!$str) return '';
     
@@ -17,26 +23,22 @@ function normalizeString($str) {
 }
 
 try {
-    // Ottieni i parametri POST
+
     $regione = isset($_POST['regione']) ? $_POST['regione'] : '';
     $provincia = isset($_POST['provincia']) ? $_POST['provincia'] : '';
     $keywordsStr = isset($_POST['keywords']) ? $_POST['keywords'] : '';
     $keywords = array_map('trim', explode(',', $keywordsStr));
 
     
-    $path = __DIR__ . '/data/scuole.csv';
+    $path = __DIR__ . '\\data\\scuole.csv';
 
-    $csvFile = null;
-    if (file_exists($path)) {
-        $csvFile = $path;
-        break;
-    }
+    $csvFile = file_exists($path) ? $path : null;
 
     if (!$csvFile) {
         echo json_encode([
             'success' => false,
             'error' => 'File CSV non trovato',
-            'tested_paths' => $path,
+            'tested_paths' => [$path],
             'schools' => []
         ], JSON_UNESCAPED_UNICODE);
         exit;
@@ -67,21 +69,28 @@ try {
         exit;
     }
 
-    // Pulisci gli headers da eventuali spazi e BOM
+
     $headers = array_map(function($h) {
         return trim(str_replace("\xEF\xBB\xBF", '', $h));
     }, $headers);
 
-    // Trova gli indici delle colonne basandoti sui nomi reali
-    $regIdx = array_search('REGIONE', $headers);
-    $provIdx = array_search('PROVINCIA', $headers);
-    $denomIdx = array_search('DENOMINAZIONE ISTITUTO RIFERIMENTO', $headers);
-    $indirIdx = array_search('INDIRIZZO SCUOLA', $headers);
-    $tipoIdx = array_search('DESCRIZIONE TIPOLOGIA GRADO ISTRUZIONE SCUOLA', $headers);
-    $emailIdx = array_search('INDIRIZZO EMAIL', $headers);
-    $sitoIdx = false; // Non sembra esserci nel CSV
 
-    // Leggi tutte le righe
+    function findHeaderIndex($headers, $needle) {
+        foreach ($headers as $i => $h) {
+            if (mb_strtolower(trim($h), 'UTF-8') === mb_strtolower(trim($needle), 'UTF-8')) {
+                return $i;
+            }
+        }
+        return false;
+    }
+    $regIdx = findHeaderIndex($headers, 'REGIONE');
+    $provIdx = findHeaderIndex($headers, 'PROVINCIA');
+    $denomIdx = findHeaderIndex($headers, 'DENOMINAZIONE ISTITUTO RIFERIMENTO');
+    $indirIdx = findHeaderIndex($headers, 'INDIRIZZO SCUOLA');
+    $tipoIdx = findHeaderIndex($headers, 'DESCRIZIONE TIPOLOGIA GRADO ISTRUZIONE SCUOLA');
+    $emailIdx = findHeaderIndex($headers, 'INDIRIZZO EMAIL');
+
+    //legge tutte le righe
     $allSchools = [];
     $lineCount = 0;
     
@@ -99,7 +108,6 @@ try {
             'indirizzo' => $indirIdx !== false ? trim($data[$indirIdx]) : '',
             'tipologia' => $tipoIdx !== false ? trim($data[$tipoIdx]) : '',
             'email' => $emailIdx !== false ? trim($data[$emailIdx]) : 'Non Disponibile',
-            'sito' => 'Non Disponibile'
         ];
         
         // Aggiungi solo se ha almeno denominazione e regione
@@ -114,30 +122,25 @@ try {
     $filteredSchools = [];
 
     foreach ($allSchools as $school) {
-        // Filtra per regione
+        // Filtra per regione SOLO se specificata
         $schoolRegione = normalizeString($school['regione']);
         $searchRegione = normalizeString($regione);
-        
-        if ($schoolRegione !== $searchRegione) {
+        if (!empty($searchRegione) && $schoolRegione !== $searchRegione) {
             continue;
         }
-        
         // Filtra per provincia (se specificata)
         if (!empty($provincia)) {
             $schoolProvincia = normalizeString($school['provincia']);
             $searchProvincia = normalizeString($provincia);
-            
             if (strpos($schoolProvincia, $searchProvincia) === false && 
                 strpos($searchProvincia, $schoolProvincia) === false) {
                 continue;
             }
         }
-        
         // Filtra per tipologia (keywords)
         if (!empty($keywords[0])) {
             $matchFound = false;
             $schoolTipologia = normalizeString($school['tipologia']);
-            
             foreach ($keywords as $keyword) {
                 $normalizedKeyword = normalizeString($keyword);
                 if (strpos($schoolTipologia, $normalizedKeyword) !== false) {
@@ -145,12 +148,10 @@ try {
                     break;
                 }
             }
-            
             if (!$matchFound) {
                 continue;
             }
         }
-        
         $filteredSchools[] = $school;
     }
 
@@ -158,19 +159,52 @@ try {
     $filteredSchools = array_slice($filteredSchools, 0, 5);
 
     // Restituisci i risultati
-    echo json_encode([
-        'success' => true,
-        'count' => count($filteredSchools),
-        'total_schools' => count($allSchools),
-        'schools' => $filteredSchools,
-        'debug' => [
-            'regione' => $regione,
-            'provincia' => $provincia,
-            'keywords' => $keywords,
-            'csv_path' => $csvFile,
-            'headers_found' => $headers
-        ]
-    ], JSON_UNESCAPED_UNICODE);
+    if (count($filteredSchools) === 0) {
+        echo json_encode([
+            'success' => true,
+            'count' => 0,
+            'total_schools' => count($allSchools),
+            'schools' => [],
+            'debug' => [
+                'regione' => $regione,
+                'provincia' => $provincia,
+                'keywords' => $keywords,
+                'csv_path' => $csvFile,
+                'headers_found' => $headers,
+                'header_indices' => [
+                    'regione' => $regIdx,
+                    'provincia' => $provIdx,
+                    'denominazione' => $denomIdx,
+                    'indirizzo' => $indirIdx,
+                    'tipologia' => $tipoIdx,
+                    'email' => $emailIdx
+                ]
+            ],
+            'message' => 'Nessuna scuola trovata. Controlla i parametri di ricerca e la struttura del CSV.'
+        ], JSON_UNESCAPED_UNICODE);
+    } else {
+        echo json_encode([
+            'success' => true,
+            'count' => count($filteredSchools),
+            'total_schools' => count($allSchools),
+            'schools' => $filteredSchools,
+            'debug' => [
+                'regione' => $regione,
+                'provincia' => $provincia,
+                'keywords' => $keywords,
+                'csv_path' => $csvFile,
+                'headers_found' => $headers,
+                'header_indices' => [
+                    'regione' => $regIdx,
+                    'provincia' => $provIdx,
+                    'denominazione' => $denomIdx,
+                    'indirizzo' => $indirIdx,
+                    'tipologia' => $tipoIdx,
+                    'email' => $emailIdx
+                ]
+            ]
+        ], JSON_UNESCAPED_UNICODE);
+    }
 
 } catch (Exception $e) {
     echo json_encode([

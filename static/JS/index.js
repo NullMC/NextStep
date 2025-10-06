@@ -11,28 +11,28 @@ class OrientamentoAlgorithm {
     constructor() {
         this.pathMappings = {
             liceoClassico: { 
-                name: "Liceo Classico", 
-                keywords: ["LICEO CLASSICO", "CLASSICO"],
+                name: "Liceo Classico, Liceo Umanistico, Liceo Classico Opzione Economico-Sociale", 
+                keywords: ["LICEO CLASSICO", "CLASSICO", "LICEO UMANISTICO", "UMANISTICO", "LICEO CLASSICO OPZIONE ECONOMICO-SOCIALE", "ECONOMICO-SOCIALE"],
                 description: "Perfetto per chi ama letteratura, filosofia, storia antica e lingue classiche"
             },
             liceoScientifico: { 
-                name: "Liceo Scientifico", 
-                keywords: ["LICEO SCIENTIFICO", "SCIENTIFICO"],
+                name: "Liceo Scientifico, Liceo Scientifico Tecnologico, Liceo Scientifico Opzione Scienze Applicate", 
+                keywords: ["LICEO SCIENTIFICO", "SCIENTIFICO", "LICEO SCIENTIFICO TECNOLOGICO", "SCIENTIFICO TECNOLOGICO", "LICEO SCIENTIFICO OPZIONE SCIENZE APPLICATE", "SCIENZE APPLICATE"],
                 description: "Ideale per chi ha passione per matematica, fisica, scienze e ricerca"
             },
             istitutoTecnico: { 
-                name: "Istituto Tecnico", 
-                keywords: ["ISTITUTO TECNICO", "TECNICO", "TECNOLOGICO", "INDUSTRIALE"],
+                name: "Istituto Tecnico, Istituto Tecnologico, Istituto Tecnico Industriale", 
+                keywords: ["ISTITUTO TECNICO", "TECNICO", "TECNOLOGICO", "INDUSTRIALE", "ISTITUTO TECNICO INDUSTRIALE", "ITI", "INFORMATICA", "ELETTRONICA", "MECCANICA", "CIVILE", "AMMINISTRAZIONE", "FINANZA", "MARKETING", "TURISMO"],
                 description: "Ottimo per chi vuole unire teoria e pratica in ambito tecnologico"
             },
             istitutoProfessionale: { 
-                name: "Istituto Professionale", 
-                keywords: ["ISTITUTO PROFESSIONALE", "PROFESSIONALE"],
+                name: "Istituto Professionale, Istituto Tecnico Professionale, ITP", 
+                keywords: ["ISTITUTO PROFESSIONALE", "PROFESSIONALE", "ISTITUTO TECNICO PROFESSIONALE", "ITP", "SERVIZI", "AGRICOLTURA", "TURISMO", "COMMERCIALE"],
                 description: "Perfetto per entrare subito nel mondo del lavoro con competenze specifiche"
             },
             liceoArtistico: { 
-                name: "Liceo Artistico", 
-                keywords: ["LICEO ARTISTICO", "ARTISTICO"],
+                name: "Liceo Artistico, Istituto d'Arte, Arte", 
+                keywords: ["LICEO ARTISTICO", "ARTISTICO", "ISTITUTO D'ARTE", "ARTE"],
                 description: "Ideale per chi ha creatività e passione per l'arte e il design"
             }
         };
@@ -360,7 +360,7 @@ async function processResults() {
 
 async function searchSchools(regione, provincia, keywords) {
     try {
-        const response = await fetch('logic/index.php', {
+        const response = await fetch('static\\JS\\logic\\index.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -382,6 +382,20 @@ function displaySchools(schools) {
     const indicators = document.getElementById('school-indicators');
     
     if (!schoolsCarousel) return;
+    
+    if (schools.length === 0) {
+        schoolsCarousel.innerHTML = `
+
+            <div style="text-align: center; padding: 2rem;">
+                <i class="fas fa-exclamation-triangle" style="font-size: 2.5rem; color: #F59E0B; margin-bottom: 1rem;"></i>
+                <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Nessuna scuola trovata</p>
+                <p style="opacity: 0.8;">Non sono state trovate scuole corrispondenti nella tua zona.</p>
+            </div>
+
+        `;
+        if (indicators) indicators.innerHTML = '';
+        return;
+    }
     
     schoolSlideIndex = 0;
     
