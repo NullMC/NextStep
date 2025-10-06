@@ -158,7 +158,6 @@ try {
     // Limita a 5 risultati
     $filteredSchools = array_slice($filteredSchools, 0, 5);
 
-    // Restituisci i risultati
     if (count($filteredSchools) === 0) {
         echo json_encode([
             'success' => true,
