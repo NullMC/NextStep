@@ -78,7 +78,6 @@ class OrientamentoAlgorithm {
             case 2: scores.liceoClassico += 2; scores.liceoScientifico += 2; break;
         }
 
-        // Teoria vs pratica (cruciale)
         switch(teoricaPratica) {
             case 1: scores.liceoClassico += 4; scores.liceoScientifico += 3; break;
             case 2: scores.liceoClassico += 3; scores.liceoScientifico += 4; break;
@@ -361,7 +360,7 @@ async function processResults() {
 
 async function searchSchools(regione, provincia, keywords) {
     try {
-        const response = await fetch('search_schools.php', {
+        const response = await fetch('logic/index.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -383,20 +382,6 @@ function displaySchools(schools) {
     const indicators = document.getElementById('school-indicators');
     
     if (!schoolsCarousel) return;
-    
-    if (schools.length === 0) {
-        schoolsCarousel.innerHTML = `
-
-            <div style="text-align: center; padding: 2rem;">
-                <i class="fas fa-exclamation-triangle" style="font-size: 2.5rem; color: #F59E0B; margin-bottom: 1rem;"></i>
-                <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Nessuna scuola trovata</p>
-                <p style="opacity: 0.8;">Non sono state trovate scuole corrispondenti nella tua zona.</p>
-            </div>
-
-        `;
-        if (indicators) indicators.innerHTML = '';
-        return;
-    }
     
     schoolSlideIndex = 0;
     

@@ -24,16 +24,12 @@ try {
     $keywords = array_map('trim', explode(',', $keywordsStr));
 
     
-    $path = [
-        __DIR__ . '/data/scuole.csv'
-    ];
+    $path = __DIR__ . '/data/scuole.csv';
 
     $csvFile = null;
-    foreach ($path as $p) {
-        if (file_exists($p)) {
-            $csvFile = $p;
-            break;
-        }
+    if (file_exists($path)) {
+        $csvFile = $path;
+        break;
     }
 
     if (!$csvFile) {
