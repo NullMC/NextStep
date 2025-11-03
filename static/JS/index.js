@@ -523,7 +523,8 @@ function collectResponses() {
         'teoricaPratica', 'obiettivoFuturo', 'metodoStudio',
         'areaUmanistica', 'areaScientifica', 'areaBioChimica', 'areaArtistica',
         'areaTecnologica', 'areaEconomica', 'areaSociale', 'areaPratica',
-        'regione', 'provincia'
+        'regione', 'provincia', 'ambiente', 'sport', 'lavoro',
+        'hobbyLavoro', 'sogni', 'ambizione', 'determinazione', 'futuro'
     ];
     
     fields.forEach(field => {
@@ -608,7 +609,7 @@ async function searchSchools(regione, provincia, indirizzoDiStudio, percorso) {
 
     } catch (error) {
         console.error('Errore nella ricerca delle scuole (fetch):', error);
-        displayError("Impossibile contattare il servizio di ricerca scuole. Controlla la console per i dettagli.");
+        displayError("Impossibile contattare il servizio di ricerca scuole. Riprova più tardi.");
     }
 }
 
