@@ -1,0 +1,258 @@
+{
+	"percorsi": [
+		{
+			"codice": "Licei",
+			"descrizione": "LICEI",
+			"settori": [
+				{
+					"codice": "ARTISTICO",
+					"descrizione": "ARTISTICO",
+					"indirizzi": [
+						{
+							"codice": "LI05",
+							"descrizione": "ARCHITETTURA E AMBIENTE"
+						},
+						{
+							"codice": "LI34",
+							"descrizione": "ARTI FIGURATIVE - CURVATURA ARTE DEL GRAFICO PITTORICO"
+						},
+						{
+							"codice": "LIB6",
+							"descrizione": "ARTI FIGURATIVE - GRAFICO-PITTORICO"
+						},
+						{
+							"codice": "LIC6",
+							"descrizione": "ARTI FIGURATIVE - PLASTICO PITTORICO"
+						},
+						{
+							"codice": "LIA6",
+							"descrizione": "ARTI FIGURATIVE - PLASTICO SCULTOREO"
+						},
+						{
+							"codice": "LI36",
+							"descrizione": "ARTISTICO - AUDIOVISIVO MULTIMEDIA"
+						},
+						{
+							"codice": "LI07",
+							"descrizione": "AUDIOVISIVO MULTIMEDIA"
+						},
+						{
+							"codice": "LIB9",
+							"descrizione": "DESIGN - ARREDAMENTO E LEGNO"
+						},
+						{
+							"codice": "LID9",
+							"descrizione": "DESIGN - INDUSTRIA"
+						},
+						{
+							"codice": "LIF9",
+							"descrizione": "DESIGN - MODA"
+						},
+						{
+							"codice": "LI10",
+							"descrizione": "GRAFICA"
+						},
+						{
+							"codice": "LI08",
+							"descrizione": "SCENOGRAFIA"
+						}
+					]
+				},
+				{
+					"codice": "CLASSICO",
+					"descrizione": "CLASSICO",
+					"indirizzi": [
+						{
+							"codice": "LI01",
+							"descrizione": "CLASSICO"
+						}
+					]
+				},
+				{
+					"codice": "LINGUISTICO",
+					"descrizione": "LINGUISTICO",
+					"indirizzi": [
+						{
+							"codice": "LI04",
+							"descrizione": "LINGUISTICO"
+						}
+					]
+				},
+				{
+					"codice": "MADE IN ITALY",
+					"descrizione": "MADE IN ITALY",
+					"indirizzi": [
+						{
+							"codice": "LI18",
+							"descrizione": "MADE IN ITALY"
+						}
+					]
+				},
+				{
+					"codice": "MUSICALE E COREUTICO",
+					"descrizione": "MUSICALE E COREUTICO",
+					"indirizzi": [
+						{
+							"codice": "LI14",
+							"descrizione": "MUSICALE E COREUTICO - SEZ. COREUTICA"
+						},
+						{
+							"codice": "LI13",
+							"descrizione": "MUSICALE E COREUTICO - SEZ. MUSICALE  "
+						}
+					]
+				},
+				{
+					"codice": "SCIENTIFICO",
+					"descrizione": "SCIENTIFICO",
+					"indirizzi": [
+						{
+							"codice": "LI02",
+							"descrizione": "SCIENTIFICO"
+						},
+						{
+							"codice": "LI03",
+							"descrizione": "SCIENTIFICO -  OPZIONE SCIENZE APPLICATE"
+						},
+						{
+							"codice": "LI15",
+							"descrizione": "SCIENTIFICO - SEZ. AD INDIRIZZO SPORTIVO"
+						}
+					]
+				},
+				{
+					"codice": "SCIENZE UMANE",
+					"descrizione": "SCIENZE UMANE",
+					"indirizzi": [
+						{
+							"codice": "LI11",
+							"descrizione": "SCIENZE UMANE"
+						},
+						{
+							"codice": "LI12",
+							"descrizione": "SCIENZE UMANE  - OPZ. ECONOMICO SOCIALE"
+						}
+					]
+				}
+			]
+		},
+		{
+			"codice": "Professionali",
+			"descrizione": "PROFESSIONALI",
+			"settori": [
+				{
+					"codice": "NUOVI PROFESSIONALI",
+					"descrizione": "NUOVI PROFESSIONALI",
+					"indirizzi": [
+						{
+							"codice": "IP11",
+							"descrizione": "AGRICOLTURA, SVILUPPO RURALE, VALORIZZAZIONE DEI PRODOTTI DEL TERRITORIO E GESTIONE DELLE RISORSE FORESTALI E MONTANE"
+						},
+						{
+							"codice": "IP20",
+							"descrizione": "ARTI AUSILIARI DELLE PROFESSIONI SANITARIE: ODONTOTECNICO"
+						},
+						{
+							"codice": "IP21",
+							"descrizione": "ARTI AUSILIARI DELLE PROFESSIONI SANITARIE: OTTICO"
+						},
+						{
+							"codice": "IP17",
+							"descrizione": "ENOGASTRONOMIA E OSPITALITA' ALBERGHIERA"
+						},
+						{
+							"codice": "IP15",
+							"descrizione": "GESTIONE DELLE ACQUE E RISANAMENTO AMBIENTALE"
+						},
+						{
+							"codice": "IP13",
+							"descrizione": "INDUSTRIA E ARTIGIANATO PER IL MADE IN ITALY"
+						},
+						{
+							"codice": "IP14",
+							"descrizione": "MANUTENZIONE E ASSISTENZA TECNICA"
+						},
+						{
+							"codice": "IP12",
+							"descrizione": "PESCA COMMERCIALE E PRODUZIONI ITTICHE"
+						},
+						{
+							"codice": "IP16",
+							"descrizione": "SERVIZI COMMERCIALI"
+						},
+						{
+							"codice": "IP18",
+							"descrizione": "SERVIZI CULTURALI E DELLO SPETTACOLO"
+						},
+						{
+							"codice": "IP19",
+							"descrizione": "SERVIZI PER LA SANITA' E L'ASSISTENZA SOCIALE"
+						}
+					]
+				}
+			]
+		},
+		{
+			"codice": "Tecnici",
+			"descrizione": "TECNICI",
+			"settori": [
+				{
+					"codice": "ECONOMICO",
+					"descrizione": "ECONOMICO",
+					"indirizzi": [
+						{
+							"codice": "IT01",
+							"descrizione": "AMMINISTRAZIONE, FINANZA E MARKETING - BIENNIO"
+						},
+						{
+							"codice": "IT04",
+							"descrizione": "TURISMO"
+						}
+					]
+				},
+				{
+					"codice": "TECNOLOGICO",
+					"descrizione": "TECNOLOGICO",
+					"indirizzi": [
+						{
+							"codice": "IT21",
+							"descrizione": "AGRARIA, AGROALIMENTARE E AGROINDUSTRIA - BIENNIO "
+						},
+						{
+							"codice": "IT16",
+							"descrizione": "CHIMICA, MATERIALI E BIOTECNOLOGIE - BIENNIO"
+						},
+						{
+							"codice": "IT24",
+							"descrizione": "COSTRUZIONI, AMBIENTE E TERRITORIO - BIENNIO "
+						},
+						{
+							"codice": "IT10",
+							"descrizione": "ELETTRONICA ED ELETTROTECNICA - BIENNIO"
+						},
+						{
+							"codice": "IT15",
+							"descrizione": "GRAFICA E COMUNICAZIONE"
+						},
+						{
+							"codice": "IT13",
+							"descrizione": "INFORMATICA E TELECOMUNICAZIONI - BIENNIO"
+						},
+						{
+							"codice": "IT05",
+							"descrizione": "MECCANICA, MECCATRONICA ED ENERGIA - BIENNIO"
+						},
+						{
+							"codice": "IT19",
+							"descrizione": "SISTEMA MODA - BIENNIO"
+						},
+						{
+							"codice": "IT09",
+							"descrizione": "TRASPORTI E LOGISTICA - BIENNIO"
+						}
+					]
+				}
+			]
+		}
+	]
+}

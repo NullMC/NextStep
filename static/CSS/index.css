@@ -11,35 +11,43 @@
     --primary-light: hsl(250, 70%, 95%);
     --accent-color: hsl(160, 85%, 45%);
     --accent-dark: hsl(160, 85%, 35%);
-    --background-light: hsl(220, 15%, 95%);
+    
+    --background-light: hsl(220, 30%, 96%); /* Grigio più chiaro */
     --background-white: hsl(0, 0%, 100%);
-    --text-primary: hsl(220, 15%, 15%);
+    
+    --text-primary: hsl(220, 15%, 20%); /* Testo più scuro */
     --text-secondary: hsl(220, 10%, 45%);
-    --border-color: hsl(220, 15%, 90%);
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --border-color: hsl(220, 20%, 90%); /* Bordo più definito */
+
+    /* Ombre più morbide e professionali */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.04);
 }
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, hsl(250, 70%, 60%) 0%, hsl(270, 60%, 50%) 100%);
+    /* Sfondo più pulito e professionale */
+    background: linear-gradient(135deg, var(--background-white) 0%, var(--background-light) 100%);
     min-height: 100vh;
     color: var(--text-primary);
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased; /* Migliora rendering font */
 }
 
 /* Navbar */
 .navbar {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.9); /* Leggermente più traslucida */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 1rem 2rem;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    box-shadow: var(--shadow-md);
+    /* Ombra più sottile */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .nav-container {
@@ -64,7 +72,7 @@ body {
 }
 
 .logo:hover, .logo-school:hover {
-    transform: translateY(-3px);
+    transform: scale(1.05) translateY(-3px); /* Effetto hover migliorato */
 }
 
 .brand-name {
@@ -107,6 +115,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
+    /* Gradiente per leggibilità testo */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent 40%);
 }
 
 .carousel-content {
@@ -122,19 +132,20 @@ body {
 }
 
 .hero-title {
-    font-size: 3.5rem;
+    /* Dimensione fluida */
+    font-size: clamp(2.5rem, 5vw, 3.5rem); 
     font-weight: 700;
     color: white;
     margin-bottom: 1.5rem;
-    text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     animation: fadeInUp 0.8s ease;
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
     color: white;
     max-width: 700px;
-    text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     animation: fadeInUp 0.8s ease 0.2s both;
 }
 
@@ -163,9 +174,10 @@ body {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.4);
     cursor: pointer;
     transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .dot.active {
@@ -187,6 +199,7 @@ body {
     box-shadow: var(--shadow-lg);
     overflow: hidden;
     margin-bottom: 4rem;
+    border: 1px solid var(--border-color);
 }
 
 .quiz-header {
@@ -207,7 +220,7 @@ body {
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.3);
     transition: all 0.3s ease;
 }
 
@@ -225,7 +238,7 @@ body {
 
 #quiz-subtitle {
     font-size: 1.1rem;
-    opacity: 0.95;
+    opacity: 0.9;
 }
 
 .quiz-content {
@@ -244,11 +257,11 @@ body {
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateX(20px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(0);
     }
 }
 
@@ -290,26 +303,48 @@ body {
     font-size: 1rem;
 }
 
+/* === STYLING FORM AVANZATO === */
 .form-control {
     width: 100%;
     padding: 1rem;
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
+    border: 1px solid var(--border-color); /* Bordo più sottile */
+    border-radius: 10px; /* Radius più pulito */
     font-size: 1rem;
     font-family: inherit;
     transition: all 0.3s ease;
     background: var(--background-white);
+    -webkit-appearance: none; /* Rimuove stile default iOS */
+    -moz-appearance: none;
+    appearance: none;
 }
 
+/* Stile per i <select> */
+select.form-control {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23888'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd' /%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.25em;
+    padding-right: 3rem; /* Spazio per la freccia */
+}
+
+/* Stile per input text e placeholder */
+input.form-control::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+/* Effetto :focus professionale (anello) */
 .form-control:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px hsla(250, 70%, 60%, 0.1);
+    box-shadow: 0 0 0 3px hsla(250, 70%, 60%, 0.2);
 }
 
 .form-control:hover {
-    border-color: var(--primary-color);
+    border-color: hsl(250, 70%, 70%);
 }
+/* === FINE STYLING FORM === */
+
 
 .range-input {
     -webkit-appearance: none;
@@ -329,12 +364,12 @@ body {
     border-radius: 50%;
     background: var(--primary-color);
     cursor: pointer;
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-sm);
     transition: all 0.2s ease;
 }
 
 .range-input::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
+    transform: scale(1.15);
 }
 
 .range-input::-moz-range-thumb {
@@ -344,7 +379,7 @@ body {
     background: var(--primary-color);
     cursor: pointer;
     border: none;
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-sm);
 }
 
 .range-labels {
@@ -368,6 +403,8 @@ body {
     align-items: center;
     gap: 0.5rem;
     font-family: inherit;
+    /* Per evitare che il testo sia selezionabile */
+    user-select: none;
 }
 
 .btn-primary {
@@ -377,8 +414,9 @@ body {
 
 .btn-primary:hover {
     background: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+    /* Ombra più pronunciata in hover */
+    box-shadow: 0 6px 15px hsla(250, 70%, 60%, 0.3);
 }
 
 .btn-secondary {
@@ -388,7 +426,8 @@ body {
 
 .btn-secondary:hover {
     background: hsl(220, 10%, 35%);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
 }
 
 .btn-container {
@@ -404,6 +443,7 @@ body {
     background: var(--background-white);
     border-radius: 20px;
     box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
     padding: 3rem;
     margin-bottom: 4rem;
 }
@@ -432,7 +472,8 @@ body {
     border-radius: 16px;
     margin-bottom: 3rem;
     text-align: center;
-    box-shadow: var(--shadow-lg);
+    /* Ombra colorata per farla risaltare */
+    box-shadow: 0 10px 20px hsla(160, 85%, 45%, 0.25);
 }
 
 .path-title {
@@ -455,10 +496,12 @@ body {
 }
 
 .school-card {
-    background: var(--primary-light);
+    /* Sfondo bianco pulito */
+    background: var(--background-white); 
     border-radius: 16px;
     padding: 2rem;
-    border-left: 4px solid var(--primary-color);
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--primary-color); /* Bordo sinistro accentuato */
     transition: all 0.3s ease;
     min-height: 280px;
     display: flex;
@@ -467,9 +510,9 @@ body {
 }
 
 .school-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-left-width: 6px;
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg); /* Ombra più evidente in hover */
+    border-color: var(--primary-color);
 }
 
 .school-name {
@@ -508,7 +551,7 @@ body {
     top: 50%;
     transform: translateY(-50%);
     background: white;
-    border: none;
+    border: 1px solid var(--border-color);
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -527,6 +570,7 @@ body {
     background: var(--primary-color);
     color: white;
     transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 10px hsla(250, 70%, 60%, 0.2);
 }
 
 .prev-btn {
@@ -567,9 +611,8 @@ body {
     text-align: center;
     font-size: 2.5rem;
     font-weight: 700;
-    color: white;
+    color: var(--text-primary); /* Colore testo normale, non bianco */
     margin-bottom: 3rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .info-carousel {
@@ -599,9 +642,15 @@ body {
     background: var(--background-white);
     border-radius: 20px;
     padding: 3rem;
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-md);
     text-align: center;
-    border-top: 5px solid var(--primary-color);
+    border: 1px solid var(--border-color); /* Rimosso border-top, aggiunto bordo standard */
+    transition: all 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
 }
 
 .info-icon {
@@ -640,10 +689,10 @@ body {
 
 /* Footer */
 .footer {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background: var(--background-white);
     padding: 3rem 2rem 1rem;
     color: var(--text-secondary);
+    border-top: 1px solid var(--border-color);
 }
 
 .footer-content {
@@ -720,7 +769,7 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
     .hero-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
     
     .hero-subtitle {
@@ -728,7 +777,11 @@ body {
     }
     
     .hero-carousel {
-        height: 60vh;
+        height: 70vh;
+    }
+
+    .main-container {
+        padding: 2rem 1rem;
     }
     
     .quiz-content {
@@ -741,7 +794,7 @@ body {
     
     .schools-carousel,
     .info-carousel {
-        padding: 0 50px;
+        padding: 0 40px;
     }
     
     .carousel-btn {
@@ -770,7 +823,7 @@ body {
     }
     
     .hero-title {
-        font-size: 1.75rem;
+        font-size: 1.8rem;
     }
     
     .hero-subtitle {
@@ -783,6 +836,20 @@ body {
     
     .schools-carousel,
     .info-carousel {
-        padding: 0 40px;
+        padding: 0 10px; /* Riduci padding per bottoni */
+    }
+
+    .carousel-btn {
+        z-index: 10;
+        /* Rendi i bottoni più piccoli e semi-trasparenti */
+        width: 35px;
+        height: 35px;
+        background: rgba(255, 255, 255, 0.8);
+    }
+    .prev-btn, .info-prev-btn {
+        left: 5px;
+    }
+    .next-btn, .info-next-btn {
+        right: 5px;
     }
 }

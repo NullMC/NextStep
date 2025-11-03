@@ -10,7 +10,6 @@
     <link rel="shortcut icon" href="static/CSS/IMG/Logo NextStep.png" type="image/x-icon">
 </head>
 <body>
-    <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo-container">
@@ -23,7 +22,6 @@
         </div>
     </nav>
 
-    <!-- Hero Carousel Section -->
     <section class="hero-carousel">
         <div class="carousel-container">
             <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920');">
@@ -55,9 +53,7 @@
         </div>
     </section>
 
-    <!-- Main Content -->
     <div class="main-container">
-        <!-- Quiz Container -->
         <div class="quiz-container">
             <div class="quiz-header">
                 <div class="quiz-progress">
@@ -68,183 +64,168 @@
                 <h2 id="quiz-title">Questionario di Orientamento</h2>
                 <p id="quiz-subtitle">Rispondi alle domande per ricevere consigli personalizzati</p>
             </div>
-
             <div class="quiz-content">
                 <form id="orientamento-quiz">
-                    <!-- Pagina 1: Interessi e Personalità -->
-                    <div class="question-page active" id="page-1">
+                    <div id="page-1" class="question-page active">
                         <div class="question-section">
-                            <h3 class="question-title">
-                                <div class="question-icon"><i class="fas fa-heart"></i></div>
-                                Interessi e Personalità
-                            </h3>
-
+                            <div class="question-title"><div class="question-icon"><i class="fas fa-child"></i></div> Interessi e Attività</div>
+                            
                             <div class="form-group">
-                                <label class="form-label">Pratichi sport o attività extrascolastiche?</label>
-                                <select class="form-control" id="sport" required>
+                                <label for="sport" class="form-label">Quale sport o attività extra-scolastica ti appassiona di più?</label>
+                                <select id="sport" name="sport" class="form-control" required>
                                     <option value="">Seleziona un'opzione</option>
-                                    <option value="0">Nessuna attività particolare</option>
-                                    <option value="1">Sport di squadra (calcio, basket, pallavolo...)</option>
-                                    <option value="2">Sport individuali (tennis, nuoto, atletica...)</option>
-                                    <option value="3">Attività artistiche (teatro, musica, danza...)</option>
-                                    <option value="4">Attività tecniche (robotica, coding, maker...)</option>
+                                    <option value="1">Sport di squadra/allenamento fisico</option>
+                                    <option value="2">Scacchi, videogiochi strategici o problem solving</option>
+                                    <option value="3">Disegno, musica, teatro o altre arti</option>
+                                    <option value="4">Robotica, elettronica o coding</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label">Hai mai pensato di trasformare il tuo hobby in un lavoro?</label>
-                                <select class="form-control" id="hobbyLavoro" required>
+                                <label for="lavoro" class="form-label">Preferiresti un lavoro prevalentemente manuale o intellettuale?</label>
+                                <select id="lavoro" name="lavoro" class="form-control" required>
                                     <option value="">Seleziona un'opzione</option>
-                                    <option value="0">No, preferisco tenere hobby e lavoro separati</option>
-                                    <option value="1">Sì, mi piacerebbe molto</option>
-                                    <option value="2">Ci ho pensato ma non sono sicuro/a</option>
+                                    <option value="1">Manuale, "metterci le mani"</option>
+                                    <option value="2">Intellettuale, usare la mente e la teoria</option>
                                 </select>
                             </div>
-
+                            
                             <div class="form-group">
-                                <label class="form-label">Preferisci lavorare in gruppo o autonomamente?</label>
-                                <select class="form-control" id="lavoro" required>
+                                <label for="teoricaPratica" class="form-label">Il tuo metodo di studio/apprendimento è più orientato alla teoria o alla pratica?</label>
+                                <select id="teoricaPratica" name="teoricaPratica" class="form-control" required>
                                     <option value="">Seleziona un'opzione</option>
-                                    <option value="1">Preferisco il lavoro di gruppo</option>
-                                    <option value="2">Preferisco lavorare autonomamente</option>
-                                    <option value="3">Mi piace alternare entrambe le modalità</option>
+                                    <option value="1">Solo pura teoria (concetti astratti, lettura)</option>
+                                    <option value="2">Principalmente teoria, ma applicata (es. fisica, economia)</option>
+                                    <option value="3">Teoria ed esperimenti (laboratorio, progetti)</option>
+                                    <option value="4">Principalmente pratica (progetti, problem solving)</option>
+                                    <option value="5">Solo pura pratica (imparare facendo)</option>
                                 </select>
                             </div>
-
+                            
                             <div class="form-group">
-                                <label class="form-label">Sei una persona che preferisce la parte teorica o pratica?</label>
-                                <select class="form-control" id="teoricaPratica" required>
+                                <label for="ambiente" class="form-label">In quale tipo di ambiente ti senti più a tuo agio?</label>
+                                <select id="ambiente" name="ambiente" class="form-control" required>
                                     <option value="">Seleziona un'opzione</option>
-                                    <option value="1">Decisamente teorica</option>
-                                    <option value="2">Più teorica che pratica</option>
-                                    <option value="3">Equilibrio tra teoria e pratica</option>
-                                    <option value="4">Più pratica che teorica</option>
-                                    <option value="5">Decisamente pratica</option>
+                                    <option value="1">Ufficio o laboratorio tecnologico/scientifico</option>
+                                    <option value="2">Biblioteca o museo</option>
+                                    <option value="3">All'aperto o in ambienti dinamici</option>
+                                    <option value="4">Un ambiente creativo (atelier, studio di design)</option>
                                 </select>
                             </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Quale ambiente di studio preferisci?</label>
-                                <select class="form-control" id="ambiente" required>
-                                    <option value="">Seleziona un'opzione</option>
-                                    <option value="1">Laboratori e spazi pratici</option>
-                                    <option value="2">Biblioteche e aule tradizionali</option>
-                                    <option value="3">Spazi all'aperto e attività sul campo</option>
-                                    <option value="4">Ambienti digitali e tecnologici</option>
-                                </select>
-                            </div>
+                            
                         </div>
                     </div>
-
-                    <!-- Pagina 2: Ambizioni e Obiettivi -->
-                    <div class="question-page" id="page-2">
+                    
+                    <div id="page-2" class="question-page">
                         <div class="question-section">
-                            <h3 class="question-title">
-                                <div class="question-icon"><i class="fas fa-star"></i></div>
-                                Ambizioni e Obiettivi
-                            </h3>
+                            <div class="question-title"><div class="question-icon"><i class="fas fa-rocket"></i></div> Ambizioni e Carriera</div>
 
                             <div class="form-group">
-                                <label class="form-label">A cosa ambisci principalmente?</label>
-                                <select class="form-control" id="ambizioni" required>
+                                <label for="hobbyLavoro" class="form-label">Trasformeresti i tuoi hobby in un lavoro a tempo pieno?</label>
+                                <select id="hobbyLavoro" name="hobbyLavoro" class="form-control" required>
                                     <option value="">Seleziona un'opzione</option>
-                                    <option value="1">Costruire una carriera di successo</option>
-                                    <option value="2">Viaggiare e conoscere il mondo</option>
-                                    <option value="3">Creare una famiglia stabile</option>
-                                    <option value="4">Contribuire al bene della società</option>
+                                    <option value="1">Assolutamente sì, il lavoro deve essere la mia passione</option>
+                                    <option value="2">No, preferisco mantenere hobby e lavoro separati</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label">C'è un lavoro che sogni fin da piccolo/a?</label>
-                                <select class="form-control" id="sogni" required>
+                                <label for="sogni" class="form-label">C'è un lavoro che sogni fin da piccolo/a (es. Medico, Ingegnere, Architetto, Giornalista, Artista)?</label>
+                                <select id="sogni" name="sogni" class="form-control" required>
                                     <option value="">Seleziona un'opzione</option>
-                                    <option value="1">Sì, ho sempre avuto le idee chiare</option>
+                                    <option value="1">Sì, ho le idee chiare su cosa voglio fare</option>
                                     <option value="0">No, sto ancora cercando la mia strada</option>
-                                    <option value="2">Avevo un sogno ma è cambiato</option>
+                                    <option value="2">Sì, ma l'ho già cambiato più volte</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label">Quanto sei ambizioso/a?</label>
-                                <input type="range" class="form-control range-input" id="ambizione" min="1" max="5" step="1" value="3" required>
+                                <label for="ambizione" class="form-label">Quanto sei ambizioso/a e propenso/a al successo nella carriera?</label>
+                                <input type="range" id="ambizione" name="ambizione" class="range-input" min="1" max="5" value="3" required>
                                 <div class="range-labels">
-                                    <span>Per niente</span>
                                     <span>Poco</span>
-                                    <span>Moderatamente</span>
-                                    <span>Molto</span>
                                     <span>Estremamente</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="determinazione" class="form-label">Se un compito è difficile, ti arrendi o trovi il modo di superarlo?</label>
+                                <input type="range" id="determinazione" name="determinazione" class="range-input" min="1" max="5" value="3" required>
+                                <div class="range-labels">
+                                    <span>Mi arrendo facilmente</span>
+                                    <span>Trovo sempre una soluzione</span>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label">Ti reputi una persona determinata?</label>
-                                <select class="form-control" id="determinazione" required>
+                                <label for="futuro" class="form-label">Dove ti vedresti tra 10 anni (il tuo obiettivo a lungo termine)?</label>
+                                <select id="futuro" name="futuro" class="form-control" required>
                                     <option value="">Seleziona un'opzione</option>
-                                    <option value="1">Poco determinato/a</option>
-                                    <option value="2">Leggermente determinato/a</option>
-                                    <option value="3">Moderatamente determinato/a</option>
-                                    <option value="4">Abbastanza determinato/a</option>
-                                    <option value="5">Molto determinato/a</option>
+                                    <option value="1">In un Paese straniero per lavoro o studio (viaggio/cultura)</option>
+                                    <option value="2">Avere una casa stabile e la mia famiglia (stabilità/praticità)</option>
+                                    <option value="3">Al vertice della mia carriera/aprire la mia attività (successo/innovazione)</option>
+                                    <option value="4">Lavorare per aiutare la comunità e la società (servizi/sociale)</option>
                                 </select>
+                            </div>
+                        </div>
+
+                        <div class="question-section">
+                            <h3 class="question-title">
+                                <div class="question-icon"><i class="fas fa-heart"></i></div>
+                                Aree di Interesse
+                            </h3>
+                            <p class="form-label" style="margin-bottom: 2rem;">Valuta da 1 (Poco) a 5 (Moltissimo) il tuo interesse per queste aree:</p>
+
+                            <div class="form-group">
+                                <label class="form-label">Area Umanistica (Letteratura, Filosofia, Storia)</label>
+                                <input type="range" class="form-control range-input" id="areaUmanistica" min="1" max="5" step="1" value="3" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Area Scientifica (Matematica, Fisica, Logica)</label>
+                                <input type="range" class="form-control range-input" id="areaScientifica" min="1" max="5" step="1" value="3" required>
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label">Dove ti vedresti tra 10 anni?</label>
-                                <select class="form-control" id="futuro" required>
-                                    <option value="">Seleziona un'opzione</option>
-                                    <option value="1">In viaggio per il mondo</option>
-                                    <option value="2">Con una famiglia stabile</option>
-                                    <option value="3">Al vertice della mia carriera</option>
-                                    <option value="4">Impegnato/a nel sociale</option>
-                                </select>
+                                <label class="form-label">Area Bio-Chimica (Scienze, Biologia, Chimica)</label>
+                                <input type="range" class="form-control range-input" id="areaBioChimica" min="1" max="5" step="1" value="3" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Area Artistica (Disegno, Arte, Musica, Moda)</label>
+                                <input type="range" class="form-control range-input" id="areaArtistica" min="1" max="5" step="1" value="3" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Area Tecnologica (Computer, Elettronica, Meccanica)</label>
+                                <input type="range" class="form-control range-input" id="areaTecnologica" min="1" max="5" step="1" value="3" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Area Economica (Economia, Diritto, Finanza)</label>
+                                <input type="range" class="form-control range-input" id="areaEconomica" min="1" max="5" step="1" value="3" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Area Sociale (Psicologia, Educazione, Servizi alla persona)</label>
+                                <input type="range" class="form-control range-input" id="areaSociale" min="1" max="5" step="1" value="3" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Area Pratica (Cucina, Agricoltura, Manutenzione)</label>
+                                <input type="range" class="form-control range-input" id="areaPratica" min="1" max="5" step="1" value="3" required>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Pagina 3: Interessi Accademici -->
+
                     <div class="question-page" id="page-3">
                         <div class="question-section">
                             <h3 class="question-title">
-                                <div class="question-icon"><i class="fas fa-brain"></i></div>
-                                Interessi Accademici
+                                <div class="question-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                Dove vuoi studiare?
                             </h3>
-
-                            <div class="form-group">
-                                <label class="form-label">Quali argomenti ti affascinano di più?</label>
-                                <select class="form-control" id="argomenti" required>
-                                    <option value="">Seleziona un'opzione</option>
-                                    <option value="1">Tecnologia e innovazione</option>
-                                    <option value="2">Arte e creatività</option>
-                                    <option value="3">Scienze e ricerca</option>
-                                    <option value="4">Comunicazione e lingue</option>
-                                    <option value="5">Economia e business</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Quale materia scolastica preferisci?</label>
-                                <select class="form-control" id="materia" required>
-                                    <option value="">Seleziona un'opzione</option>
-                                    <option value="1">Matematica e Fisica</option>
-                                    <option value="2">Italiano e Storia</option>
-                                    <option value="3">Scienze Naturali</option>
-                                    <option value="4">Lingue Straniere</option>
-                                    <option value="5">Arte e Disegno</option>
-                                    <option value="6">Educazione Fisica</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Come preferisci imparare?</label>
-                                <select class="form-control" id="apprendimento" required>
-                                    <option value="">Seleziona un'opzione</option>
-                                    <option value="1">Leggendo e studiando libri</option>
-                                    <option value="2">Facendo esperimenti pratici</option>
-                                    <option value="3">Attraverso discussioni e dialoghi</option>
-                                    <option value="4">Con strumenti digitali e multimediali</option>
-                                </select>
-                            </div>
+                            <p class="form-label" style="margin-bottom: 2rem;">Questi dati sono necessari per trovare le scuole nella tua zona.</p>
 
                             <div class="form-group">
                                 <label class="form-label">Regione di residenza</label>
@@ -274,8 +255,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label">Provincia</label>
-                                <input type="text" class="form-control" id="provincia" placeholder="Es: BARI, MILANO, NAPOLI..." required>
+                                <label class="form-label">Provincia (Sigla)</label>
+                                <input type="text" class="form-control" id="provincia" placeholder="Sigla provincia (Es: BA, MI, RM...)" required maxlength="2" style="text-transform: uppercase;">
                             </div>
                         </div>
                     </div>
@@ -292,7 +273,6 @@
             </div>
         </div>
 
-        <!-- Results Container -->
         <div class="results-container" id="results">
             <div class="results-header">
                 <h2 class="results-title">I tuoi risultati personalizzati</h2>
@@ -312,8 +292,7 @@
                         <i class="fas fa-chevron-left"></i>
                     </button>
                     <div class="schools-carousel-container" id="schools-carousel">
-                        <!-- Le scuole verranno inserite qui dinamicamente -->
-                    </div>
+                        </div>
                     <button class="carousel-btn next-btn" onclick="nextSchool()">
                         <i class="fas fa-chevron-right"></i>
                     </button>
@@ -328,7 +307,6 @@
             </div>
         </div>
 
-        <!-- Info Carousel -->
         <div class="info-carousel-section">
             <h2 class="section-title">Perché scegliere NextStep</h2>
             <div class="info-carousel">
@@ -370,7 +348,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
