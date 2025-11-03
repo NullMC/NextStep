@@ -1,4 +1,3 @@
-/* Reset e variabili */
 * {
     margin: 0;
     padding: 0;
@@ -12,14 +11,13 @@
     --accent-color: hsl(160, 85%, 45%);
     --accent-dark: hsl(160, 85%, 35%);
     
-    --background-light: hsl(220, 30%, 96%); /* Grigio più chiaro */
+    --background-light: hsl(220, 30%, 96%);
     --background-white: hsl(0, 0%, 100%);
     
-    --text-primary: hsl(220, 15%, 20%); /* Testo più scuro */
+    --text-primary: hsl(220, 15%, 20%);
     --text-secondary: hsl(220, 10%, 45%);
-    --border-color: hsl(220, 20%, 90%); /* Bordo più definito */
+    --border-color: hsl(220, 20%, 90%);
 
-    /* Ombre più morbide e professionali */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.04);
@@ -27,17 +25,16 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    /* Sfondo più pulito e professionale */
+
     background: linear-gradient(135deg, var(--background-white) 0%, var(--background-light) 100%);
     min-height: 100vh;
     color: var(--text-primary);
     line-height: 1.6;
-    -webkit-font-smoothing: antialiased; /* Migliora rendering font */
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Navbar */
 .navbar {
-    background: rgba(255, 255, 255, 0.9); /* Leggermente più traslucida */
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     padding: 1rem 2rem;
@@ -46,7 +43,6 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    /* Ombra più sottile */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
@@ -72,7 +68,7 @@ body {
 }
 
 .logo:hover, .logo-school:hover {
-    transform: scale(1.05) translateY(-3px); /* Effetto hover migliorato */
+    transform: scale(1.05) translateY(-3px);
 }
 
 .brand-name {
@@ -81,7 +77,6 @@ body {
     color: var(--primary-color);
 }
 
-/* Hero Carousel */
 .hero-carousel {
     height: 100vh;
     position: relative;
@@ -115,7 +110,6 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Gradiente per leggibilità testo */
     background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent 40%);
 }
 
@@ -132,7 +126,6 @@ body {
 }
 
 .hero-title {
-    /* Dimensione fluida */
     font-size: clamp(2.5rem, 5vw, 3.5rem); 
     font-weight: 700;
     color: white;
@@ -185,14 +178,12 @@ body {
     transform: scale(1.3);
 }
 
-/* Main Container */
 .main-container {
     padding: 4rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Quiz Container */
 .quiz-container {
     background: var(--background-white);
     border-radius: 20px;
@@ -303,37 +294,36 @@ body {
     font-size: 1rem;
 }
 
-/* === STYLING FORM AVANZATO === */
 .form-control {
     width: 100%;
     padding: 1rem;
-    border: 1px solid var(--border-color); /* Bordo più sottile */
-    border-radius: 10px; /* Radius più pulito */
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
     font-size: 1rem;
     font-family: inherit;
     transition: all 0.3s ease;
     background: var(--background-white);
-    -webkit-appearance: none; /* Rimuove stile default iOS */
+    -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
 }
 
-/* Stile per i <select> */
+
 select.form-control {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23888'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd' /%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 1.25em;
-    padding-right: 3rem; /* Spazio per la freccia */
+    padding-right: 3rem;
 }
 
-/* Stile per input text e placeholder */
+
 input.form-control::placeholder {
     color: var(--text-secondary);
     opacity: 0.7;
 }
 
-/* Effetto :focus professionale (anello) */
+
 .form-control:focus {
     outline: none;
     border-color: var(--primary-color);
@@ -343,7 +333,7 @@ input.form-control::placeholder {
 .form-control:hover {
     border-color: hsl(250, 70%, 70%);
 }
-/* === FINE STYLING FORM === */
+
 
 
 .range-input {
@@ -403,7 +393,6 @@ input.form-control::placeholder {
     align-items: center;
     gap: 0.5rem;
     font-family: inherit;
-    /* Per evitare che il testo sia selezionabile */
     user-select: none;
 }
 
@@ -415,7 +404,6 @@ input.form-control::placeholder {
 .btn-primary:hover {
     background: var(--primary-dark);
     transform: translateY(-3px);
-    /* Ombra più pronunciata in hover */
     box-shadow: 0 6px 15px hsla(250, 70%, 60%, 0.3);
 }
 
@@ -437,7 +425,6 @@ input.form-control::placeholder {
     gap: 1rem;
 }
 
-/* Results Container */
 .results-container {
     display: none;
     background: var(--background-white);
@@ -472,7 +459,6 @@ input.form-control::placeholder {
     border-radius: 16px;
     margin-bottom: 3rem;
     text-align: center;
-    /* Ombra colorata per farla risaltare */
     box-shadow: 0 10px 20px hsla(160, 85%, 45%, 0.25);
 }
 
@@ -482,8 +468,6 @@ input.form-control::placeholder {
     margin-bottom: 1rem;
     opacity: 0.95;
 }
-
-/* Schools Carousel */
 .schools-carousel {
     position: relative;
     margin: 2rem 0;
@@ -496,12 +480,11 @@ input.form-control::placeholder {
 }
 
 .school-card {
-    /* Sfondo bianco pulito */
     background: var(--background-white); 
     border-radius: 16px;
     padding: 2rem;
     border: 1px solid var(--border-color);
-    border-left: 5px solid var(--primary-color); /* Bordo sinistro accentuato */
+    border-left: 5px solid var(--primary-color);
     transition: all 0.3s ease;
     min-height: 280px;
     display: flex;
@@ -511,7 +494,7 @@ input.form-control::placeholder {
 
 .school-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-lg); /* Ombra più evidente in hover */
+    box-shadow: var(--shadow-lg);
     border-color: var(--primary-color);
 }
 
@@ -611,7 +594,7 @@ input.form-control::placeholder {
     text-align: center;
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--text-primary); /* Colore testo normale, non bianco */
+    color: var(--text-primary);
     margin-bottom: 3rem;
 }
 
@@ -642,15 +625,13 @@ input.form-control::placeholder {
     background: var(--background-white);
     border-radius: 20px;
     padding: 3rem;
-    box-shadow: var(--shadow-md);
     text-align: center;
-    border: 1px solid var(--border-color); /* Rimosso border-top, aggiunto bordo standard */
+    border: 1px solid var(--border-color);
     transition: all 0.3s ease;
 }
 
 .info-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
 }
 
 .info-icon {
