@@ -97,16 +97,16 @@ class OrientamentoAlgorithm {
         
         // Pondera percorsi in base a obiettivo futuro (meno estremi)
         if (obiettivoFuturo === 'universita_lunga') {
-            this.adjustScores(scores, "Licei", 6);
+            this.adjustScores(scores, "Licei", 3);
             this.adjustScores(scores, "Tecnici", 2);
             this.adjustScores(scores, "Professionali", -3);
         } else if (obiettivoFuturo === 'universita_breve') {
             this.adjustScores(scores, "Licei", 2);
-            this.adjustScores(scores, "Tecnici", 6);
+            this.adjustScores(scores, "Tecnici", 3);
             this.adjustScores(scores, "Professionali", 1);
         } else { // Lavoro subito
             this.adjustScores(scores, "Licei", -5);
-            this.adjustScores(scores, "Tecnici", 5);
+            this.adjustScores(scores, "Tecnici", 3);
             this.adjustScores(scores, "Professionali", 2);
         }
         
@@ -121,15 +121,15 @@ class OrientamentoAlgorithm {
                 scores['IT13'] += 6; // Informatica
                 break;
             case 'laboratorio':
-                scores['LI03'] += 4; // Scienze Applicate
-                scores['IT16'] += 5; // Chimica
-                scores['IT10'] += 6; // Elettronica
+                scores['LI03'] += 3; // Scienze Applicate
+                scores['IT16'] += 4; // Chimica
+                scores['IT10'] += 5; // Elettronica
                 scores['IT05'] += 5; // Meccanica
                 break;
             case 'creativo':
                 this.adjustScoresBySettore(scores, "ARTISTICO", 5);
                 scores['IT19'] += 3; // Moda
-                scores['IT15'] += 3; // Grafica
+                scores['IT15'] += 4; // Grafica
                 scores['IT13'] += 2; // Informatica
                 break;
             case 'gruppo':
@@ -138,7 +138,7 @@ class OrientamentoAlgorithm {
                 scores['IT04'] += 4; // Turismo
                 scores['IP19'] += 5; // Servizi Sanità
                 scores['IP17'] += 4; // Alberghiero
-                scores['IT13'] += 6; // Informatica
+                scores['IT13'] += 5; // Informatica
                 break;
         }
 
@@ -194,16 +194,16 @@ class OrientamentoAlgorithm {
                 this.adjustScores(scores, "Licei", 2);
                 break;
             case 3: // All'aperto
-                scores['IT21'] += 4; // Agraria
-                scores['IP11'] += 4; // Agricoltura
+                scores['IT21'] += 5; // Agraria
+                scores['IP11'] += 5; // Agricoltura
                 scores['IP12'] += 3; // Pesca
-                scores['LI15'] += 5; // Scientifico Sportivo
+                scores['LI15'] += 4; // Scientifico Sportivo
                 break;
             case 4: // Digitali
                 scores['IT13'] += 6; // Informatica
                 scores['IT15'] += 4; // Grafica
                 scores['IT10'] += 3; // Elettronica
-                scores['LI03'] += 3; // Scienze Applicate
+                scores['LI03'] += 4; // Scienze Applicate
                 break;
         }
 
@@ -224,7 +224,7 @@ class OrientamentoAlgorithm {
                 scores['IP18'] += 4; // Servizi Culturali
                 break;
             case 4: // Attività tecniche
-                scores['IT13'] += 6; // Informatica
+                scores['IT13'] += 5; // Informatica
                 scores['IT10'] += 5; // Elettronica
                 scores['IT05'] += 4; // Meccanica
                 scores['IP14'] += 2; // Manutenzione
@@ -294,7 +294,7 @@ class OrientamentoAlgorithm {
                 scores['LI14'] += 3; // Coreutico
                 break;
             case 4: // Professioni tecniche
-                scores['IT13'] += 6; // Informatica
+                scores['IT13'] += 5; // Informatica
                 scores['IT10'] += 5; // Elettronica
                 scores['IT05'] += 4; // Meccanica
                 this.adjustScores(scores, "Tecnici", 2);
@@ -581,7 +581,8 @@ async function processResults() {
 }
 
 async function searchSchools(regione, provincia, indirizzoDiStudio, percorso) {
-    
+
+    const proxyUrl = 'https://corsproxy.io/?';
     const url = `https://unica.istruzione.gov.it/services/sic/api/v1.0/ricerche/ricercaAvanzata?regione=${regione}&indirizzoDiStudio=${indirizzoDiStudio}&percorso=${percorso}&provincia=${provincia}&tipoDiIstruzione=SS&numeroElementiPagina=30&numeroPagina=1`;
 
 
@@ -591,7 +592,7 @@ async function searchSchools(regione, provincia, indirizzoDiStudio, percorso) {
 
     try {
 
-        const response = await fetch(url);
+        const response = await fetch(proxyUrl + encodeURIComponent(url));
         
         if (!response.ok) {
             throw new Error(`Errore HTTP: ${response.status}`);
@@ -599,13 +600,8 @@ async function searchSchools(regione, provincia, indirizzoDiStudio, percorso) {
 
         const data = await response.json();
         
-        if (data.esito && data.esito.codice === "20000") {
-            schoolsData = data.scuole || [];
-            displaySchools(schoolsData);
-        } else {
-             console.error('Errore restituito dall\'API:', data.esito.descrizione);
-             displayError("Errore API: " + data.esito.descrizione);
-        }
+        schoolsData = data.scuole || [];
+        displaySchools(schoolsData);
 
     } catch (error) {
         console.error('Errore nella ricerca delle scuole (fetch):', error);
@@ -656,7 +652,7 @@ function displaySchools(schools) {
                     ${school.indirizzo || 'Indirizzo non disponibile'}, ${school.cap} ${school.comune} (${school.provincia || 'N/D'})
                 </div>
                 <div style="margin: 1rem 0; padding: 0.75rem; background: white; border-radius: 8px; font-size: 0.9rem;">
-                    <strong>Tipo:</strong> ${school.tipoDiIstruzione || 'Non specificata'} (${school.scuolaStatale === '1' ? 'Statale' : 'Paritaria'})
+                    <strong>Tipo:</strong> (${school.scuolaStatale === '1' ? 'Statale' : 'Paritaria'})
                 </div>
             </div>
             <div class="school-info">
