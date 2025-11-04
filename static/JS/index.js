@@ -66,7 +66,6 @@ class OrientamentoAlgorithm {
     
     calculateScores(responses) {
         let scores = {};
-
         Object.keys(indirizzoMap).forEach(codice => { scores[codice] = 0; });
 
         const {
@@ -76,280 +75,283 @@ class OrientamentoAlgorithm {
             ambiente, sport, lavoro, 
         } = responses;
 
-        // 1. Punteggi base su Teoria/Pratica e Obiettivo Futuro
+        // 1. Teoria/Pratica: pesi più graduali
         const tp = parseInt(teoricaPratica);
-        const amb = parseInt(ambiente || 0);
-        const spo = parseInt(sport || 0);
-        const lav = parseInt(lavoro || 0);
-        
-        // Pondera percorsi in base a teoria/pratica (ridotti per evitare bias)
         if (tp <= 2) { // Teorico
-            this.adjustScores(scores, "Licei", 4);
-            this.adjustScores(scores, "Tecnici", -1);
-            this.adjustScores(scores, "Professionali", -3);
-        } else if (tp === 3) { // Neutro
-            this.adjustScores(scores, "Tecnici", 2);
-        } else { // Pratico
-            this.adjustScores(scores, "Licei", -3);
-            this.adjustScores(scores, "Tecnici", 3);
-            this.adjustScores(scores, "Professionali", 2);
-        }
-        
-        // Pondera percorsi in base a obiettivo futuro (meno estremi)
-        if (obiettivoFuturo === 'universita_lunga') {
-            this.adjustScores(scores, "Licei", 3);
-            this.adjustScores(scores, "Tecnici", 2);
-            this.adjustScores(scores, "Professionali", -3);
-        } else if (obiettivoFuturo === 'universita_breve') {
             this.adjustScores(scores, "Licei", 2);
-            this.adjustScores(scores, "Tecnici", 3);
+            this.adjustScores(scores, "Tecnici", 0);
+            this.adjustScores(scores, "Professionali", -1);
+        } else if (tp === 3) { // Neutro
+            this.adjustScores(scores, "Licei", 1);
+            this.adjustScores(scores, "Tecnici", 1);
+            this.adjustScores(scores, "Professionali", 1);
+        } else { // Pratico
+            this.adjustScores(scores, "Licei", -1);
+            this.adjustScores(scores, "Tecnici", 2);
+            this.adjustScores(scores, "Professionali", 1);
+        }
+
+        // 2. Obiettivo futuro: pesi più bilanciati
+        if (obiettivoFuturo === 'universita_lunga') {
+            this.adjustScores(scores, "Licei", 2);
+            this.adjustScores(scores, "Tecnici", 1);
+            this.adjustScores(scores, "Professionali", -2);
+        } else if (obiettivoFuturo === 'universita_breve') {
+            this.adjustScores(scores, "Licei", 1);
+            this.adjustScores(scores, "Tecnici", 2);
             this.adjustScores(scores, "Professionali", 1);
         } else { // Lavoro subito
-            this.adjustScores(scores, "Licei", -5);
-            this.adjustScores(scores, "Tecnici", 3);
+            this.adjustScores(scores, "Licei", -2);
+            this.adjustScores(scores, "Tecnici", 2);
             this.adjustScores(scores, "Professionali", 2);
         }
-        
+
+        // 3. Metodo di studio: pesi ridotti
         switch(metodoStudio) {
             case 'libri': 
-                scores['LI01'] += 5; // Classico
-                scores['LI11'] += 4; // Scienze Umane
+                scores['LI01'] += 2; // Classico
+                scores['LI11'] += 1; // Scienze Umane
                 break;
             case 'logica':
-                scores['LI02'] += 4; // Scientifico
-                scores['LI03'] += 5; // Scienze Applicate
-                scores['IT13'] += 6; // Informatica
-                break;
-            case 'laboratorio':
-                scores['LI03'] += 3; // Scienze Applicate
-                scores['IT16'] += 4; // Chimica
-                scores['IT10'] += 5; // Elettronica
-                scores['IT05'] += 5; // Meccanica
-                break;
-            case 'creativo':
-                this.adjustScoresBySettore(scores, "ARTISTICO", 5);
-                scores['IT19'] += 3; // Moda
-                scores['IT15'] += 4; // Grafica
+                scores['LI02'] += 1; // Scientifico
+                scores['LI03'] += 2; // Scienze Applicate
                 scores['IT13'] += 2; // Informatica
                 break;
+            case 'laboratorio':
+                scores['LI03'] += 1; // Scienze Applicate
+                scores['IT16'] += 2; // Chimica
+                scores['IT10'] += 2; // Elettronica
+                scores['IT05'] += 2; // Meccanica
+                break;
+            case 'creativo':
+                this.adjustScoresBySettore(scores, "ARTISTICO", 2);
+                scores['IT19'] += 1; // Moda
+                scores['IT15'] += 1; // Grafica
+                scores['IT13'] += 1; // Informatica
+                break;
             case 'gruppo':
-                scores['LI11'] += 3; // Scienze Umane
-                scores['LI12'] += 4; // Econ-Sociale
-                scores['IT04'] += 4; // Turismo
-                scores['IP19'] += 5; // Servizi Sanità
-                scores['IP17'] += 4; // Alberghiero
-                scores['IT13'] += 5; // Informatica
+                scores['LI11'] += 1; // Scienze Umane
+                scores['LI12'] += 1; // Econ-Sociale
+                scores['IT04'] += 1; // Turismo
+                scores['IP19'] += 1; // Servizi Sanità
+                scores['IP17'] += 1; // Alberghiero
+                scores['IT13'] += 1; // Informatica
                 break;
         }
 
-        scores['LI01'] += parseInt(areaUmanistica) * 2; // Classico
-        scores['LI11'] += parseInt(areaUmanistica);    // Scienze Umane
+        // 4. Aree di interesse: pesi più bassi
+        scores['LI01'] += parseInt(areaUmanistica) || 0;
+        scores['LI11'] += Math.round((parseInt(areaUmanistica) || 0) / 2);
 
-        scores['LI02'] += parseInt(areaScientifica) * 2; // Scientifico
-        scores['LI03'] += parseInt(areaScientifica);    // Scienze App.
+        scores['LI02'] += parseInt(areaScientifica) || 0;
+        scores['LI03'] += Math.round((parseInt(areaScientifica) || 0) / 2);
 
-        scores['LI03'] += parseInt(areaBioChimica) * 2; // Scienze App.
-        scores['IT16'] += parseInt(areaBioChimica) * 2; // Chimica
-        scores['IT21'] += parseInt(areaBioChimica);    // Agraria
+        scores['LI03'] += Math.round((parseInt(areaBioChimica) || 0) / 2);
+        scores['IT16'] += parseInt(areaBioChimica) || 0;
+        scores['IT21'] += Math.round((parseInt(areaBioChimica) || 0) / 2);
 
-        this.adjustScoresBySettore(scores, "ARTISTICO", parseInt(areaArtistica));
-        scores['LI13'] += parseInt(areaArtistica); // Musicale
-        scores['LI14'] += parseInt(areaArtistica); // Coreutico
-        scores['IT19'] += parseInt(areaArtistica); // Moda
-        scores['IT15'] += parseInt(areaArtistica); // Grafica
+        this.adjustScoresBySettore(scores, "ARTISTICO", Math.round((parseInt(areaArtistica) || 0) / 2));
+        scores['LI13'] += Math.round((parseInt(areaArtistica) || 0) / 2);
+        scores['LI14'] += Math.round((parseInt(areaArtistica) || 0) / 2);
+        scores['IT19'] += Math.round((parseInt(areaArtistica) || 0) / 2);
+        scores['IT15'] += Math.round((parseInt(areaArtistica) || 0) / 2);
 
-        scores['IT13'] += parseInt(areaTecnologica) * 2; // Informatica
-        scores['IT10'] += parseInt(areaTecnologica);    // Elettronica
-        scores['IT05'] += parseInt(areaTecnologica);    // Meccanica
-        scores['IP14'] += parseInt(areaTecnologica);    // Manutenzione
+        scores['IT13'] += parseInt(areaTecnologica) || 0;
+        scores['IT10'] += Math.round((parseInt(areaTecnologica) || 0) / 2);
+        scores['IT05'] += Math.round((parseInt(areaTecnologica) || 0) / 2);
+        scores['IP14'] += Math.round((parseInt(areaTecnologica) || 0) / 2);
 
-        scores['IT01'] += parseInt(areaEconomica) * 2; // AFM
-        scores['LI12'] += parseInt(areaEconomica);    // Econ-Sociale
-        scores['IT04'] += parseInt(areaEconomica);    // Turismo
-        scores['IP16'] += parseInt(areaEconomica);    // Servizi Commerciali
+        scores['IT01'] += parseInt(areaEconomica) || 0;
+        scores['LI12'] += Math.round((parseInt(areaEconomica) || 0) / 2);
+        scores['IT04'] += Math.round((parseInt(areaEconomica) || 0) / 2);
+        scores['IP16'] += Math.round((parseInt(areaEconomica) || 0) / 2);
 
-        scores['LI11'] += parseInt(areaSociale) * 2; // Scienze Umane
-        scores['LI12'] += parseInt(areaSociale) * 2; // Econ-Sociale
-        scores['IP19'] += parseInt(areaSociale) * 2; // Servizi Sanità/Assistenza
+        scores['LI11'] += parseInt(areaSociale) || 0;
+        scores['LI12'] += Math.round((parseInt(areaSociale) || 0) / 2);
+        scores['IP19'] += Math.round((parseInt(areaSociale) || 0) / 2);
 
-        this.adjustScores(scores, "Professionali", parseInt(areaPratica));
-        scores['IT21'] += parseInt(areaPratica); // Agraria
-        scores['IT24'] += parseInt(areaPratica); // Costruzioni
-        scores['IP17'] += parseInt(areaPratica); // Alberghiero
-        scores['IP14'] += parseInt(areaPratica); // Manutenzione
+        this.adjustScores(scores, "Professionali", Math.round((parseInt(areaPratica) || 0) / 2));
+        scores['IT21'] += Math.round((parseInt(areaPratica) || 0) / 2);
+        scores['IT24'] += Math.round((parseInt(areaPratica) || 0) / 2);
+        scores['IP17'] += Math.round((parseInt(areaPratica) || 0) / 2);
+        scores['IP14'] += Math.round((parseInt(areaPratica) || 0) / 2);
 
-        // Integrazione ambiente, sport e lavoro
-        switch(amb) { // Ambiente preferito
+        // 5. Ambiente preferito
+        const amb = parseInt(ambiente || 0);
+        switch(amb) {
             case 1: // Laboratori
-                scores['IT16'] += 3; // Chimica
-                scores['IT10'] += 4; // Elettronica
-                scores['IT05'] += 3; // Meccanica
-                scores['IT13'] += 4; // Informatica
-                this.adjustScoresBySettore(scores, "ARTISTICO", 2);
+                scores['IT16'] += 1;
+                scores['IT10'] += 1;
+                scores['IT05'] += 1;
+                scores['IT13'] += 1;
+                this.adjustScoresBySettore(scores, "ARTISTICO", 1);
                 break;
             case 2: // Biblioteche
-                scores['LI01'] += 4; // Classico
-                scores['LI02'] += 3; // Scientifico
-                scores['LI11'] += 2; // Scienze Umane
-                this.adjustScores(scores, "Licei", 2);
+                scores['LI01'] += 1;
+                scores['LI02'] += 1;
+                scores['LI11'] += 1;
+                this.adjustScores(scores, "Licei", 1);
                 break;
             case 3: // All'aperto
-                scores['IT21'] += 5; // Agraria
-                scores['IP11'] += 5; // Agricoltura
-                scores['IP12'] += 3; // Pesca
-                scores['LI15'] += 4; // Scientifico Sportivo
+                scores['IT21'] += 2;
+                scores['IP11'] += 2;
+                scores['IP12'] += 1;
+                scores['LI15'] += 1;
                 break;
             case 4: // Digitali
-                scores['IT13'] += 6; // Informatica
-                scores['IT15'] += 4; // Grafica
-                scores['IT10'] += 3; // Elettronica
-                scores['LI03'] += 4; // Scienze Applicate
+                scores['IT13'] += 2;
+                scores['IT15'] += 1;
+                scores['IT10'] += 1;
+                scores['LI03'] += 1;
                 break;
         }
 
-        switch(spo) { // Sport/Attività
+        // 6. Sport/Attività
+        const spo = parseInt(sport || 0);
+        switch(spo) {
             case 1: // Sport di squadra
-                scores['LI15'] += 5; // Scientifico Sportivo
+                scores['LI15'] += 2;
                 this.adjustScores(scores, "Professionali", 1);
                 break;
             case 2: // Sport individuali
-                scores['LI15'] += 4; // Scientifico Sportivo
-                scores['LI02'] += 2; // Scientifico
-                scores['LI03'] += 2; // Scienze Applicate
+                scores['LI15'] += 1;
+                scores['LI02'] += 1;
+                scores['LI03'] += 1;
                 break;
             case 3: // Attività artistiche
-                this.adjustScoresBySettore(scores, "ARTISTICO", 4);
-                scores['LI13'] += 5; // Musicale
-                scores['LI14'] += 5; // Coreutico
-                scores['IP18'] += 4; // Servizi Culturali
+                this.adjustScoresBySettore(scores, "ARTISTICO", 2);
+                scores['LI13'] += 1;
+                scores['LI14'] += 1;
+                scores['IP18'] += 1;
                 break;
             case 4: // Attività tecniche
-                scores['IT13'] += 5; // Informatica
-                scores['IT10'] += 5; // Elettronica
-                scores['IT05'] += 4; // Meccanica
-                scores['IP14'] += 2; // Manutenzione
+                scores['IT13'] += 2;
+                scores['IT10'] += 2;
+                scores['IT05'] += 1;
+                scores['IP14'] += 1;
                 break;
         }
 
-        switch(lav) { // Preferenze lavoro
+        // 7. Preferenze lavoro
+        const lav = parseInt(lavoro || 0);
+        switch(lav) {
             case 1: // Gruppo
-                scores['IP17'] += 3; // Alberghiero
-                scores['IP19'] += 3; // Servizi Sanità
-                scores['IT04'] += 3; // Turismo
-                scores['IT13'] += 4; // Informatica
+                scores['IP17'] += 1;
+                scores['IP19'] += 1;
+                scores['IT04'] += 1;
+                scores['IT13'] += 1;
                 this.adjustScores(scores, "Professionali", 1);
                 break;
             case 2: // Autonomo
-                scores['LI01'] += 2; // Classico
-                scores['LI02'] += 2; // Scientifico
-                scores['IT01'] += 2; // AFM
+                scores['LI01'] += 1;
+                scores['LI02'] += 1;
+                scores['IT01'] += 1;
                 this.adjustScores(scores, "Licei", 1);
                 break;
             case 3: // Entrambi
-                scores['IT01'] += 2; // AFM
-                scores['IT04'] += 2; // Turismo
-                scores['LI12'] += 2; // Econ-Sociale
+                scores['IT01'] += 1;
+                scores['IT04'] += 1;
+                scores['LI12'] += 1;
                 this.adjustScoresBySettore(scores, "TECNOLOGICO", 1);
                 break;
         }
 
-        // Hobby come lavoro
+        // 8. Hobby come lavoro
         const hobbyLav = parseInt(responses.hobbyLavoro || 0);
         switch(hobbyLav) {
             case 1: // Sì, assolutamente
-                this.adjustScoresBySettore(scores, "ARTISTICO", 2);
-                scores['IT15'] += 3; // Grafica
-                scores['IP18'] += 2; // Servizi Culturali
+                this.adjustScoresBySettore(scores, "ARTISTICO", 1);
+                scores['IT15'] += 1;
+                scores['IP18'] += 1;
                 break;
             case 2: // Forse, se possibile
-                this.adjustScoresBySettore(scores, "ARTISTICO", 4);
-                scores['LI13'] += 3; // Musicale
-                scores['LI14'] += 3; // Coreutico
-                scores['IP18'] += 3; // Servizi Culturali
-                scores['IP17'] += 3; // Alberghiero
+                this.adjustScoresBySettore(scores, "ARTISTICO", 1);
+                scores['LI13'] += 1;
+                scores['LI14'] += 1;
+                scores['IP18'] += 1;
+                scores['IP17'] += 1;
                 break;
             case 3: // No, preferisco tenerli separati
-                this.adjustScores(scores, "Tecnici", 2);
+                this.adjustScores(scores, "Tecnici", 1);
                 this.adjustScores(scores, "Licei", 1);
                 break;
         }
 
-        // Sogni d'infanzia
+        // 9. Sogni d'infanzia
         const sogniVal = parseInt(responses.sogni || 0);
         switch(sogniVal) {
             case 1: // Professioni scientifiche
-                scores['LI02'] += 3; // Scientifico
-                scores['LI03'] += 4; // Scienze Applicate
-                scores['IT13'] += 4; // Informatica
-                scores['IT16'] += 3; // Chimica
+                scores['LI02'] += 1;
+                scores['LI03'] += 1;
+                scores['IT13'] += 1;
+                scores['IT16'] += 1;
                 break;
             case 2: // Professioni umanistiche
-                scores['LI01'] += 4; // Classico
-                scores['LI11'] += 5; // Scienze Umane
-                scores['LI04'] += 3; // Linguistico
+                scores['LI01'] += 1;
+                scores['LI11'] += 1;
+                scores['LI04'] += 1;
                 break;
             case 3: // Professioni artistiche
-                this.adjustScoresBySettore(scores, "ARTISTICO", 5);
-                scores['LI13'] += 4; // Musicale
-                scores['LI14'] += 3; // Coreutico
+                this.adjustScoresBySettore(scores, "ARTISTICO", 1);
+                scores['LI13'] += 1;
+                scores['LI14'] += 1;
                 break;
             case 4: // Professioni tecniche
-                scores['IT13'] += 5; // Informatica
-                scores['IT10'] += 5; // Elettronica
-                scores['IT05'] += 4; // Meccanica
-                this.adjustScores(scores, "Tecnici", 2);
+                scores['IT13'] += 1;
+                scores['IT10'] += 1;
+                scores['IT05'] += 1;
+                this.adjustScores(scores, "Tecnici", 1);
                 break;
             case 5: // Non ho un sogno specifico
                 // Non modifica i punteggi
                 break;
         }
 
-        // Ambizione
+        // 10. Ambizione
         const ambVal = parseInt(responses.ambizione || 3);
         if (ambVal >= 4) { // Alta ambizione
-            this.adjustScores(scores, "Licei", 3);
-            scores['LI02'] += 2; // Scientifico
-            scores['IT13'] += 3; // Informatica
-            scores['IT01'] += 1; // AFM
+            this.adjustScores(scores, "Licei", 1);
+            scores['LI02'] += 1;
+            scores['IT13'] += 1;
+            scores['IT01'] += 1;
         } else if (ambVal <= 2) { // Bassa ambizione
-            this.adjustScores(scores, "Professionali", 2);
+            this.adjustScores(scores, "Professionali", 1);
             this.adjustScores(scores, "Tecnici", 1);
         }
 
-        // Determinazione (ribilanciata)
+        // 11. Determinazione
         const detVal = parseInt(responses.determinazione || 3);
-        if (detVal >= 4) { // Alta determinazione -> favorisce percorsi più impegnativi
-            this.adjustScores(scores, "Licei", 2);
-            this.adjustScores(scores, "Tecnici", 3);
-        } else if (detVal <= 2) { // Bassa determinazione -> favorisce percorsi più pratici
-            this.adjustScores(scores, "Professionali", 2);
+        if (detVal >= 4) { // Alta determinazione
+            this.adjustScores(scores, "Licei", 1);
             this.adjustScores(scores, "Tecnici", 1);
+        } else if (detVal <= 2) { // Bassa determinazione
+            this.adjustScores(scores, "Professionali", 1);
         }
 
-        // Obiettivi futuri
+        // 12. Obiettivi futuri
         const futVal = parseInt(responses.futuro || 0);
         switch(futVal) {
             case 1: // Carriera accademica
-                scores['LI01'] += 5; // Classico
-                scores['LI02'] += 5; // Scientifico
-                scores['LI03'] += 4; // Scienze Applicate
-                this.adjustScores(scores, "Licei", 3);
+                scores['LI01'] += 1;
+                scores['LI02'] += 1;
+                scores['LI03'] += 1;
+                this.adjustScores(scores, "Licei", 1);
                 break;
             case 2: // Libero professionista
-                scores['IT01'] += 5; // AFM
-                scores['IT04'] += 4; // Turismo
-                scores['IP17'] += 4; // Alberghiero
-                scores['IP16'] += 4; // Servizi Commerciali
+                scores['IT01'] += 1;
+                scores['IT04'] += 1;
+                scores['IP17'] += 1;
+                scores['IP16'] += 1;
                 break;
             case 3: // Imprenditore
-                scores['IT01'] += 2; // AFM
-                scores['IT13'] += 4; // Informatica
-                scores['IT16'] += 3; // Chimica
-                this.adjustScores(scores, "Tecnici", 2);
+                scores['IT01'] += 1;
+                scores['IT13'] += 1;
+                scores['IT16'] += 1;
+                this.adjustScores(scores, "Tecnici", 1);
                 break;
             case 4: // Dipendente specializzato
-                this.adjustScores(scores, "Tecnici", 3);
-                this.adjustScores(scores, "Professionali", 2);
+                this.adjustScores(scores, "Tecnici", 1);
+                this.adjustScores(scores, "Professionali", 1);
                 break;
             case 5: // Non ho ancora deciso
                 // Non modifica i punteggi
