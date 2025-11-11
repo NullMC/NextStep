@@ -468,16 +468,15 @@ input.form-control::placeholder {
     margin-bottom: 1rem;
     opacity: 0.95;
 }
-.schools-carousel {
-    position: relative;
-    margin: 2rem 0;
-    padding: 0 60px;
-}
 
-.schools-carousel-container {
-    overflow: hidden;
-    border-radius: 16px;
+/* MODIFICA QUI: Sostituito .schools-carousel con .schools-grid */
+.schools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
 }
+/* FINE MODIFICA */
 
 .school-card {
     background: var(--background-white); 
@@ -529,6 +528,8 @@ input.form-control::placeholder {
     gap: 0.5rem;
 }
 
+/* Gli stili per .carousel-btn, .prev-btn, .next-btn rimangono */
+/* perché sono usati da .info-carousel */
 .carousel-btn {
     position: absolute;
     top: 50%;
@@ -773,7 +774,7 @@ input.form-control::placeholder {
         flex-direction: column;
     }
     
-    .schools-carousel,
+    /* MODIFICA QUI: Rimosso .schools-carousel */
     .info-carousel {
         padding: 0 40px;
     }
@@ -815,7 +816,7 @@ input.form-control::placeholder {
         padding: 1.5rem;
     }
     
-    .schools-carousel,
+    /* MODIFICA QUI: Rimosso .schools-carousel */
     .info-carousel {
         padding: 0 10px; /* Riduci padding per bottoni */
     }

@@ -2,7 +2,7 @@ let currentStep = 1;
 let totalSteps = 3;
 let heroSlideIndex = 1;
 let infoSlideIndex = 0;
-let schoolSlideIndex = 0;
+// let schoolSlideIndex = 0; // RIMOSSO
 let schoolsData = [];
 
 // Mappa degli indirizzi
@@ -587,9 +587,9 @@ async function searchSchools(regione, provincia, indirizzoDiStudio, percorso) {
     const proxyUrl = 'https://corsproxy.io/?';
     const url = `https://unica.istruzione.gov.it/services/sic/api/v1.0/ricerche/ricercaAvanzata?regione=${regione}&indirizzoDiStudio=${indirizzoDiStudio}&percorso=${percorso}&provincia=${provincia}&tipoDiIstruzione=SS&numeroElementiPagina=30&numeroPagina=1`;
 
-
-    const schoolsCarousel = document.getElementById('schools-carousel');
-    schoolsCarousel.innerHTML = `<div style="text-align: center; padding: 2rem;"><i class="fas fa-spinner fa-spin" style="font-size: 2.5rem; color: var(--primary-color);"></i><p style="margin-top: 1rem;">Ricerca scuole in corso...</p></div>`;
+    // MODIFICA QUI: Puntato a 'schools-grid'
+    const schoolsGrid = document.getElementById('schools-grid');
+    schoolsGrid.innerHTML = `<div style="text-align: center; padding: 2rem;"><i class="fas fa-spinner fa-spin" style="font-size: 2.5rem; color: var(--primary-color);"></i><p style="margin-top: 1rem;">Ricerca scuole in corso...</p></div>`;
 
 
     try {
@@ -612,41 +612,38 @@ async function searchSchools(regione, provincia, indirizzoDiStudio, percorso) {
 }
 
 function displayError(message) {
-    const schoolsCarousel = document.getElementById('schools-carousel');
-    const indicators = document.getElementById('school-indicators');
+    // MODIFICA QUI: Puntato a 'schools-grid' e rimossi indicatori
+    const schoolsGrid = document.getElementById('schools-grid');
     
-    schoolsCarousel.innerHTML = `
+    schoolsGrid.innerHTML = `
         <div style="text-align: center; padding: 2rem;">
             <i class="fas fa-exclamation-triangle" style="font-size: 2.5rem; color: #F59E0B; margin-bottom: 1rem;"></i>
             <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Errore di ricerca</p>
             <p style="opacity: 0.8; font-size: 0.9rem;">${message}</p>
         </div>
     `;
-    if (indicators) indicators.innerHTML = '';
 }
 
 function displaySchools(schools) {
-    const schoolsCarousel = document.getElementById('schools-carousel');
-    const indicators = document.getElementById('school-indicators');
+    // MODIFICA QUI: Puntato a 'schools-grid' e rimossi indicatori
+    const schoolsGrid = document.getElementById('schools-grid');
     
-    if (!schoolsCarousel) return;
+    if (!schoolsGrid) return;
     
     if (!schools || schools.length === 0) {
-        schoolsCarousel.innerHTML = `
+        schoolsGrid.innerHTML = `
             <div style="text-align: center; padding: 2rem;">
                 <i class="fas fa-school" style="font-size: 2.5rem; color: var(--text-secondary); opacity: 0.5; margin-bottom: 1rem;"></i>
                 <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Nessuna scuola trovata</p>
                 <p style="opacity: 0.8;">Non sono state trovate scuole per questo indirizzo nella provincia selezionata.</p>
             </div>
         `;
-        if (indicators) indicators.innerHTML = '';
         return;
     }
     
-    schoolSlideIndex = 0;
-    
-    schoolsCarousel.innerHTML = schools.map((school, index) => `
-        <div class="school-card" style="display: ${index === 0 ? 'flex' : 'none'};">
+    // MODIFICA QUI: Genera tutte le card senza logica di 'display: none'
+    schoolsGrid.innerHTML = schools.map((school, index) => `
+        <div class="school-card">
             <div>
                 <div class="school-name">${school.denominazione || 'Nome non disponibile'}</div>
                 <div class="school-address">
@@ -669,63 +666,8 @@ function displaySchools(schools) {
             </div>
         </div>
     `).join('');
-    
-    if (indicators) {
-        indicators.innerHTML = schools.map((_, index) => 
-            `<span class="indicator ${index === 0 ? 'active' : ''}" onclick="currentSchool(${index})"></span>`
-        ).join('');
-    }
 
-    const prevBtn = document.querySelector('.schools-carousel .prev-btn');
-    const nextBtn = document.querySelector('.schools-carousel .next-btn');
-    if(schools.length <= 1) {
-        if(prevBtn) prevBtn.style.display = 'none';
-        if(nextBtn) nextBtn.style.display = 'none';
-    } else {
-        if(prevBtn) prevBtn.style.display = 'flex';
-        if(nextBtn) nextBtn.style.display = 'flex';
-    }
 }
-
-//Carousel
-function prevSchool() {
-    const cards = document.querySelectorAll('.schools-carousel-container .school-card');
-    if (cards.length === 0) return;
-    
-    cards[schoolSlideIndex].style.display = 'none';
-    schoolSlideIndex = (schoolSlideIndex - 1 + cards.length) % cards.length;
-    cards[schoolSlideIndex].style.display = 'flex';
-    updateSchoolIndicators();
-}
-function nextSchool() {
-    const cards = document.querySelectorAll('.schools-carousel-container .school-card');
-    if (cards.length === 0) return;
-    
-    cards[schoolSlideIndex].style.display = 'none';
-    schoolSlideIndex = (schoolSlideIndex + 1) % cards.length;
-    cards[schoolSlideIndex].style.display = 'flex';
-    updateSchoolIndicators();
-}
-function currentSchool(index) {
-    const cards = document.querySelectorAll('.schools-carousel-container .school-card');
-    if (cards.length === 0) return;
-    
-    cards[schoolSlideIndex].style.display = 'none';
-    schoolSlideIndex = index;
-    cards[schoolSlideIndex].style.display = 'flex';
-    updateSchoolIndicators();
-}
-function updateSchoolIndicators() {
-    const indicators = document.querySelectorAll('#school-indicators .indicator');
-    indicators.forEach((indicator, index) => {
-        if (index === schoolSlideIndex) {
-            indicator.classList.add('active');
-        } else {
-            indicator.classList.remove('active');
-        }
-    });
-}
-
 function prevInfo() {
     const slides = document.querySelectorAll('.info-slide');
     slides[infoSlideIndex].classList.remove('active');
