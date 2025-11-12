@@ -2,11 +2,9 @@ let currentStep = 1;
 let totalSteps = 3;
 let heroSlideIndex = 1;
 let infoSlideIndex = 0;
-// let schoolSlideIndex = 0; // RIMOSSO
 let schoolsData = [];
 
 // Mappa degli indirizzi
-
 const indirizzoMap = {
 	"LI05": { "descrizione": "ARCHITETTURA E AMBIENTE", "settore": "ARTISTICO", "percorso": "Licei" },
 	"LI34": { "descrizione": "ARTI FIGURATIVE - CURVATURA ARTE DEL GRAFICO PITTORICO", "settore": "ARTISTICO", "percorso": "Licei" },
@@ -54,14 +52,15 @@ const indirizzoMap = {
 	"IT09": { "descrizione": "TRASPORTI E LOGISTICA", "settore": "TECNOLOGICO", "percorso": "Tecnici" }
 };
 
-
+// regionMap
 const regionMap = {
-    'ABRUZZO': 'AB', 'BASILICATA': 'BA', 'CALABRIA': 'CA', 'CAMPANIA': 'CM', 'EMILIA-ROMAGNA': 'ER',
+    'ABRUZZO': 'AB', 'BASILicata': 'BA', 'CALABRIA': 'CA', 'CAMPANIA': 'CM', 'EMILIA-ROMAGNA': 'ER',
     'FRIULI-VENEZIA GIULIA': 'FV', 'LAZIO': 'LA', 'LIGURIA': 'LI', 'LOMBARDIA': 'LO', 'MARCHE': 'MA',
     'MOLISE': 'MO', 'PIEMONTE': 'PM', 'PUGLIA': 'PU', 'SARDEGNA': 'SA', 'SICILIA': 'SI', 'TOSCANA': 'TO',
     'TRENTINO-ALTO ADIGE': 'TA', 'UMBRIA': 'UM', "VALLE D'AOSTA": 'VA', 'VENETO': 'VE'
 };
 
+// Classe OrientamentoAlgorithm
 class OrientamentoAlgorithm {
     
     calculateScores(responses) {
@@ -404,7 +403,7 @@ class OrientamentoAlgorithm {
 const algorithm = new OrientamentoAlgorithm();
 
 
-
+// Funzioni Hero Carousel
 function showHeroSlide(n) {
     const slides = document.querySelectorAll('.carousel-slide');
     const dots = document.querySelectorAll('.carousel-dots .dot');
@@ -427,7 +426,7 @@ function autoPlayHero() {
     showHeroSlide(heroSlideIndex);
 }
 
-// Quiz Functions
+// Funzioni Quiz 
 function changeStep(direction) {
     const currentPage = document.getElementById(`page-${currentStep}`);
     
@@ -525,7 +524,7 @@ function collectResponses() {
         'teoricaPratica', 'obiettivoFuturo', 'metodoStudio',
         'areaUmanistica', 'areaScientifica', 'areaBioChimica', 'areaArtistica',
         'areaTecnologica', 'areaEconomica', 'areaSociale', 'areaPratica',
-        'regione', 'provincia', 'ambiente', 'sport', 'lavoro',
+        'regione', 'provincia', 'comune', 'ambiente', 'sport', 'lavoro',
         'hobbyLavoro', 'sogni', 'ambizione', 'determinazione', 'futuro'
     ];
     
@@ -539,11 +538,11 @@ function collectResponses() {
     return responses;
 }
 
-
 async function processResults() {
     const responses = collectResponses();
     
-    if (!responses.regione || !responses.provincia) {
+    // Ora controlla anche 'comune'
+    if (!responses.regione || !responses.provincia || !responses.comune) {
         alert('Per favore completa tutti i campi obbligatori');
         return;
     }
@@ -569,12 +568,14 @@ async function processResults() {
     
     const regioneCodice = regionMap[responses.regione];
     const provinciaCodice = responses.provincia.toUpperCase();
+    const userCity = responses.comune; // Prendi la città
     
     await searchSchools(
         regioneCodice, 
         provinciaCodice, 
         recommendation.indirizzoCodice, 
-        recommendation.percorso
+        recommendation.percorso,
+        userCity // Passa la città alla funzione di ricerca
     );
     
     if (resultsContainer) {
@@ -582,12 +583,12 @@ async function processResults() {
     }
 }
 
-async function searchSchools(regione, provincia, indirizzoDiStudio, percorso) {
+async function searchSchools(regione, provincia, indirizzoDiStudio, percorso, userCity) {
 
     const proxyUrl = 'https://corsproxy.io/?';
     const url = `https://unica.istruzione.gov.it/services/sic/api/v1.0/ricerche/ricercaAvanzata?regione=${regione}&indirizzoDiStudio=${indirizzoDiStudio}&percorso=${percorso}&provincia=${provincia}&tipoDiIstruzione=SS&numeroElementiPagina=30&numeroPagina=1`;
 
-    // MODIFICA QUI: Puntato a 'schools-grid'
+
     const schoolsGrid = document.getElementById('schools-grid');
     schoolsGrid.innerHTML = `<div style="text-align: center; padding: 2rem;"><i class="fas fa-spinner fa-spin" style="font-size: 2.5rem; color: var(--primary-color);"></i><p style="margin-top: 1rem;">Ricerca scuole in corso...</p></div>`;
 
@@ -603,7 +604,7 @@ async function searchSchools(regione, provincia, indirizzoDiStudio, percorso) {
         const data = await response.json();
         
         schoolsData = data.scuole || [];
-        displaySchools(schoolsData);
+        displaySchools(schoolsData, userCity); // Passa la città alla funzione di visualizzazione
 
     } catch (error) {
         console.error('Errore nella ricerca delle scuole (fetch):', error);
@@ -611,8 +612,8 @@ async function searchSchools(regione, provincia, indirizzoDiStudio, percorso) {
     }
 }
 
+// Funzione displayError
 function displayError(message) {
-    // MODIFICA QUI: Puntato a 'schools-grid' e rimossi indicatori
     const schoolsGrid = document.getElementById('schools-grid');
     
     schoolsGrid.innerHTML = `
@@ -624,8 +625,7 @@ function displayError(message) {
     `;
 }
 
-function displaySchools(schools) {
-    // MODIFICA QUI: Puntato a 'schools-grid' e rimossi indicatori
+function displaySchools(schools, userCity) {
     const schoolsGrid = document.getElementById('schools-grid');
     
     if (!schoolsGrid) return;
@@ -640,9 +640,30 @@ function displaySchools(schools) {
         `;
         return;
     }
+
+    const cityUpper = userCity.toUpperCase();
+    let sortedSchools = schools;
+
+    if (cityUpper) {
+        const citySchools = [];
+        const otherSchools = [];
+        
+        schools.forEach(school => {
+            
+            if (school.comune.toUpperCase() === cityUpper) {
+                citySchools.push(school);
+            } else {
+                otherSchools.push(school);
+            }
+        });
+        
+        
+        sortedSchools = [...citySchools, ...otherSchools];
+    }
+
+
     
-    // MODIFICA QUI: Genera tutte le card senza logica di 'display: none'
-    schoolsGrid.innerHTML = schools.map((school, index) => `
+    schoolsGrid.innerHTML = sortedSchools.map((school) => `
         <div class="school-card">
             <div>
                 <div class="school-name">${school.denominazione || 'Nome non disponibile'}</div>
@@ -666,8 +687,10 @@ function displaySchools(schools) {
             </div>
         </div>
     `).join('');
-
 }
+
+
+// Funzioni Info Carousel
 function prevInfo() {
     const slides = document.querySelectorAll('.info-slide');
     slides[infoSlideIndex].classList.remove('active');
