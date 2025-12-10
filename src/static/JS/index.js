@@ -43,6 +43,42 @@ function populateIndirizziSelect() {
         select.appendChild(optgroup);
     });
 }
+// Funzione per cercare scuole per indirizzo
+async function searchSchoolsByIndirizzo() {
+    const indirizzo = document.getElementById('search-indirizzo').value;
+    const regione = document.getElementById('search-regione').value;
+    const provincia = document.getElementById('search-provincia').value;
+    const comune = document.getElementById('search-comune').value;
+    
+    if (!indirizzo || !regione || !provincia) {
+        alert('Compila almeno Indirizzo, Regione e Provincia');
+        return;
+    }
+    
+    const info = indirizzoMap[indirizzo];
+    if (!info) {
+        alert('Indirizzo non valido');
+        return;
+    }
+    
+    const regioneCodice = regionMap[regione];
+    if (!regioneCodice) {
+        alert('Regione non valida');
+        return;
+    }
+    
+    document.getElementById('search-results').style.display = 'block';
+    document.getElementById('search-results').scrollIntoView({ behavior: 'smooth' });
+    
+    await searchSchools(
+        regioneCodice,
+        provincia.toUpperCase(),
+        indirizzo,
+        info.percorso,
+        comune,
+        'search-schools-grid'
+    );
+}
 
 // Variabili globali
 let currentStep = 1;
@@ -101,7 +137,7 @@ const indirizzoMap = {
 
 // regionMap
 const regionMap = {
-    'ABRUZZO': 'AB', 'BASILicata': 'BA', 'CALABRIA': 'CA', 'CAMPANIA': 'CM', 'EMILIA-ROMAGNA': 'ER',
+    'ABRUZZO': 'AB', 'BASILICATA': 'BA', 'CALABRIA': 'CA', 'CAMPANIA': 'CM', 'EMILIA-ROMAGNA': 'ER',
     'FRIULI-VENEZIA GIULIA': 'FV', 'LAZIO': 'LA', 'LIGURIA': 'LI', 'LOMBARDIA': 'LO', 'MARCHE': 'MA',
     'MOLISE': 'MO', 'PIEMONTE': 'PM', 'PUGLIA': 'PU', 'SARDEGNA': 'SA', 'SICILIA': 'SI', 'TOSCANA': 'TO',
     'TRENTINO-ALTO ADIGE': 'TA', 'UMBRIA': 'UM', "VALLE D'AOSTA": 'VA', 'VENETO': 'VE'
@@ -656,18 +692,19 @@ async function processResults() {
         resultsContainer.scrollIntoView({ behavior: 'smooth' });
     }
 }
-async function searchSchools(regione, provincia, indirizzoDiStudio, percorso, userCity) {
-
+async function searchSchools(regione, provincia, indirizzoDiStudio, percorso, userCity, gridId = 'schools-grid') {
     const proxyUrl = 'https://corsproxy.io/?';
     const url = `https://unica.istruzione.gov.it/services/sic/api/v1.0/ricerche/ricercaAvanzata?regione=${regione}&indirizzoDiStudio=${indirizzoDiStudio}&percorso=${percorso}&provincia=${provincia}&tipoDiIstruzione=SS&numeroElementiPagina=30&numeroPagina=1`;
 
-
-    const schoolsGrid = document.getElementById('schools-grid');
+    const schoolsGrid = document.getElementById(gridId);
+    if (!schoolsGrid) {
+        console.error('Grid non trovata:', gridId);
+        return;
+    }
+    
     schoolsGrid.innerHTML = `<div style="text-align: center; padding: 2rem;"><i class="fas fa-spinner fa-spin" style="font-size: 2.5rem; color: var(--primary-color);"></i><p style="margin-top: 1rem;">Ricerca scuole in corso...</p></div>`;
 
-
     try {
-
         const response = await fetch(proxyUrl + encodeURIComponent(url));
         
         if (!response.ok) {
@@ -677,11 +714,11 @@ async function searchSchools(regione, provincia, indirizzoDiStudio, percorso, us
         const data = await response.json();
         
         schoolsData = data.scuole || [];
-        displaySchools(schoolsData, userCity); // Passa la città alla funzione di visualizzazione
+        displaySchools(schoolsData, userCity, gridId);
 
     } catch (error) {
-        console.error('Errore nella ricerca delle scuole (fetch):', error);
-        displayError("Impossibile contattare il servizio di ricerca scuole. Riprova più tardi.");
+        console.error('Errore nella ricerca delle scuole:', error);
+        displayError("Impossibile contattare il servizio di ricerca scuole.", gridId);
     }
 }
 

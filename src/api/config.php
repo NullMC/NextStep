@@ -1,13 +1,13 @@
 <?php
 // Configurazione database
-define('DB_HOST', 'localhost');
+define('DB_HOST', 'db');  // Nome servizio Docker
 define('DB_NAME', 'nextstep');
-define('DB_USER', 'root'); // Cambia in produzione
-define('DB_PASS', 'NextStep2024'); // Cambia in produzione
+define('DB_USER', 'root');
+define('DB_PASS', 'NextStep2024');
 
 // Configurazione applicazione
-define('SESSION_DURATION', 30 * 24 * 60 * 60); // 30 giorni in secondi
-define('BASE_URL', 'http://localhost/nextstep'); // Cambia in produzione
+define('SESSION_DURATION', 30 * 24 * 60 * 60);
+define('BASE_URL', 'http://localhost:8080');
 
 // Connessione database
 function getDB() {
@@ -24,6 +24,7 @@ function getDB() {
         );
         return $pdo;
     } catch(PDOException $e) {
+        error_log("DB Connection Error: " . $e->getMessage());
         http_response_code(500);
         die(json_encode(['error' => 'Database connection failed']));
     }

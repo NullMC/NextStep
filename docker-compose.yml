@@ -2,8 +2,7 @@ version: '3.9'
 
 services:
   web:
-    # image: php:8.2-apache
-    build: . # builda i dockerfile che trovi nella directory corrente
+    build: .
     container_name: php-web
     ports:
       - "8080:80"
@@ -21,10 +20,8 @@ services:
     container_name: nextstep-db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: NextStep2024
       MYSQL_DATABASE: nextstep
-      MYSQL_USER: root
-      MYSQL_PASSWORD: NextStep2024
     volumes:
       - db_data:/var/lib/mysql
     networks:
@@ -39,7 +36,7 @@ services:
     environment:
       PMA_HOST: db
       PMA_USER: root
-      PMA_PASSWORD: rootpassword
+      PMA_PASSWORD: NextStep2024
       UPLOAD_LIMIT: 300M
     depends_on:
       - db
@@ -48,7 +45,6 @@ services:
 
 volumes:
   db_data:
-
 
 networks:
   app-network:
