@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risultato Condiviso - NextStep</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/CSS/index.css">
+    <link rel="shortcut icon" href="static/CSS/IMG/Logo NextStep.png" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <img class="logo" src="static/CSS/IMG/Logo NextStep.png" alt="NextStep Logo">
+                <span class="brand-name">NextStep</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container" style="margin-top: 100px;">
+        <div class="results-container show" id="shared-result">
+            <div class="results-header">
+                <h2 class="results-title">Risultato Orientamento</h2>
+                <p id="shared-by" style="color: var(--text-secondary);"></p>
+            </div>
+            
+            <div class="recommended-path" id="recommended-path">
+                <div class="path-title">Indirizzo Consigliato</div>
+                <div id="result-content"></div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn btn-primary" onclick="window.location.href='index.html'">
+                    <i class="fas fa-home"></i> Vai alla home
+                </button>
+                <button class="btn btn-secondary" onclick="window.location.href='login.html'">
+                    <i class="fas fa-user"></i> Fai anche tu il quiz
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'api';
+
+        async function loadSharedResult() {
+            const params = new URLSearchParams(window.location.search);
+            const token = params.get('token');
+
+            if (!token) {
+                document.getElementById('shared-result').innerHTML = `
+                    <div style="text-align: center; padding: 3rem;">
+                        <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: #EF4444; margin-bottom: 1rem;"></i>
+                        <h3>Link non valido</h3>
+                        <p>Il link di condivisione non è valido o è scaduto.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/results.php?action=shared&token=${token}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    const r = data.result;
+                    document.getElementById('shared-by').textContent = 
+                        `Condiviso da ${r.nome} ${r.cognome} • ${new Date(r.created_at).toLocaleDateString('it-IT')}`;
+                    
+                    document.getElementById('result-content').innerHTML = `
+                        <div style="font-size: 1.75rem; font-weight: 700;">${r.indirizzo_desc}</div>
+                        <div style="font-size: 1.1rem; margin-top: 1rem; opacity: 0.95;">
+                            Percorso: <strong>${r.percorso}</strong> | Settore: <strong>${r.settore}</strong>
+                        </div>
+                        <div style="margin-top: 1.5rem; font-size: 0.95rem; opacity: 0.9;">
+                            Località: ${r.comune}, ${r.provincia} - ${r.regione}
+                        </div>
+                    `;
+                } else {
+                    throw new Error(data.error);
+                }
+            } catch (error) {
+                document.getElementById('shared-result').innerHTML = `
+                    <div style="text-align: center; padding: 3rem;">
+                        <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: #EF4444; margin-bottom: 1rem;"></i>
+                        <h3>Errore</h3>
+                        <p>Impossibile caricare il risultato condiviso.</p>
+                    </div>
+                `;
+            }
+        }
+
+        loadSharedResult();
+    </script>
+</body>
+</html>

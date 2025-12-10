@@ -1,0 +1,13 @@
+# Nella root del sito
+RewriteEngine On
+RewriteBase /
+
+# Redirect HTTP a HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Proteggi file sensibili
+<Files "config.php">
+    Order allow,deny
+    Deny from all
+</Files>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - NextStep</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/CSS/index.css">
+    <link rel="shortcut icon" href="static/CSS/IMG/Logo NextStep.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-header">
+        <div class="dashboard-nav">
+            <div class="user-info">
+                <i class="fas fa-user-circle" style="font-size: 2rem;"></i>
+                <div>
+                    <div style="font-weight: 600;" id="user-name">Caricamento...</div>
+                    <div style="opacity: 0.9; font-size: 0.9rem;" id="user-email"></div>
+                </div>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <button class="btn btn-secondary" onclick="window.location.href='index.html'">
+                    <i class="fas fa-home"></i> Home
+                </button>
+                <button class="btn btn-secondary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Esci
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="total-tests">0</div>
+                <div class="stat-label">Quiz completati</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="most-common">-</div>
+                <div class="stat-label">Indirizzo più frequente</div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h3 style="margin-bottom: 1.5rem;">
+                <i class="fas fa-chart-pie"></i> Distribuzione risultati
+            </h3>
+            <canvas id="resultsChart" style="max-height: 300px;"></canvas>
+        </div>
+
+        <div class="results-list">
+            <h3 style="margin-bottom: 1.5rem;">
+                <i class="fas fa-history"></i> I tuoi risultati
+            </h3>
+            <div id="results-container"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'api';
+        let currentUser = null;
+        let myChart = null;
+
+        async function checkAuth() {
+            const token = localStorage.getItem('nextstep_token');
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/auth.php?action=verify`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    currentUser = data.user;
+                    document.getElementById('user-name').textContent = `${data.user.nome} ${data.user.cognome}`;
+                    document.getElementById('user-email').textContent = data.user.email;
+                    loadDashboard();
+                } else {
+                    localStorage.removeItem('nextstep_token');
+                    window.location.href = 'login.html';
+                }
+            } catch (error) {
+                window.location.href = 'login.html';
+            }
+        }
+
+        async function loadDashboard() {
+            const token = localStorage.getItem('nextstep_token');
+            
+            try {
+                const [resultsRes, statsRes] = await Promise.all([
+                    fetch(`${API_URL}/results.php?action=list`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    }),
+                    fetch(`${API_URL}/results.php?action=stats`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    })
+                ]);
+
+                const resultsData = await resultsRes.json();
+                const statsData = await statsRes.json();
+
+                if (resultsData.success) {
+                    displayResults(resultsData.results);
+                }
+
+                if (statsData.success) {
+                    displayStats(statsData);
+                }
+            } catch (error) {
+                console.error('Errore caricamento dashboard:', error);
+            }
+        }
+
+        function displayStats(data) {
+            document.getElementById('total-tests').textContent = data.total || 0;
+            
+            if (data.stats && data.stats.length > 0) {
+                document.getElementById('most-common').textContent = 
+                    `${data.stats[0].indirizzo.substring(0, 20)}... (${data.stats[0].percentage}%)`;
+                
+                createChart(data.stats);
+            }
+        }
+
+        function createChart(stats) {
+            const ctx = document.getElementById('resultsChart');
+            
+            if (myChart) myChart.destroy();
+            
+            const colors = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899'];
+            
+            myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: stats.map(s => s.indirizzo.length > 30 ? s.indirizzo.substring(0, 30) + '...' : s.indirizzo),
+                    datasets: [{
+                        data: stats.map(s => s.percentage),
+                        backgroundColor: colors.slice(0, stats.length),
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => {
+                                    return `${context.label}: ${context.parsed}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function displayResults(results) {
+            const container = document.getElementById('results-container');
+            
+            if (!results || results.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                        <i class="fas fa-inbox" style="font-size: 3rem; opacity: 0.3; margin-bottom: 1rem;"></i>
+                        <p>Nessun risultato salvato. <a href="index.html">Fai il quiz!</a></p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = results.map(r => `
+                <div class="result-item">
+                    <div>
+                        <div style="font-weight: 600; color: var(--primary-color);">${r.indirizzo_desc}</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">
+                            ${r.percorso} • ${new Date(r.created_at).toLocaleDateString('it-IT')}
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-secondary" onclick="shareResult(${r.id})" title="Condividi">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                        <button class="btn btn-secondary" onclick="downloadResult(${r.id})" title="Scarica">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="btn btn-secondary" onclick="deleteResult(${r.id})" title="Elimina" style="color: #EF4444;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function shareResult(id) {
+            const token = localStorage.getItem('nextstep_token');
+            
+            try {
+                const response = await fetch(`${API_URL}/results.php?action=share`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ result_id: id })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    await navigator.clipboard.writeText(data.share_url);
+                    alert('Link copiato negli appunti!\n' + data.share_url);
+                }
+            } catch (error) {
+                alert('Errore nella condivisione');
+            }
+        }
+
+        async function downloadResult(id) {
+            const token = localStorage.getItem('nextstep_token');
+            
+            try {
+                const response = await fetch(`${API_URL}/results.php?action=get&id=${id}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    const r = data.result;
+                    const text = `
+RISULTATO NEXTSTEP
+==================
+
+Utente: ${currentUser.nome} ${currentUser.cognome}
+Data: ${new Date(r.created_at).toLocaleDateString('it-IT')}
+
+INDIRIZZO CONSIGLIATO
+${r.indirizzo_desc}
+Percorso: ${r.percorso}
+Settore: ${r.settore}
+
+LOCALITÀ
+Regione: ${r.regione}
+Provincia: ${r.provincia}
+Comune: ${r.comune}
+                    `;
+                    
+                    const blob = new Blob([text], { type: 'text/plain' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `nextstep-risultato-${id}.txt`;
+                    a.click();
+                }
+            } catch (error) {
+                alert('Errore nel download');
+            }
+        }
+
+        async function deleteResult(id) {
+            if (!confirm('Eliminare questo risultato?')) return;
+            
+            const token = localStorage.getItem('nextstep_token');
+            
+            try {
+                const response = await fetch(`${API_URL}/results.php?action=delete&id=${id}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (response.ok) {
+                    loadDashboard();
+                }
+            } catch (error) {
+                alert('Errore nell\'eliminazione');
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('nextstep_token');
+            localStorage.removeItem('nextstep_user');
+            window.location.href = 'index.html';
+        }
+
+        checkAuth();
+    </script>
+</body>
+</html>

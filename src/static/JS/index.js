@@ -1,3 +1,50 @@
+const API_URL = 'api';
+
+// Funzione per controllare il login
+function checkLogin() {
+    const token = localStorage.getItem('nextstep_token');
+    if (token) {
+        window.location.href = 'dashboard.html';
+    } else {
+        window.location.href = 'login.html';
+    }
+}
+
+// Aggiorna bottone auth in base allo stato
+function updateAuthButton() {
+    const token = localStorage.getItem('nextstep_token');
+    const btn = document.getElementById('auth-btn');
+    if (token) {
+        const user = JSON.parse(localStorage.getItem('nextstep_user') || '{}');
+        btn.innerHTML = `<i class="fas fa-user-circle"></i> ${user.nome || 'Dashboard'}`;
+    }
+}
+
+// Funzione per popolare il select degli indirizzi
+function populateIndirizziSelect() {
+    const select = document.getElementById('search-indirizzo');
+    if (!select) return;
+    
+    const grouped = {};
+    Object.entries(indirizzoMap).forEach(([codice, info]) => {
+        if (!grouped[info.percorso]) grouped[info.percorso] = [];
+        grouped[info.percorso].push({ codice, ...info });
+    });
+    
+    Object.entries(grouped).forEach(([percorso, indirizzi]) => {
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = percorso;
+        indirizzi.forEach(ind => {
+            const option = document.createElement('option');
+            option.value = ind.codice;
+            option.textContent = ind.descrizione;
+            optgroup.appendChild(option);
+        });
+        select.appendChild(optgroup);
+    });
+}
+
+// Variabili globali
 let currentStep = 1;
 let totalSteps = 3;
 let heroSlideIndex = 1;
@@ -541,7 +588,6 @@ function collectResponses() {
 async function processResults() {
     const responses = collectResponses();
     
-    // Ora controlla anche 'comune'
     if (!responses.regione || !responses.provincia || !responses.comune) {
         alert('Per favore completa tutti i campi obbligatori');
         return;
@@ -549,6 +595,34 @@ async function processResults() {
     
     const recommendation = algorithm.getRecommendedPath(responses);
     
+    // Salva il risultato se l'utente è loggato
+    const token = localStorage.getItem('nextstep_token');
+    if (token) {
+        try {
+            await fetch(`${API_URL}/results.php?action=save`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    indirizzoCodice: recommendation.indirizzoCodice,
+                    indirizzoDesc: recommendation.indirizzoDesc,
+                    percorso: recommendation.percorso,
+                    settore: indirizzoMap[recommendation.indirizzoCodice].settore,
+                    regione: responses.regione,
+                    provincia: responses.provincia,
+                    comune: responses.comune,
+                    risposte: responses,
+                    punteggi: recommendation.scores
+                })
+            });
+        } catch (error) {
+            console.error('Errore salvataggio risultato:', error);
+        }
+    }
+    
+    // Continua con la visualizzazione normale
     const quizContainer = document.querySelector('.quiz-container');
     const resultsContainer = document.getElementById('results');
     
@@ -568,21 +642,20 @@ async function processResults() {
     
     const regioneCodice = regionMap[responses.regione];
     const provinciaCodice = responses.provincia.toUpperCase();
-    const userCity = responses.comune; // Prendi la città
+    const userCity = responses.comune;
     
     await searchSchools(
         regioneCodice, 
         provinciaCodice, 
         recommendation.indirizzoCodice, 
         recommendation.percorso,
-        userCity // Passa la città alla funzione di ricerca
+        userCity
     );
     
     if (resultsContainer) {
         resultsContainer.scrollIntoView({ behavior: 'smooth' });
     }
 }
-
 async function searchSchools(regione, provincia, indirizzoDiStudio, percorso, userCity) {
 
     const proxyUrl = 'https://corsproxy.io/?';
@@ -612,9 +685,8 @@ async function searchSchools(regione, provincia, indirizzoDiStudio, percorso, us
     }
 }
 
-// Funzione displayError
-function displayError(message) {
-    const schoolsGrid = document.getElementById('schools-grid');
+function displayError(message, gridId = 'schools-grid') {
+    const schoolsGrid = document.getElementById(gridId);
     
     schoolsGrid.innerHTML = `
         <div style="text-align: center; padding: 2rem;">
@@ -625,8 +697,8 @@ function displayError(message) {
     `;
 }
 
-function displaySchools(schools, userCity) {
-    const schoolsGrid = document.getElementById('schools-grid');
+function displaySchools(schools, userCity, gridId = 'schools-grid') {
+    const schoolsGrid = document.getElementById(gridId);
     
     if (!schoolsGrid) return;
     
@@ -641,7 +713,7 @@ function displaySchools(schools, userCity) {
         return;
     }
 
-    const cityUpper = userCity.toUpperCase();
+    const cityUpper = userCity ? userCity.toUpperCase() : '';
     let sortedSchools = schools;
 
     if (cityUpper) {
@@ -649,7 +721,6 @@ function displaySchools(schools, userCity) {
         const otherSchools = [];
         
         schools.forEach(school => {
-            
             if (school.comune.toUpperCase() === cityUpper) {
                 citySchools.push(school);
             } else {
@@ -657,11 +728,8 @@ function displaySchools(schools, userCity) {
             }
         });
         
-        
         sortedSchools = [...citySchools, ...otherSchools];
     }
-
-
     
     schoolsGrid.innerHTML = sortedSchools.map((school) => `
         <div class="school-card">
@@ -672,7 +740,7 @@ function displaySchools(schools, userCity) {
                     ${school.indirizzo || 'Indirizzo non disponibile'}, ${school.cap} ${school.comune} (${school.provincia || 'N/D'})
                 </div>
                 <div style="margin: 1rem 0; padding: 0.75rem; background: white; border-radius: 8px; font-size: 0.9rem;">
-                    <strong>Tipo:</strong> (${school.scuolaStatale === '1' ? 'Statale' : 'Paritaria'})
+                    <strong>Tipo:</strong> ${school.scuolaStatale === '1' ? 'Statale' : 'Paritaria'}
                 </div>
             </div>
             <div class="school-info">
@@ -745,12 +813,15 @@ function resetQuiz() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Inizializzazione
 document.addEventListener('DOMContentLoaded', function() {
-
     updateProgressAndButtons();
     showHeroSlide(heroSlideIndex);
+    updateAuthButton();
+    populateIndirizziSelect();
     
-    // Auto-play
+    // Mostra sezione ricerca scuole
+    const searchSection = document.getElementById('school-search-section');
+    if (searchSection) searchSection.style.display = 'block';
+    
     setInterval(autoPlayHero, 5000);
 });
