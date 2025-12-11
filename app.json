@@ -1,0 +1,37 @@
+{
+  "name": "NextStep",
+  "description": "Scegli TU il tuo futuro",
+  "repository": "https://github.com/tuousername/nextstep",
+  "logo": "static/CSS/IMG/Logo NextStep.png",
+  "keywords": ["orientamento", "scuola", "futuro", "studenti", "carriera", "nextstep"],
+  "buildpacks": [
+    {
+      "url": "heroku/php"
+    }
+  ],
+  "addons": [
+    {
+      "plan": "stackhero-mysql:free-1g",
+      "as": "DATABASE"
+    }
+  ],
+  "env": {
+    "APP_DEBUG": {
+      "description": "Enable debug mode",
+      "value": "false"
+    },
+    "HEROKU_APP_NAME": {
+      "description": "Nome dell'app Heroku ",
+      "required": false
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "scripts": {
+    "postdeploy": "php init-db.php"
+  }
+}

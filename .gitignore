@@ -1,0 +1,39 @@
+# Environment files
+.env
+.env.local
+.env.production
+SERVER_INFO.txt
+
+# Backup files
+backups/
+*.sql
+
+# Docker files (non servono su Heroku)
+docker-compose.yml
+docker-compose.production.yml
+Dockerfile
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Dependencies
+vendor/
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# SSL certificates
+ssl/
+*.pem
+*.crt
+*.key
