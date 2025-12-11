@@ -1,70 +1,32 @@
 <?php
-// Configurazione per Heroku con Stackhero MySQL
-
-// Parse DATABASE_URL o STACKHERO_MYSQL_URL
-$dbUrl = getenv('STACKHERO_MYSQL_URL') ?: getenv('DATABASE_URL');
-
-if ($dbUrl) {
-    // Parse URL: mysql://user:pass@host:port/dbname
-    $parsedUrl = parse_url($dbUrl);
-    
-    define('DB_HOST', $parsedUrl['host'] ?? 'localhost');
-    define('DB_PORT', $parsedUrl['port'] ?? 3306);
-    define('DB_NAME', ltrim($parsedUrl['path'] ?? '', '/'));
-    define('DB_USER', $parsedUrl['user'] ?? 'root');
-    define('DB_PASS', $parsedUrl['pass'] ?? '');
-} else {
-    // Fallback per sviluppo locale
-    define('DB_HOST', getenv('DB_HOST') ?: 'db');
-    define('DB_PORT', 3306);
-    define('DB_NAME', getenv('DB_NAME') ?: 'nextstep');
-    define('DB_USER', getenv('DB_USER') ?: 'root');
-    define('DB_PASS', getenv('DB_PASS') ?: 'NextStep2024');
-}
+// Configurazione database
+define('DB_HOST', 'db');  // Nome servizio Docker
+define('DB_NAME', 'nextstep');
+define('DB_USER', 'root');
+define('DB_PASS', 'NextStep2024');
 
 // Configurazione applicazione
 define('SESSION_DURATION', 30 * 24 * 60 * 60);
+define('BASE_URL', 'http://localhost:8080');
 
-// Base URL dinamico per Heroku
-$appName = getenv('HEROKU_APP_NAME');
-if ($appName) {
-    define('BASE_URL', "https://{$appName}.herokuapp.com");
-} else {
-    define('BASE_URL', getenv('BASE_URL') ?: 'http://localhost:8080');
-}
-
-// Connessione database con SSL per Stackhero
+// Connessione database
 function getDB() {
     try {
-        $dsn = sprintf(
-            "mysql:host=%s;port=%d;dbname=%s;charset=utf8mb4",
-            DB_HOST,
-            DB_PORT,
-            DB_NAME
+        $pdo = new PDO(
+            "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4",
+            DB_USER,
+            DB_PASS,
+            [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES => false
+            ]
         );
-        
-        $options = [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES => false
-        ];
-        
-        // SSL per Stackhero MySQL (richiesto in produzione)
-        if (getenv('STACKHERO_MYSQL_URL')) {
-            $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
-            // Stackhero gestisce SSL automaticamente
-        }
-        
-        $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
-        
         return $pdo;
     } catch(PDOException $e) {
         error_log("DB Connection Error: " . $e->getMessage());
         http_response_code(500);
-        die(json_encode([
-            'error' => 'Database connection failed',
-            'details' => getenv('APP_DEBUG') ? $e->getMessage() : 'Contact administrator'
-        ]));
+        die(json_encode(['error' => 'Database connection failed']));
     }
 }
 
