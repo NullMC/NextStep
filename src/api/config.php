@@ -1,9 +1,9 @@
 <?php
 // Configurazione database
-define('DB_HOST', 'db');  // Nome servizio Docker
-define('DB_NAME', 'nextstep');
-define('DB_USER', 'root');
-define('DB_PASS', 'NextStep2024');
+define('DB_HOST', 'localhost');  // Nome servizio Docker
+define('DB_NAME', 'my_nextstep');
+define('DB_USER', 'nextstep');
+define('DB_PASS', '2fMm5X5Webat');
 
 // Configurazione applicazione
 define('SESSION_DURATION', 30 * 24 * 60 * 60);
