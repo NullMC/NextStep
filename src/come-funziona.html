@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Come Funziona NextStep - Metodologia e Algoritmo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/CSS/index.css">
+    <link rel="shortcut icon" href="static/CSS/IMG/LogoNextStep.png" type="image/x-icon">
+    <script src="static/JS/index.js"></script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3152605527157384"
+     crossorigin="anonymous"></script>
+
+
+    <style>
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            padding: 5rem 2rem 3rem;
+            text-align: center;
+            color: white;
+        }
+
+        .page-hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero-content p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+        }
+
+        .content-article {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 3rem;
+        }
+
+        .content-section {
+            margin-bottom: 4rem;
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .content-section h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section p {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .content-section ul {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .content-section ul li {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .content-section strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .methodology-box {
+            background: var(--primary-light);
+            border: 2px solid var(--primary-color);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .methodology-box h3 {
+            color: var(--primary-dark);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .methodology-box i {
+            color: var(--primary-color);
+        }
+
+        .phase-card {
+            display: flex;
+            gap: 2rem;
+            background: var(--background-light);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .phase-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            opacity: 0.3;
+            flex-shrink: 0;
+        }
+
+        .phase-content h3 {
+            margin-top: 0;
+            color: var(--primary-dark);
+        }
+
+        .phase-rationale {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius-md);
+            margin-top: 1.5rem;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .phase-rationale strong {
+            color: var(--accent-color);
+        }
+
+        .algorithm-step {
+            background: var(--background-light);
+            padding: 2rem;
+            border-radius: var(--border-radius-md);
+            margin: 2rem 0;
+        }
+
+        .algorithm-step h3 {
+            color: var(--primary-dark);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .algorithm-step i {
+            color: var(--primary-color);
+        }
+
+        .example-box {
+            background: #F0F9FF;
+            border: 2px solid #0EA5E9;
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .example-box h3 {
+            color: #0369A1;
+            margin-top: 0;
+        }
+
+        .example-profile {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius-md);
+            margin-bottom: 1.5rem;
+        }
+
+        .example-analysis {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius-md);
+        }
+
+        .example-analysis h4 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .example-analysis ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .example-analysis ol li {
+            margin-bottom: 1rem;
+        }
+
+        .validation-box, .limits-box {
+            background: var(--background-light);
+            padding: 2rem;
+            border-radius: var(--border-radius-md);
+            margin: 2rem 0;
+        }
+
+        .validation-box {
+            border-left: 4px solid #10B981;
+        }
+
+        .validation-box h3 {
+            color: #059669;
+            margin-top: 0;
+        }
+
+        .limits-box {
+            border-left: 4px solid #F59E0B;
+        }
+
+        .limits-box h3 {
+            color: #D97706;
+            margin-top: 0;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+            color: white;
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-box h3 {
+            color: white;
+            border: none;
+            margin: 0 0 1rem 0;
+            padding: 0;
+        }
+
+        .cta-box p {
+            color: white;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .content-article {
+                padding: 2rem;
+            }
+
+            .phase-card {
+                flex-direction: column;
+            }
+
+            .phase-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+                    <img class="logo" src="static/CSS/IMG/LogoNextStep.png" alt="NextStep Logo">
+                    <span class="brand-name">NextStep</span>
+                </a>
+            </div>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="chi-siamo.html">Chi Siamo</a>
+                <a href="guide.html">Guide</a>
+                <a href="risorse.html">Risorse</a>
+            </div>
+
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-nav-links">
+                <a href="index.html">Home</a>
+                <a href="chi-siamo.html">Chi Siamo</a>
+                <a href="guide.html">Guide</a>
+                <a href="risorse.html">Risorse</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div style="position: fixed; top: 80px; right: 20px; z-index: 999;">
+        <button class="btn btn-primary" onclick="checkLogin()" id="auth-btn">
+            <i class="fas fa-user"></i> Accedi
+        </button>
+    </div>
+
+    <div style="height: 80px;"></div>
+
+    <div class="page-hero">
+        <div class="page-hero-content">
+            <h1>Come Funziona NextStep</h1>
+            <p>La scienza dietro il nostro sistema di orientamento</p>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <article class="content-article">
+            <section class="content-section">
+                <h2>La Metodologia di NextStep</h2>
+                <p>NextStep utilizza un algoritmo di raccomandazione multi-fattoriale che analizza il profilo dello studente attraverso diverse dimensioni psicopedagogiche. Il nostro sistema non si limita a valutare il rendimento scolastico o le materie preferite, ma considera un insieme complesso di variabili che la ricerca educativa ha identificato come predittori di successo e soddisfazione nei percorsi formativi.</p>
+
+                <div class="methodology-box">
+                    <h3><i class="fas fa-graduation-cap"></i> Fondamenti Scientifici</h3>
+                    <p>Il nostro metodo si basa su tre pilastri della psicologia dell'orientamento:</p>
+                    <ul>
+                        <li><strong>Teoria degli interessi professionali di Holland:</strong> le persone tendono a scegliere ambienti coerenti con la propria personalità</li>
+                        <li><strong>Modelli di apprendimento costruttivisti:</strong> lo stile di apprendimento influenza il successo in contesti educativi diversi</li>
+                        <li><strong>Approccio Life-Design:</strong> la scelta scolastica come parte di un progetto di vita più ampio</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Le Fasi del Questionario</h2>
+                <p>Il questionario NextStep è strutturato in tre sezioni progressive, ciascuna con obiettivi specifici:</p>
+
+                <div class="phase-card">
+                    <div class="phase-number">01</div>
+                    <div class="phase-content">
+                        <h3>Fase 1: Approccio e Preferenze di Apprendimento</h3>
+                        <p>La prima sezione esplora <strong>come</strong> lo studente preferisce apprendere, non <strong>cosa</strong>. Le domande indagano:</p>
+                        <ul>
+                            <li><strong>Orientamento teoria-pratica:</strong> Preferenza per concetti astratti vs applicazioni concrete</li>
+                            <li><strong>Modalità di lavoro:</strong> Studio autonomo, lavoro di gruppo, progettualità</li>
+                            <li><strong>Ambiente preferito:</strong> Laboratori, biblioteche, spazi aperti, contesti digitali</li>
+                            <li><strong>Attività extrascolastiche:</strong> Sport, arte, tecnologia, attività manuali</li>
+                        </ul>
+                        <div class="phase-rationale">
+                            <strong>Perché è importante:</strong> Gli studenti hanno modalità di apprendimento diverse. Chi impara meglio "facendo" avrà difficoltà in percorsi molto teorici, e viceversa. Questa sezione identifica il metodo didattico più compatibile.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-number">02</div>
+                    <div class="phase-content">
+                        <h3>Fase 2: Ambizioni, Obiettivi e Aree di Interesse</h3>
+                        <p>La seconda sezione approfondisce <strong>cosa</strong> interessa allo studente e <strong>dove</strong> vuole arrivare:</p>
+                        <ul>
+                            <li><strong>Obiettivi formativi:</strong> Università lunga, formazione breve, ingresso lavorativo</li>
+                            <li><strong>Ambizione e determinazione:</strong> Quanto lo studente è motivato al successo e alla perseveranza</li>
+                            <li><strong>Passioni consolidate:</strong> Esistono interessi radicati fin dall'infanzia?</li>
+                            <li><strong>Aree disciplinari:</strong> Valutazione su scala 1-5 di 8 grandi aree del sapere</li>
+                        </ul>
+                        <div class="phase-rationale">
+                            <strong>Perché è importante:</strong> Un liceo classico ha senso per chi vuole percorsi universitari lunghi, mentre un professionale è ideale per chi vuole entrare rapidamente nel mercato del lavoro. Le aree di interesse aiutano a discriminare tra indirizzi specifici.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-number">03</div>
+                    <div class="phase-content">
+                        <h3>Fase 3: Localizzazione Geografica</h3>
+                        <p>L'ultima sezione raccoglie dati sulla residenza dello studente:</p>
+                        <ul>
+                            <li><strong>Regione, Provincia, Comune:</strong> Dati necessari per identificare gli istituti disponibili</li>
+                        </ul>
+                        <div class="phase-rationale">
+                            <strong>Perché è importante:</strong> Anche il percorso ideale non ha senso se comporta 3 ore di viaggio al giorno. NextStep mostra solo scuole realmente accessibili nella provincia dello studente, con priorità al comune di residenza.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>L'Algoritmo di Raccomandazione</h2>
+                <p>Una volta raccolte le risposte, il sistema le elabora attraverso un algoritmo di scoring multifattoriale. Ecco come funziona:</p>
+
+                <div class="algorithm-step">
+                    <h3><i class="fas fa-cogs"></i> Step 1: Calcolo dei Punteggi Base</h3>
+                    <p>Per ciascuno dei 48 indirizzi di studio disponibili in Italia, il sistema calcola un punteggio iniziale basato su:</p>
+                    <ul>
+                        <li>Coerenza tra preferenza teoria/pratica e struttura didattica dell'indirizzo</li>
+                        <li>Compatibilità tra obiettivi formativi dichiarati e sbocchi tipici del percorso</li>
+                        <li>Correlazione tra aree di interesse espresse e discipline caratterizzanti l'indirizzo</li>
+                    </ul>
+                </div>
+
+                <div class="algorithm-step">
+                    <h3><i class="fas fa-chart-line"></i> Step 2: Ponderazione Dinamica</h3>
+                    <p>I punteggi vengono poi modulati in base a fattori secondari:</p>
+                    <ul>
+                        <li><strong>Ambizione e determinazione:</strong> Studenti molto ambiziosi ricevono bonus per percorsi più impegnativi (licei classico e scientifico)</li>
+                        <li><strong>Passioni consolidate:</strong> Chi ha sogni professionali chiari riceve bonus per indirizzi professionalizzanti coerenti</li>
+                        <li><strong>Stile relazionale:</strong> Preferenza per lavoro di gruppo favorisce indirizzi con forte componente laboratoriale</li>
+                    </ul>
+                </div>
+
+                <div class="algorithm-step">
+                    <h3><i class="fas fa-trophy"></i> Step 3: Identificazione del Percorso Ottimale</h3>
+                    <p>Il sistema identifica l'indirizzo con il punteggio più alto e lo propone come raccomandazione principale. Contestualmente:</p>
+                    <ul>
+                        <li>Vengono mostrati anche gli indirizzi con punteggi vicini al primo (alternative valide)</li>
+                        <li>Si evidenziano i motivi della raccomandazione (es. "coerenza con preferenza pratica e interesse tecnologico")</li>
+                        <li>Si fornisce il dettaglio di percorso, settore e tipo di istituto</li>
+                    </ul>
+                </div>
+
+                <div class="algorithm-step">
+                    <h3><i class="fas fa-map-marked-alt"></i> Step 4: Ricerca Istituti nel Territorio</h3>
+                    <p>Una volta identificato l'indirizzo ottimale, NextStep interroga il database del Ministero dell'Istruzione (portale UNICA) per trovare tutti gli istituti che offrono quell'indirizzo nella provincia indicata.</p>
+                    <p>I risultati vengono ordinati con priorità agli istituti del comune di residenza, seguiti dagli altri della provincia. Per ciascun istituto vengono forniti:</p>
+                    <ul>
+                        <li>Nome completo della scuola</li>
+                        <li>Indirizzo fisico e comune</li>
+                        <li>Contatti (telefono, email) quando disponibili</li>
+                        <li>Tipologia (statale o paritario)</li>
+                    </ul>
+                </div>
+            </section>
+
+
+            <div class="cta-box">
+                <h3>Prova il Questionario di Orientamento</h3>
+                <p>Ora che conosci come funziona, metti alla prova il sistema con le tue caratteristiche reali.</p>
+                <a style="text-decoration: none;" href="index.html" class="btn btn-primary btn-large">
+                    <i class="fas fa-clipboard-list"></i> Inizia il Test
+                </a>
+            </div>
+        </article>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">NextStep</div>
+                <p>Da un progetto hackathon al tool di orientamento definitivo</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contatti</h4>
+                <p><i class="fas fa-envelope"></i><a href="mailto: tenerelli.francesco@panettipitagora.edu.it" style="text-decoration: none;"> tenerelli.francesco@panettipitagora.edu.it</a></p>
+                <a href="https://franksitez.com" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-globe"></i> franksitez.com</a>
+            </div>
+            <div class="footer-section">
+			<h4>Privacy e Coockie policy</h4>
+            	<a href="https://www.iubenda.com/privacy-policy/27900535" target="_blank" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Privacy Policy ">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script><br>
+				<a href="https://www.iubenda.com/privacy-policy/27900535/cookie-policy" target="_blank" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Cookie Policy ">Cookie Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+            </div>
+        	</div>
+        <div class="footer-bottom">
+            <p>© 2026 NextStep - Tutti i diritti riservati</p>
+        </div>
+    </footer>
+</body>
+</html>

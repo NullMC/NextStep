@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Siamo - NextStep</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/CSS/index.css">
+    <link rel="shortcut icon" href="static/CSS/IMG/LogoNextStep.png" type="image/x-icon">
+    <script src="static/JS/index.js"></script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3152605527157384"
+     crossorigin="anonymous"></script>
+
+    <style>
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            padding: 5rem 2rem 3rem;
+            text-align: center;
+            color: white;
+        }
+
+        .page-hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero-content p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+        }
+
+        .content-article {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 3rem;
+        }
+
+        .content-section {
+            margin-bottom: 3rem;
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .content-section h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .content-section p {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+        }
+
+        .content-section ul {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .content-section ul li {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .highlight-box {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .highlight-box i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .method-card {
+            background: var(--background-light);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .method-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .method-card i {
+            color: var(--primary-color);
+        }
+
+        .method-card p {
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .info-banner {
+            background: #FEF3C7;
+            border: 1px solid #F59E0B;
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .info-banner i {
+            font-size: 2rem;
+            color: #F59E0B;
+            flex-shrink: 0;
+        }
+
+        .info-banner strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-banner p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+            color: white;
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-box h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: white;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .content-article {
+                padding: 2rem;
+            }
+
+            .page-hero {
+                padding: 4rem 1.5rem 2.5rem;
+            }
+
+            .method-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+                    <img class="logo" src="static/CSS/IMG/LogoNextStep.png" alt="NextStep Logo">
+                    <span class="brand-name">NextStep</span>
+                </a>
+            </div>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="guide.html">Guide</a>
+                <a href="risorse.html">Risorse</a>
+                <a href="come-funziona.html">Come Funziona</a>
+            </div>
+
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-nav-links">
+                <a href="index.html">Home</a>
+                <a href="guide.html">Guide</a>
+                <a href="risorse.html">Risorse</a>
+                <a href="come-funziona.html">Come Funziona</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div style="position: fixed; top: 80px; right: 20px; z-index: 999;">
+        <button class="btn btn-primary" onclick="checkLogin()" id="auth-btn">
+            <i class="fas fa-user"></i> Accedi
+        </button>
+    </div>
+
+    <div style="height: 80px;"></div>
+
+    <div class="page-hero">
+        <div class="page-hero-content">
+            <h1>Chi Siamo</h1>
+            <p>Da un'idea di studenti alla piattaforma di orientamento più completa</p>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <article class="content-article">
+            <section class="content-section">
+                <h2>La Genesi del Progetto</h2>
+                <p>NextStep nasce nel 2024 dall'esigenza concreta di fornire agli studenti italiani uno strumento di orientamento scolastico davvero efficace, accessibile e gratuito. Il progetto è stato sviluppato inizialmente durante un hackathon scolastico da un team di studenti dell'Istituto Panetti-Pitagora di Bari, che hanno sperimentato in prima persona le difficoltà legate alla scelta del percorso di studi superiore.</p>
+                
+                <p>L'idea fondante era semplice ma ambiziosa: creare uno strumento digitale che potesse analizzare in modo sistematico le caratteristiche di ogni studente e suggerire il percorso scolastico più adatto, basandosi non su stereotipi o luoghi comuni, ma su criteri oggettivi e scientificamente fondati.</p>
+            </section>
+
+            <section class="content-section">
+                <h2>La Mission Educativa</h2>
+                <p>NextStep si pone l'obiettivo di democratizzare l'accesso all'orientamento scolastico di qualità. In Italia, troppo spesso la scelta della scuola superiore dipende da fattori casuali o contingenti: la vicinanza geografica, le scelte degli amici, le pressioni familiari o informazioni frammentarie raccolte durante gli open day.</p>
+
+                <div class="highlight-box">
+                    <i class="fas fa-lightbulb"></i>
+                    <p><strong>La nostra visione:</strong> Ogni studente merita di compiere una scelta consapevole e informata, basata sulla comprensione reale delle proprie inclinazioni, interessi e obiettivi formativi.</p>
+                </div>
+
+                <p>Secondo ricerche condotte dal Ministero dell'Istruzione e da INVALSI, una scelta di orientamento inappropriata è tra le cause principali di:</p>
+                <ul>
+                    <li>Insuccesso scolastico nel primo biennio delle superiori</li>
+                    <li>Cambi di indirizzo, con perdita di tempo e motivazione</li>
+                    <li>Abbandono scolastico precoce</li>
+                    <li>Insoddisfazione e mancanza di prospettive future</li>
+                </ul>
+
+                <p>NextStep interviene in questa fase critica fornendo un'analisi personalizzata che aiuta lo studente a riflettere su se stesso in modo strutturato, guidandolo verso scelte più consapevoli.</p>
+            </section>
+
+            <section class="content-section">
+                <h2>Il Metodo: Scienza e Tecnologia al Servizio dell'Educazione</h2>
+                <p>Il cuore di NextStep è un algoritmo di raccomandazione che integra principi di psicologia dell'orientamento, pedagogia e analisi dei dati. A differenza di semplici test attitudinali che forniscono risultati generici, il nostro sistema considera molteplici dimensioni:</p>
+
+                <div class="method-grid">
+                    <div class="method-card">
+                        <h4><i class="fas fa-book-reader"></i> Stile di Apprendimento</h4>
+                        <p>Analizziamo se lo studente apprende meglio attraverso la teoria astratta, l'applicazione pratica, la sperimentazione in laboratorio o il lavoro di gruppo.</p>
+                    </div>
+                    <div class="method-card">
+                        <h4><i class="fas fa-heart"></i> Interessi Disciplinari</h4>
+                        <p>Valutiamo l'affinità con diverse aree del sapere: umanistica, scientifica, artistica, tecnologica, economica, sociale e pratico-operativa.</p>
+                    </div>
+                    <div class="method-card">
+                        <h4><i class="fas fa-compass"></i> Obiettivi Formativi</h4>
+                        <p>Consideriamo le aspirazioni future: percorso universitario lungo, formazione professionale breve, inserimento immediato nel mondo del lavoro.</p>
+                    </div>
+                    <div class="method-card">
+                        <h4><i class="fas fa-user-check"></i> Caratteristiche Personali</h4>
+                        <p>Teniamo conto di tratti come l'ambizione, la determinazione, la capacità di lavorare autonomamente o in team.</p>
+                    </div>
+                </div>
+
+                <p>Il risultato non è un semplice "sei portato per il liceo scientifico", ma un consiglio articolato che spiega perché un determinato indirizzo corrisponde meglio al profilo dello studente, insieme a un elenco di istituti concreti nella provincia di residenza.</p>
+            </section>
+
+            <section class="content-section">
+                <h2>Trasparenza e Indipendenza</h2>
+                <p>NextStep è un progetto completamente indipendente, non affiliato a nessuna scuola specifica né a enti commerciali che potrebbero influenzare i risultati. Le raccomandazioni generate dal sistema si basano esclusivamente sui dati forniti dall'utente e sui criteri di corrispondenza tra profilo personale e caratteristiche oggettive degli indirizzi di studio.</p>
+
+                <p>Non riceviamo compensi da istituti scolastici per promuovere specifici indirizzi, e il database delle scuole è ricavato direttamente dal portale ufficiale del Ministero dell'Istruzione (UNICA), garantendo completezza e neutralità.</p>
+
+                <div class="info-banner">
+                    <i class="fas fa-shield-alt"></i>
+                    <div>
+                        <strong>Privacy e Dati Personali</strong>
+                        <p>I dati inseriti nel questionario vengono utilizzati esclusivamente per generare il consiglio di orientamento. Gli utenti registrati possono salvare i propri risultati, ma le informazioni non vengono mai condivise con terze parti né utilizzate per finalità commerciali. Per maggiori informazioni, consulta la nostre policy: </p>
+                        <a style="text-decoration: none;" href="https://www.iubenda.com/privacy-policy/27900535" target="_blank" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Privacy Policy ">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script><br>
+				        <a style="text-decoration: none;" href="https://www.iubenda.com/privacy-policy/27900535/cookie-policy" target="_blank" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Cookie Policy ">Cookie Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Sviluppo Continuo</h2>
+                <p>NextStep è un progetto in costante evoluzione. Nato come prototipo durante un hackathon, si è trasformato in una piattaforma stabile e funzionale grazie al contributo di studenti, docenti e professionisti dell'orientamento che hanno testato e migliorato il sistema.</p>
+
+                <p>Il nostro impegno è quello di aggiornare regolarmente:</p>
+                <ul>
+                    <li>L'algoritmo di raccomandazione, incorporando nuovi fattori predittivi</li>
+                    <li>Il database degli istituti scolastici, garantendo informazioni sempre aggiornate</li>
+                    <li>I contenuti informativi su indirizzi di studio, sbocchi professionali e novità legislative</li>
+                    <li>Le funzionalità della piattaforma, come il confronto di risultati nel tempo e strumenti per genitori e orientatori</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Un Invito alla Collaborazione</h2>
+                <p>NextStep è stato creato da studenti per studenti, ma crediamo fermamente nel valore della collaborazione. Invitiamo docenti, orientatori scolastici, psicologi dell'educazione e chiunque lavori nel campo della formazione a contribuire con feedback, suggerimenti e proposte di miglioramento.</p>
+
+                <p>Se sei un insegnante e vuoi utilizzare NextStep con le tue classi, se sei un genitore con domande sul sistema, o se sei uno studente con suggerimenti per rendere la piattaforma ancora più utile, contattaci: il tuo contributo è prezioso.</p>
+
+                <div class="cta-box">
+                    <h3>Inizia il Tuo Percorso di Orientamento</h3>
+                    <p>Scopri quale indirizzo di studi corrisponde meglio alle tue caratteristiche e ai tuoi obiettivi.</p>
+                    <a style="text-decoration: none;" href="index.html" class="btn btn-primary btn-large">
+                        <i class="fas fa-arrow-right"></i> Fai il Test di Orientamento
+                    </a>
+                </div>
+            </section>
+        </article>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">NextStep</div>
+                <p>Da un progetto hackathon al tool di orientamento definitivo</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contatti</h4>
+                <p><i class="fas fa-envelope"></i><a href="mailto: tenerelli.francesco@panettipitagora.edu.it" style="text-decoration: none;"> tenerelli.francesco@panettipitagora.edu.it</a></p>
+                <a href="https://franksitez.com" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-globe"></i> franksitez.com</a>
+            </div>
+            <div class="footer-section">
+			<h4>Privacy e Coockie policy</h4>
+            	<a href="https://www.iubenda.com/privacy-policy/27900535" target="_blank" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Privacy Policy ">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script><br>
+				<a href="https://www.iubenda.com/privacy-policy/27900535/cookie-policy" target="_blank" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Cookie Policy ">Cookie Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+            </div>
+        	</div>
+        <div class="footer-bottom">
+            <p>© 2026 NextStep - Tutti i diritti riservati</p>
+        </div>
+    </footer>
+</body>
+</html>

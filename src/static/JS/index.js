@@ -10,6 +10,20 @@ function checkLogin() {
     }
 }
 
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const toggle = document.querySelector('.mobile-menu-toggle i');
+    menu.classList.toggle('active');
+    
+    if (menu.classList.contains('active')) {
+        toggle.classList.remove('fa-bars');
+        toggle.classList.add('fa-times');
+    } else {
+        toggle.classList.remove('fa-times');
+        toggle.classList.add('fa-bars');
+    }
+}
+
 // Aggiorna bottone auth in base allo stato
 function updateAuthButton() {
     const token = localStorage.getItem('nextstep_token');

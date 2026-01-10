@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Licei, Tecnici e Professionali: Differenze e Prospettive - NextStep</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/CSS/index.css">
+    <link rel="shortcut icon" href="static/CSS/IMG/LogoNextStep.png" type="image/x-icon">
+    <script src="static/JS/index.js"></script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3152605527157384"
+     crossorigin="anonymous"></script>
+
+    <style>
+        .article-container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .article-breadcrumb {
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .article-breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .article-hero {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .article-category-badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-hero h1 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-info {
+            display: flex;
+            gap: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .article-content {
+            background: white;
+            padding: 3rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .lead-paragraph {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin-bottom: 2.5rem;
+            font-weight: 500;
+        }
+
+        .article-content h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .article-content h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .article-content p {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .article-content ul {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .article-content ul li {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .article-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .content-box {
+            background: var(--background-light);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .content-box h4 {
+            margin-top: 0;
+        }
+
+        .content-box p {
+            margin-bottom: 1rem;
+        }
+
+        .content-box ul {
+            margin: 1rem 0 0 0;
+        }
+
+        .comparison-table {
+            margin: 2rem 0;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 200px 1fr 1fr 1fr;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-label {
+            background: var(--background-light);
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .comparison-item {
+            padding: 1.5rem;
+            border-right: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .comparison-item:last-child {
+            border-right: none;
+        }
+
+        .comparison-item strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+            color: white;
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-box h3 {
+            color: white;
+            border: none;
+            margin: 0 0 1rem 0;
+            padding: 0;
+        }
+
+        .cta-box p {
+            color: white;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .article-content {
+                padding: 2rem;
+            }
+
+            .comparison-row {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-label,
+            .comparison-item {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .comparison-item:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+                    <img class="logo" src="static/CSS/IMG/LogoNextStep.png" alt="NextStep Logo">
+                    <span class="brand-name">NextStep</span>
+                </a>
+            </div>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="chi-siamo.html">Chi Siamo</a>
+                <a href="guide.html">Guide</a>
+                <a href="risorse.html">Risorse</a>
+                <a href="come-funziona.html">Come Funziona</a>
+            </div>
+
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-nav-links">
+                <a href="index.html">Home</a>
+                <a href="chi-siamo.html">Chi Siamo</a>
+                <a href="guide.html">Guide</a>
+                <a href="risorse.html">Risorse</a>
+                <a href="come-funziona.html">Come Funziona</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div style="position: fixed; top: 80px; right: 20px; z-index: 999;">
+        <button class="btn btn-primary" onclick="checkLogin()" id="auth-btn">
+            <i class="fas fa-user"></i> Accedi
+        </button>
+    </div>
+
+    <div style="height: 80px;"></div>
+
+    <article class="main-container">
+        <div class="article-container">
+            <div class="article-breadcrumb">
+                <a href="index.html">Home</a> / <a href="guide.html">Guide</a> / Differenze tra Percorsi
+            </div>
+
+            <header class="article-hero">
+                <span class="article-category-badge">Sistema Scolastico</span>
+                <h1>Licei, Tecnici e Professionali: Differenze e Prospettive</h1>
+                <div class="article-info">
+                    <span><i class="fas fa-calendar"></i> Gennaio 2025</span>
+                    <span><i class="fas fa-clock"></i> 10 minuti di lettura</span>
+                </div>
+            </header>
+
+            <div class="article-content">
+                <p class="lead-paragraph">Il sistema scolastico italiano prevede tre grandi famiglie di percorsi formativi per la scuola secondaria superiore: licei, istituti tecnici e istituti professionali. Comprendere le differenze strutturali, metodologiche e di sbocco tra questi percorsi è fondamentale per compiere una scelta consapevole e coerente con le proprie aspirazioni.</p>
+
+                <h2>Le Tre Anime del Sistema Scolastico Italiano</h2>
+                <p>Prima di analizzare nel dettaglio ciascun percorso, è importante sfatare alcuni miti radicati nella percezione collettiva:</p>
+
+                <ul>
+                    <li><strong>Mito #1:</strong> "I licei sono per gli studenti più bravi" → Falso. Ogni percorso richiede impegno, serietà e capacità di studio. La differenza sta nell'approccio metodologico, non nel livello di difficoltà assoluto.</li>
+                    <li><strong>Mito #2:</strong> "I professionali sono una ripiego" → Falso. Gli istituti professionali offrono competenze tecniche di alto valore, con ottime prospettive di inserimento lavorativo.</li>
+                    <li><strong>Mito #3:</strong> "Con il liceo puoi fare tutto, con gli altri no" → Parzialmente falso. Anche da tecnici e professionali si accede all'università, e molti diplomati liceali scelgono percorsi professionalizzanti post-diploma.</li>
+                </ul>
+
+                <h2>I Licei: Formazione Teorica e Universitaria</h2>
+
+                <h3>Caratteristiche Principali</h3>
+                <p>I licei sono percorsi quinquennali orientati prevalentemente alla preparazione universitaria. Il metodo di insegnamento privilegia:</p>
+
+                <ul>
+                    <li><strong>Approccio teorico-critico:</strong> analisi di concetti astratti, sviluppo del pensiero critico, capacità argomentativa</li>
+                    <li><strong>Ampiezza culturale:</strong> formazione generalista con focus su discipline umanistiche, scientifiche o artistiche a seconda dell'indirizzo</li>
+                    <li><strong>Studio individuale intensivo:</strong> molto tempo dedicato allo studio domestico, meno ore di laboratorio pratico</li>
+                </ul>
+
+                <h3>Tipologie di Licei</h3>
+
+                <div class="content-box">
+                    <h4>Liceo Classico</h4>
+                    <p>Focus su discipline umanistiche classiche (latino, greco, filosofia, letteratura). Ideale per chi ama la cultura classica, la storia, la filosofia e le lingue. Prepara eccellentemente a facoltà umanistiche, giuridiche e sociali, ma anche a percorsi scientifici se supportato da buone basi in matematica.</p>
+                </div>
+
+                <div class="content-box">
+                    <h4>Liceo Scientifico (tradizionale e Scienze Applicate)</h4>
+                    <p>Equilibrio tra materie scientifiche e umanistiche. Il tradizionale include latino, l'opzione Scienze Applicate sostituisce il latino con informatica e più ore di laboratorio scientifico. Prepara a facoltà scientifiche, ingegneristiche, mediche e economiche.</p>
+                </div>
+
+                <div class="content-box">
+                    <h4>Liceo Linguistico</h4>
+                    <p>Studio approfondito di tre lingue straniere. Ideale per chi ha attitudine alle lingue e interesse per la comunicazione internazionale. Sbocchi in traduzione, interpretariato, relazioni internazionali, turismo.</p>
+                </div>
+
+                <div class="content-box">
+                    <h4>Liceo delle Scienze Umane</h4>
+                    <p>Focus su psicologia, pedagogia, sociologia, antropologia. Adatto a chi è interessato alle dinamiche umane e sociali. Prepara a facoltà di scienze della formazione, psicologia, sociologia, servizio sociale.</p>
+                </div>
+
+                <div class="content-box">
+                    <h4>Liceo Artistico e Musicale/Coreutico</h4>
+                    <p>Percorsi specializzati per chi ha talento e passione artistica o musicale. Richiedono dedizione intensa e preparazione tecnica costante. Preparano a Accademie di Belle Arti, Conservatori e facoltà di design.</p>
+                </div>
+
+                <h3>Prospettive Post-Diploma</h3>
+                <p>Il diploma liceale è concepito come trampolino verso l'università. Circa l'80% dei diplomati liceali prosegue con percorsi universitari. Il titolo da solo offre limitate possibilità di inserimento lavorativo immediato, poiché manca la specializzazione tecnico-pratica.</p>
+
+                <h2>Gli Istituti Tecnici: Teoria e Pratica Integrate</h2>
+
+                <h3>Caratteristiche Principali</h3>
+                <p>Gli istituti tecnici rappresentano un equilibrio tra formazione teorica e competenze applicative. Il metodo di insegnamento prevede:</p>
+
+                <ul>
+                    <li><strong>Approccio applicativo:</strong> i concetti teorici vengono immediatamente applicati a casi concreti e problemi reali</li>
+                    <li><strong>Laboratori e progetti:</strong> circa il 30-40% delle ore dedicate ad attività pratiche in laboratorio</li>
+                    <li><strong>Preparazione versatile:</strong> competenze spendibili sia in ambito universitario che lavorativo</li>
+                </ul>
+
+                <h3>Principali Settori</h3>
+
+                <div class="content-box">
+                    <h4>Settore Economico (AFM, Turismo)</h4>
+                    <p>Amministrazione, Finanza e Marketing prepara a gestione aziendale, contabilità, marketing. Il Turismo forma esperti del settore turistico-ricettivo. Sbocchi: ragioneria, commercio, banche, agenzie turistiche, oppure università economiche.</p>
+                </div>
+
+                <div class="content-box">
+                    <h4>Settore Tecnologico</h4>
+                    <p>Include molti indirizzi specializzati:</p>
+                    <ul>
+                        <li><strong>Informatica e Telecomunicazioni:</strong> programmazione, reti, cybersecurity</li>
+                        <li><strong>Elettronica ed Elettrotecnica:</strong> sistemi elettrici, automazione, robotica</li>
+                        <li><strong>Meccanica, Meccatronica ed Energia:</strong> progettazione meccanica, sistemi produttivi</li>
+                        <li><strong>Chimica, Materiali e Biotecnologie:</strong> chimica industriale, biotecnologie sanitarie e ambientali</li>
+                        <li><strong>Costruzioni, Ambiente e Territorio:</strong> geometri, progettazione edile, ambiente</li>
+                        <li><strong>Agraria, Agroalimentare e Agroindustria:</strong> agricoltura, zootecnia, enologia</li>
+                    </ul>
+                </div>
+
+                <h3>Prospettive Post-Diploma</h3>
+                <p>Il diploma tecnico offre due opzioni equivalenti:</p>
+                <ul>
+                    <li><strong>Università:</strong> circa il 50% prosegue con facoltà scientifiche, ingegneristiche o economiche. La preparazione tecnica è un vantaggio.</li>
+                    <li><strong>Lavoro:</strong> inserimento come tecnici specializzati in aziende, studi professionali, enti pubblici. Le competenze tecniche sono molto richieste dal mercato.</li>
+                    <li><strong>ITS:</strong> percorsi di alta formazione professionale post-diploma (2-3 anni) con tassi di occupazione superiori all'80%.</li>
+                </ul>
+
+                <h2>Gli Istituti Professionali: Competenze Operative</h2>
+
+                <h3>Caratteristiche Principali</h3>
+                <p>Gli istituti professionali (riformati nel 2018) puntano a formare tecnici operativi con competenze immediatamente spendibili. Il metodo prevede:</p>
+
+                <ul>
+                    <li><strong>Approccio laboratoriale:</strong> oltre il 50% delle ore in laboratorio, stage, alternanza scuola-lavoro intensiva</li>
+                    <li><strong>Competenze operative:</strong> "saper fare" concreto in contesti professionali reali</li>
+                    <li><strong>Personalizzazione:</strong> percorsi modulabili in base alle esigenze locali e alle richieste del territorio</li>
+                </ul>
+
+                <h3>Principali Indirizzi</h3>
+
+                <div class="content-box">
+                    <h4>Settore Enogastronomia e Ospitalità Alberghiera</h4>
+                    <p>Cucina, sala-bar, accoglienza turistica. Competenze pratiche nella ristorazione e nell'ospitalità. Sbocchi: chef, maitre, direttori di hotel, oppure imprenditoria nel settore food.</p>
+                </div>
+
+                <div class="content-box">
+                    <h4>Industria e Artigianato per il Made in Italy</h4>
+                    <p>Competenze artigianali e industriali nei settori moda, oreficeria, arredamento, meccanica di precisione. Valorizza la tradizione italiana dell'eccellenza artigianale.</p>
+                </div>
+
+                <div class="content-box">
+                    <h4>Manutenzione e Assistenza Tecnica</h4>
+                    <p>Installazione, manutenzione e riparazione di impianti elettrici, termici, elettronici. Alta richiesta nel mercato del lavoro, possibilità di lavoro autonomo.</p>
+                </div>
+
+                <div class="content-box">
+                    <h4>Servizi per la Sanità e l'Assistenza Sociale</h4>
+                    <p>Operatori socio-sanitari, assistenza a anziani, disabili, infanzia. Settore in crescita con forte componente umana e relazionale.</p>
+                </div>
+
+                <div class="content-box">
+                    <h4>Servizi Commerciali</h4>
+                    <p>Gestione aziendale, marketing, comunicazione. Versione più pratica rispetto al tecnico AFM.</p>
+                </div>
+
+                <h3>Prospettive Post-Diploma</h3>
+                <p>Il diploma professionale è progettato per l'inserimento lavorativo immediato:</p>
+                <ul>
+                    <li><strong>Lavoro dipendente:</strong> come operatori qualificati in aziende, enti pubblici, cooperative</li>
+                    <li><strong>Lavoro autonomo:</strong> apertura di attività in proprio (ristoranti, officine, negozi)</li>
+                    <li><strong>Proseguimento formativo:</strong> circa il 20% continua con ITS, corsi professionalizzanti o, in minoranza, università (spesso con difficoltà iniziali nelle materie teoriche)</li>
+                </ul>
+
+                <h2>Confronto Sintetico: Quale Percorso per Quale Profilo</h2>
+
+                <div class="comparison-table">
+                    <div class="comparison-row">
+                        <div class="comparison-label"><strong>Preferisci studiare:</strong></div>
+                        <div class="comparison-item">
+                            <strong>Liceo</strong><br>
+                            Concetti astratti, teoria, lettura critica
+                        </div>
+                        <div class="comparison-item">
+                            <strong>Tecnico</strong><br>
+                            Teoria applicata, problem solving, progetti
+                        </div>
+                        <div class="comparison-item">
+                            <strong>Professionale</strong><br>
+                            Pratica operativa, laboratorio, fare concreto
+                        </div>
+                    </div>
+
+                    <div class="comparison-row">
+                        <div class="comparison-label"><strong>Dopo il diploma:</strong></div>
+                        <div class="comparison-item">
+                            <strong>Liceo</strong><br>
+                            Università (lunga o breve)
+                        </div>
+                        <div class="comparison-item">
+                            <strong>Tecnico</strong><br>
+                            Università, ITS o lavoro qualificato
+                        </div>
+                        <div class="comparison-item">
+                            <strong>Professionale</strong><br>
+                            Lavoro immediato, ITS, impresa
+                        </div>
+                    </div>
+
+                    <div class="comparison-row">
+                        <div class="comparison-label"><strong>Punti di forza:</strong></div>
+                        <div class="comparison-item">
+                            <strong>Liceo</strong><br>
+                            Cultura generale, pensiero critico, flessibilità universitaria
+                        </div>
+                        <div class="comparison-item">
+                            <strong>Tecnico</strong><br>
+                            Competenze tecniche, versatilità, richiesta sul mercato
+                        </div>
+                        <div class="comparison-item">
+                            <strong>Professionale</strong><br>
+                            Competenze operative, inserimento rapido, autonomia lavorativa
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Conclusione: Non Esiste il Percorso "Migliore"</h2>
+                <p>La scelta tra liceo, tecnico e professionale non è una questione di merito o capacità, ma di coerenza tra il proprio profilo personale e le caratteristiche del percorso. Un diplomato di un professionale con passione e competenza ha prospettive eccellenti tanto quanto un laureato proveniente da un liceo classico.</p>
+
+                <p>L'importante è scegliere consapevolmente, informandosi a fondo, riflettendo sulle proprie inclinazioni reali e non sui pregiudizi sociali. Ogni percorso ha dignità, valore e opportunità se affrontato con impegno e motivazione.</p>
+
+                <div class="cta-box">
+                    <h3>Scopri il Percorso Più Adatto a Te</h3>
+                    <p>Il test di orientamento NextStep analizza il tuo profilo e ti suggerisce l'indirizzo più coerente con le tue caratteristiche.</p>
+                    <a style="text-decoration: none;" href="index.html" class="btn btn-primary btn-large">
+                        <i class="fas fa-clipboard-list"></i> Fai il Test di Orientamento
+                    </a>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">NextStep</div>
+                <p>Da un progetto hackathon al tool di orientamento definitivo</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contatti</h4>
+                <p><i class="fas fa-envelope"></i><a href="mailto: tenerelli.francesco@panettipitagora.edu.it" style="text-decoration: none;"> tenerelli.francesco@panettipitagora.edu.it</a></p>
+                <a href="https://franksitez.com" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-globe"></i> franksitez.com</a>
+            </div>
+            <div class="footer-section">
+			<h4>Privacy e Coockie policy</h4>
+            	<a href="https://www.iubenda.com/privacy-policy/27900535" target="_blank" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Privacy Policy ">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script><br>
+				<a href="https://www.iubenda.com/privacy-policy/27900535/cookie-policy" target="_blank" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Cookie Policy ">Cookie Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+            </div>
+        	</div>
+        <div class="footer-bottom">
+            <p>© 2026 NextStep - Tutti i diritti riservati</p>
+        </div>
+    </footer>
+</body>
+</html>

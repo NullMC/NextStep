@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Come Scegliere il Percorso di Studi - NextStep</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/CSS/index.css">
+    <link rel="shortcut icon" href="static/CSS/IMG/LogoNextStep.png" type="image/x-icon">
+    <script src="static/JS/index.js"></script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3152605527157384"
+     crossorigin="anonymous"></script>
+
+    <style>
+        .article-container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .article-breadcrumb {
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .article-breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .article-hero {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .article-category-badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-hero h1 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-info {
+            display: flex;
+            gap: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .article-content {
+            background: white;
+            padding: 3rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .lead-paragraph {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin-bottom: 2.5rem;
+            font-weight: 500;
+        }
+
+        .article-content h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .article-content h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .article-content p {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .article-content ul {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .article-content ul li {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .article-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .content-box {
+            background: var(--background-light);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .content-box h4 {
+            margin-top: 0;
+        }
+
+        .content-box p {
+            margin-bottom: 1rem;
+        }
+
+        .warning-box {
+            background: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .warning-box h4 {
+            color: #92400E;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0;
+        }
+
+        .warning-box i {
+            color: #F59E0B;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+            color: white;
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-box h3 {
+            color: white;
+            border: none;
+            margin: 0 0 1rem 0;
+            padding: 0;
+        }
+
+        .cta-box p {
+            color: white;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .article-content {
+                padding: 2rem;
+            }
+
+            .article-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+                    <img class="logo" src="static/CSS/IMG/LogoNextStep.png" alt="NextStep Logo">
+                    <span class="brand-name">NextStep</span>
+                </a>
+            </div>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="chi-siamo.html">Chi Siamo</a>
+                <a href="guide.html">Guide</a>
+                <a href="risorse.html">Risorse</a>
+                <a href="come-funziona.html">Come Funziona</a>
+            </div>
+
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-nav-links">
+                <a href="index.html">Home</a>
+                <a href="chi-siamo.html">Chi Siamo</a>
+                <a href="guide.html">Guide</a>
+                <a href="risorse.html">Risorse</a>
+                <a href="come-funziona.html">Come Funziona</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div style="position: fixed; top: 80px; right: 20px; z-index: 999;">
+        <button class="btn btn-primary" onclick="checkLogin()" id="auth-btn">
+            <i class="fas fa-user"></i> Accedi
+        </button>
+    </div>
+
+    <div style="height: 80px;"></div>
+
+    <article class="main-container">
+        <div class="article-container">
+            <div class="article-breadcrumb">
+                <a href="index.html">Home</a> / <a href="guide.html">Guide</a> / Come Scegliere il Percorso di Studi
+            </div>
+
+            <header class="article-hero">
+                <span class="article-category-badge">Guida Pratica</span>
+                <h1>Come Scegliere il Percorso di Studi: Metodo e Criteri</h1>
+                <div class="article-info">
+                    <span><i class="fas fa-calendar"></i> Gennaio 2025</span>
+                    <span><i class="fas fa-clock"></i> 8 minuti di lettura</span>
+                </div>
+            </header>
+
+            <div class="article-content">
+                <p class="lead-paragraph">La scelta della scuola superiore rappresenta un momento cruciale nel percorso formativo di ogni studente. Non si tratta semplicemente di selezionare un istituto vicino a casa o seguire le scelte degli amici, ma di compiere una decisione consapevole che influenzerà i prossimi cinque anni di studio e, indirettamente, le opportunità future.</p>
+
+                <h2>Perché la Scelta è Così Importante</h2>
+                <p>Secondo i dati del Ministero dell'Istruzione, circa il 15% degli studenti italiani cambia indirizzo scolastico durante il primo biennio delle superiori. Questo dato, apparentemente piccolo, nasconde storie di frustrazione, perdita di motivazione e, in alcuni casi, abbandono scolastico precoce.</p>
+
+                <p>Le cause di queste scelte inappropriate sono molteplici:</p>
+                <ul>
+                    <li>Pressioni familiari verso percorsi percepiti come più "prestigiosi" (tipicamente i licei)</li>
+                    <li>Scelte dettate dalla vicinanza geografica o dalla presenza di amici</li>
+                    <li>Informazioni superficiali o stereotipate sugli indirizzi di studio</li>
+                    <li>Mancata riflessione sulle proprie reali inclinazioni e capacità</li>
+                </ul>
+
+                <p>Un orientamento efficace, invece, riduce significativamente il rischio di insuccesso, perché aiuta lo studente a identificare il percorso più coerente con le proprie caratteristiche personali, cognitive ed emotive.</p>
+
+                <h2>Il Metodo in Cinque Fasi</h2>
+
+                <h3>1. Conoscere Se Stessi: Autovalutazione</h3>
+                <p>Il primo passo fondamentale è l'analisi delle proprie caratteristiche. Non si tratta di identificare un "talento innato", ma di comprendere con onestà:</p>
+
+                <div class="content-box">
+                    <h4>Stile di Apprendimento</h4>
+                    <p>Come impari meglio? Preferisci:</p>
+                    <ul>
+                        <li>Leggere e studiare concetti astratti (teoria pura)</li>
+                        <li>Applicare concetti teorici a problemi concreti</li>
+                        <li>Sperimentare in laboratorio o attraverso progetti pratici</li>
+                        <li>Imparare facendo, con approccio operativo</li>
+                    </ul>
+                    <p>Questa distinzione è cruciale: i licei privilegiano l'approccio teorico-astratto, gli istituti tecnici bilanciano teoria e applicazione, i professionali enfatizzano la pratica laboratoriale.</p>
+                </div>
+
+                <div class="content-box">
+                    <h4>Interessi Disciplinari</h4>
+                    <p>Quali materie ti appassionano davvero? Non limitarti a quelle in cui prendi i voti migliori: spesso la motivazione conta più del rendimento attuale. Rifletti su:</p>
+                    <ul>
+                        <li><strong>Area umanistica:</strong> letteratura, filosofia, storia, lingue</li>
+                        <li><strong>Area scientifica:</strong> matematica, fisica, logica, informatica</li>
+                        <li><strong>Area bio-chimica:</strong> scienze naturali, biologia, chimica</li>
+                        <li><strong>Area artistica:</strong> arte, musica, design, espressione creativa</li>
+                        <li><strong>Area tecnico-pratica:</strong> meccanica, elettronica, costruzioni</li>
+                        <li><strong>Area economico-sociale:</strong> economia, diritto, relazioni umane</li>
+                    </ul>
+                </div>
+
+                <div class="content-box">
+                    <h4>Modalità di Lavoro Preferita</h4>
+                    <p>Preferisci lavorare autonomamente o in gruppo? Questa caratteristica può orientare verso percorsi che enfatizzano il lavoro collaborativo (alcuni tecnici e professionali) oppure lo studio individuale (licei classici e scientifici).</p>
+                </div>
+
+                <h3>2. Definire Obiettivi a Lungo Termine</h3>
+                <p>Dove ti vedi tra 10 anni? Questa domanda può sembrare prematura per un tredicenne, ma aiuta a chiarire le aspettative. Non serve avere certezze assolute, ma una direzione generale:</p>
+
+                <ul>
+                    <li><strong>Percorso universitario lungo:</strong> Se pensi di voler accedere a facoltà come Medicina, Ingegneria, Giurisprudenza, Lettere, un liceo offre la preparazione più completa.</li>
+                    <li><strong>Formazione tecnica superiore:</strong> Se preferisci una formazione professionalizzante post-diploma (ITS, corsi tecnici), gli istituti tecnici e professionali sono ideali.</li>
+                    <li><strong>Ingresso rapido nel mondo del lavoro:</strong> Gli istituti professionali offrono competenze immediatamente spendibili.</li>
+                </ul>
+
+                <p>È importante sottolineare che nessun percorso "chiude porte": anche dai professionali si può accedere all'università, e molti diplomati liceali scelgono percorsi professionalizzanti. Tuttavia, ogni indirizzo prepara meglio a determinate traiettorie.</p>
+
+                <h3>3. Informarsi in Modo Approfondito</h3>
+                <p>Non fidarti solo dei luoghi comuni. I licei non sono "per i più bravi" e i professionali non sono "per chi non vuole studiare". Ogni percorso ha dignità, complessità e valore formativo.</p>
+
+                <p>Fonti affidabili per informarti:</p>
+                <ul>
+                    <li>Sito del Ministero dell'Istruzione (portale UNICA)</li>
+                    <li>Open day delle scuole (ma visita più istituti, anche di indirizzi diversi)</li>
+                    <li>Testimonianze di studenti già iscritti (non solo chi ha avuto successo)</li>
+                    <li>Docenti delle medie che conoscono il tuo profilo</li>
+                    <li>Test di orientamento scientificamente validati (come NextStep)</li>
+                </ul>
+
+                <h3>4. Coinvolgere Famiglia e Orientatori</h3>
+                <p>La scelta finale deve essere tua, ma il confronto con adulti di riferimento è prezioso. Genitori e insegnanti possono offrirti prospettive che da solo non vedresti, purché:</p>
+
+                <ul>
+                    <li>Non impongano le loro aspettative senza ascoltare le tue</li>
+                    <li>Non giudichino percorsi "di serie A" e "di serie B"</li>
+                    <li>Riconoscano che ogni studente ha un percorso unico</li>
+                </ul>
+
+                <p>Se senti pressioni eccessive, cerca di aprire un dialogo sincero: spiega le tue motivazioni, porta dati concreti sugli indirizzi che ti interessano, chiedi di essere ascoltato.</p>
+
+                <h3>5. Testare e Verificare</h3>
+                <p>Prima di decidere definitivamente:</p>
+
+                <ul>
+                    <li>Partecipa agli open day e chiedi di assistere a lezioni reali (non solo presentazioni)</li>
+                    <li>Parla con studenti del terzo o quarto anno: ti diranno com'è davvero la scuola dopo l'entusiasmo iniziale</li>
+                    <li>Verifica i piani di studio: alcune materie che ti sembravano interessanti potrebbero essere marginali, altre centrali</li>
+                    <li>Considera la logistica: tempi di spostamento, costi, sostenibilità per la famiglia</li>
+                </ul>
+
+                <h2>Errori Comuni da Evitare</h2>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Scegliere per Esclusione</h4>
+                    <p>"Non mi piace la matematica, quindi niente scientifico". Le scuole superiori non sono un'estensione delle medie: spesso materie che prima sembravano noiose diventano interessanti con insegnanti diversi e approcci più maturi.</p>
+                </div>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Seguire la Massa</h4>
+                    <p>"Tutti i miei amici vanno lì". L'amicizia è importante, ma i gruppi si ridefiniscono alle superiori. È più probabile che tu faccia nuovi amici con interessi simili ai tuoi piuttosto che mantenere legami basati solo sulla vicinanza geografica.</p>
+                </div>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Puntare Solo al Prestigio</h4>
+                    <p>"Il liceo classico è la scelta migliore". Il prestigio sociale di un indirizzo non corrisponde necessariamente al suo valore formativo per te. Un tecnico o un professionale possono offrire competenze più spendibili e motivanti se corrispondono ai tuoi interessi.</p>
+                </div>
+
+                <h2>Il Ruolo dei Test di Orientamento</h2>
+                <p>Strumenti come NextStep non sostituiscono la tua riflessione personale, ma la supportano fornendo:</p>
+
+                <ul>
+                    <li>Un'analisi strutturata di caratteristiche che potresti non aver considerato</li>
+                    <li>Suggerimenti basati su criteri oggettivi, non su stereotipi</li>
+                    <li>Un punto di partenza per il dialogo con famiglia e insegnanti</li>
+                    <li>Informazioni concrete sugli istituti disponibili nella tua zona</li>
+                </ul>
+
+                <p>Ricorda però: il test è un consiglio, non un verdetto. Se il risultato non ti convince, interrogati sul perché: forse hai risposto senza riflettere abbastanza, oppure ci sono fattori personali che il test non può cogliere. Usa il risultato come stimolo per approfondire, non come scusa per non decidere.</p>
+
+                <h2>Conclusione: La Scelta Come Processo</h2>
+                <p>Scegliere la scuola superiore non è un evento isolato, ma un processo che richiede tempo, informazioni e onestà con se stessi. Non esiste la scelta "perfetta", ma esiste la scelta più coerente con chi sei ora e con chi vuoi diventare.</p>
+
+                <p>Prenditi il tempo necessario, ascolta pareri diversi, ma alla fine fidati del tuo istinto informato: sei tu che dovrai vivere questa esperienza, e la motivazione personale è il predittore più forte del successo scolastico.</p>
+
+                <div class="cta-box">
+                    <h3>Inizia il Tuo Percorso di Orientamento</h3>
+                    <p>Scopri quale indirizzo corrisponde meglio alle tue caratteristiche attraverso il nostro questionario scientifico.</p>
+                    <a style="text-decoration: none;" href="index.html" class="btn btn-primary btn-large">
+                        <i class="fas fa-clipboard-list"></i> Fai il Test di Orientamento
+                    </a>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">NextStep</div>
+                <p>Da un progetto hackathon al tool di orientamento definitivo</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contatti</h4>
+                <p><i class="fas fa-envelope"></i><a href="mailto: tenerelli.francesco@panettipitagora.edu.it" style="text-decoration: none;"> tenerelli.francesco@panettipitagora.edu.it</a></p>
+                <a href="https://franksitez.com" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-globe"></i> franksitez.com</a>
+            </div>
+            <div class="footer-section">
+			<h4>Privacy e Coockie policy</h4>
+            	<a href="https://www.iubenda.com/privacy-policy/27900535" target="_blank" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Privacy Policy ">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script><br>
+				<a href="https://www.iubenda.com/privacy-policy/27900535/cookie-policy" target="_blank" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Cookie Policy ">Cookie Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+            </div>
+        	</div>
+        <div class="footer-bottom">
+            <p>© 2026 NextStep - Tutti i diritti riservati</p>
+        </div>
+    </footer>
+</body>
+</html>

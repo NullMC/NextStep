@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risorse per l'Orientamento - NextStep</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/CSS/index.css">
+    <link rel="shortcut icon" href="static/CSS/IMG/LogoNextStep.png" type="image/x-icon">
+    <script src="static/JS/index.js"></script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3152605527157384"
+     crossorigin="anonymous"></script>
+
+    <style>
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            padding: 5rem 2rem 3rem;
+            text-align: center;
+            color: white;
+        }
+
+        .page-hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero-content p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+        }
+
+        .resources-intro {
+            background: white;
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 3rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .resources-intro p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .resource-section {
+            margin-bottom: 4rem;
+        }
+
+        .resource-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .resource-section h2 i {
+            color: var(--primary-color);
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        .resource-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .resource-card p {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .resource-card ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .resource-card ul li {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .resource-card strong {
+            color: var(--text-primary);
+        }
+
+        .resource-details {
+            background: var(--background-light);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-md);
+            margin-bottom: 1.5rem;
+        }
+
+        .resource-details h4 {
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--background-light);
+            border-radius: var(--border-radius-md);
+            transition: all 0.3s ease;
+        }
+
+        .checklist-item:hover {
+            background: var(--primary-light);
+        }
+
+        .checklist-item i {
+            color: var(--accent-color);
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .checklist-item span {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+
+        .timeline-marker {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .link-item {
+            background: var(--background-light);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-md);
+            text-align: center;
+        }
+
+        .link-item h4 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .link-item i {
+            color: var(--primary-color);
+        }
+
+        .link-item p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+            color: white;
+            padding: 3rem;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-section h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .resource-card {
+                padding: 2rem;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding-left: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+                    <img class="logo" src="static/CSS/IMG/LogoNextStep.png" alt="NextStep Logo">
+                    <span class="brand-name">NextStep</span>
+                </a>
+            </div>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="chi-siamo.html">Chi Siamo</a>
+                <a href="guide.html">Guide</a>
+                <a href="come-funziona.html">Come Funziona</a>
+            </div>
+
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-nav-links">
+                <a href="index.html">Home</a>
+                <a href="chi-siamo.html">Chi Siamo</a>
+                <a href="guide.html">Guide</a>
+                <a href="come-funziona.html">Come Funziona</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div style="position: fixed; top: 80px; right: 20px; z-index: 999;">
+        <button class="btn btn-primary" onclick="checkLogin()" id="auth-btn">
+            <i class="fas fa-user"></i> Accedi
+        </button>
+    </div>
+
+    <div style="height: 80px;"></div>
+
+    <div class="page-hero">
+        <div class="page-hero-content">
+            <h1>Risorse per l'Orientamento</h1>
+            <p>Guide pratiche, informazioni utili e strumenti per studenti e famiglie</p>
+        </div>
+    </div>
+
+    <div class="main-container">
+    
+
+        <section class="resource-section">
+            <h2><i class="fas fa-book-open"></i> Schede Informative sugli Indirizzi</h2>
+            
+            <div class="resource-card">
+                <h3>Licei: Panoramica Completa</h3>
+                <p>I licei rappresentano il percorso formativo tradizionalmente orientato alla preparazione universitaria. In Italia esistono sei tipologie principali di liceo, ciascuna con caratteristiche specifiche.</p>
+                
+                <div class="resource-details">
+                    <h4>Liceo Classico</h4>
+                    <ul>
+                        <li><strong>Durata:</strong> 5 anni</li>
+                        <li><strong>Materie caratterizzanti:</strong> Latino, Greco antico, Italiano, Storia, Filosofia</li>
+                        <li><strong>Profilo studente ideale:</strong> Ama la letteratura, la filosofia, le lingue antiche, la cultura umanistica</li>
+                        <li><strong>Sbocchi:</strong> Università (facoltà umanistiche, giuridiche, ma anche scientifiche), concorsi pubblici</li>
+                    </ul>
+                </div>
+
+                <div class="resource-details">
+                    <h4>Liceo Scientifico</h4>
+                    <ul>
+                        <li><strong>Varianti:</strong> Tradizionale, Opzione Scienze Applicate, Indirizzo Sportivo</li>
+                        <li><strong>Materie caratterizzanti:</strong> Matematica, Fisica, Scienze, Informatica (Scienze Applicate)</li>
+                        <li><strong>Profilo studente ideale:</strong> Interesse per logica, scienze, matematica; equilibrio tra umanistico e scientifico</li>
+                        <li><strong>Sbocchi:</strong> Università scientifiche, ingegneria, medicina, informatica, ma anche economiche e umanistiche</li>
+                    </ul>
+                </div>
+
+                <div class="resource-details">
+                    <h4>Liceo Linguistico</h4>
+                    <ul>
+                        <li><strong>Lingue studiate:</strong> 3 lingue straniere (generalmente Inglese + 2 tra Francese, Spagnolo, Tedesco)</li>
+                        <li><strong>Profilo studente ideale:</strong> Passione per le lingue, interesse per culture straniere, comunicazione</li>
+                        <li><strong>Sbocchi:</strong> Mediazione linguistica, traduzione, interpretariato, turismo, relazioni internazionali</li>
+                    </ul>
+                </div>
+
+                <div class="resource-details">
+                    <h4>Liceo delle Scienze Umane</h4>
+                    <ul>
+                        <li><strong>Varianti:</strong> Tradizionale, Opzione Economico-Sociale (senza Latino, con Diritto ed Economia)</li>
+                        <li><strong>Materie caratterizzanti:</strong> Psicologia, Pedagogia, Sociologia, Antropologia</li>
+                        <li><strong>Profilo studente ideale:</strong> Interesse per dinamiche umane, educazione, società</li>
+                        <li><strong>Sbocchi:</strong> Scienze della formazione, psicologia, servizio sociale, sociologia</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="resource-card">
+                <h3>Istituti Tecnici: Teoria e Pratica</h3>
+                <p>Gli istituti tecnici formano tecnici specializzati con competenze teoriche e pratiche immediatamente spendibili sia in ambito universitario che lavorativo.</p>
+
+                <div class="resource-details">
+                    <h4>Settore Economico</h4>
+                    <ul>
+                        <li><strong>Amministrazione, Finanza e Marketing (AFM):</strong> Contabilità, economia aziendale, diritto, marketing</li>
+                        <li><strong>Turismo:</strong> Gestione del settore turistico, lingue straniere, geografia turistica</li>
+                        <li><strong>Sbocchi:</strong> Ragionieri, consulenti aziendali, operatori turistici, università economiche</li>
+                    </ul>
+                </div>
+
+                <div class="resource-details">
+                    <h4>Settore Tecnologico - Indirizzi Principali</h4>
+                    <ul>
+                        <li><strong>Informatica e Telecomunicazioni:</strong> Programmazione, reti, cybersecurity, sviluppo software</li>
+                        <li><strong>Elettronica ed Elettrotecnica:</strong> Sistemi elettrici, automazione industriale, robotica</li>
+                        <li><strong>Meccanica, Meccatronica ed Energia:</strong> Progettazione meccanica, sistemi automatizzati</li>
+                        <li><strong>Chimica, Materiali e Biotecnologie:</strong> Chimica industriale, biotecnologie sanitarie e ambientali</li>
+                        <li><strong>Costruzioni, Ambiente e Territorio:</strong> Geometri, progettazione edilizia, topografia</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="resource-card">
+                <h3>Istituti Professionali: Competenze Operative</h3>
+                <p>Gli istituti professionali offrono formazione pratica e operativa con forte integrazione tra scuola e mondo del lavoro.</p>
+
+                <div class="resource-details">
+                    <h4>Indirizzi Più Richiesti</h4>
+                    <ul>
+                        <li><strong>Enogastronomia e Ospitalità Alberghiera:</strong> Cucina, sala-bar, accoglienza turistica. Competenze pratiche per lavorare in ristorazione e hotellerie.</li>
+                        <li><strong>Servizi per la Sanità e l'Assistenza Sociale:</strong> Operatori socio-sanitari, assistenza ad anziani e disabili. Settore in forte crescita.</li>
+                        <li><strong>Manutenzione e Assistenza Tecnica:</strong> Installazione e riparazione impianti elettrici, termici, elettronici. Ottime prospettive di lavoro autonomo.</li>
+                        <li><strong>Industria e Artigianato per il Made in Italy:</strong> Moda, oreficeria, arredamento. Valorizza l'eccellenza artigianale italiana.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="resource-section">
+            <h2><i class="fas fa-clipboard-check"></i> Checklist per la Scelta</h2>
+            
+            <div class="resource-card">
+                <h3>Domande da Farti Prima di Decidere</h3>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Ho chiare le differenze tra licei, tecnici e professionali?</span>
+                    </div>
+                    <div class="checklist-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Ho visitato gli open day di almeno 2-3 scuole diverse?</span>
+                    </div>
+                    <div class="checklist-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Ho parlato con studenti già iscritti all'indirizzo che mi interessa?</span>
+                    </div>
+                    <div class="checklist-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Ho verificato il piano di studi completo (materie e ore)?</span>
+                    </div>
+                    <div class="checklist-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>So quali sono gli sbocchi universitari e lavorativi dell'indirizzo?</span>
+                    </div>
+                    <div class="checklist-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Ho valutato la distanza da casa e i mezzi di trasporto?</span>
+                    </div>
+                    <div class="checklist-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Ho discusso la scelta con famiglia e insegnanti?</span>
+                    </div>
+                    <div class="checklist-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Ho fatto almeno un test di orientamento?</span>
+                    </div>
+                    <div class="checklist-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Mi sento motivato/a dall'idea di frequentare questo percorso?</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="resource-section">
+            <h2><i class="fas fa-calendar-alt"></i> Timeline dell'Orientamento</h2>
+            
+            <div class="resource-card">
+                <h3>Quando Fare Cosa</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">Ottobre-Novembre</div>
+                        <div class="timeline-content">
+                            <h4>Fase Esplorativa</h4>
+                            <ul>
+                                <li>Inizia a informarti sui diversi indirizzi</li>
+                                <li>Fai test di orientamento preliminari</li>
+                                <li>Parla con insegnanti e orientatori scolastici</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">Dicembre-Gennaio</div>
+                        <div class="timeline-content">
+                            <h4>Open Day e Approfondimenti</h4>
+                            <ul>
+                                <li>Partecipa agli open day delle scuole</li>
+                                <li>Visita almeno 2-3 istituti diversi</li>
+                                <li>Confronta le opzioni con famiglia e amici</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">Gennaio (prima settimana)</div>
+                        <div class="timeline-content">
+                            <h4>Scadenza Iscrizioni</h4>
+                            <ul>
+                                <li>Completa la registrazione su portale UNICA</li>
+                                <li>Scegli scuola principale e due alternative</li>
+                                <li>Verifica che la domanda sia stata inviata correttamente</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="resource-section">
+            <h2><i class="fas fa-link"></i> Link Utili</h2>
+            
+            <div class="resource-card">
+                <h3>Risorse Esterne Affidabili</h3>
+                <div class="links-grid">
+                    <div class="link-item">
+                        <h4><i class="fas fa-graduation-cap"></i> Ministero dell'Istruzione</h4>
+                        <p>Portale ufficiale con informazioni su indirizzi, scuole e procedure di iscrizione</p>
+                        <a href="https://unica.istruzione.gov.it" style="text-decoration: none;" target="_blank" class="btn btn-secondary">Visita UNICA <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="resource-section">
+            <h2><i class="fas fa-users"></i> Per Genitori e Orientatori</h2>
+            
+            <div class="resource-card">
+                <h3>Come Supportare lo Studente nella Scelta</h3>
+                <p><strong>Per i genitori:</strong></p>
+                <ul>
+                    <li>Ascoltate le aspirazioni di vostro figlio senza imporre le vostre aspettative</li>
+                    <li>Evitate confronti con fratelli, cugini o conoscenti ("tuo fratello ha fatto il classico...")</li>
+                    <li>Non esistono percorsi "di serie A" e "di serie B": ogni indirizzo ha valore se corrisponde alle caratteristiche dello studente</li>
+                    <li>Sostenete economicamente e logisticamente la scelta, ma lasciate che sia lo studente a decidere</li>
+                    <li>Partecipate agli open day insieme, ma osservate le reazioni di vostro figlio</li>
+                </ul>
+
+                <p style="margin-top: 2rem;"><strong>Per gli orientatori:</strong></p>
+                <ul>
+                    <li>Utilizzate test validati scientificamente, non questionari improvvisati</li>
+                    <li>Aiutate gli studenti a riflettere sulle proprie caratteristiche, non a conformarsi a stereotipi</li>
+                    <li>Presentate tutte le opzioni in modo neutro, senza giudizi impliciti</li>
+                    <li>Organizzate incontri con ex studenti di diversi percorsi</li>
+                    <li>Fornite strumenti concreti (checklist, timeline, materiali informativi)</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="cta-section">
+            <h3>Inizia il Tuo Percorso di Orientamento</h3>
+            <p>Usa le nostre risorse insieme al test di orientamento personalizzato per compiere una scelta consapevole.</p>
+            <a style="text-decoration: none;" href="index.html" style="text-decoration: none;" class="btn btn-primary btn-large">
+                <i class="fas fa-clipboard-list"></i> Fai il Test di Orientamento
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">NextStep</div>
+                <p>Da un progetto hackathon al tool di orientamento definitivo</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contatti</h4>
+                <p><i class="fas fa-envelope"></i><a href="mailto: tenerelli.francesco@panettipitagora.edu.it" style="text-decoration: none;"> tenerelli.francesco@panettipitagora.edu.it</a></p>
+                <a href="https://franksitez.com" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-globe"></i> franksitez.com</a>
+            </div>
+            <div class="footer-section">
+			<h4>Privacy e Coockie policy</h4>
+            	<a href="https://www.iubenda.com/privacy-policy/27900535" target="_blank" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Privacy Policy ">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script><br>
+				<a href="https://www.iubenda.com/privacy-policy/27900535/cookie-policy" target="_blank" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Cookie Policy ">Cookie Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+            </div>
+        	</div>
+        <div class="footer-bottom">
+            <p>© 2026 NextStep - Tutti i diritti riservati</p>
+        </div>
+    </footer>
+</body>
+</html>
