@@ -27,6 +27,28 @@
     
     --border-radius-md: 10px; 
     --border-radius-lg: 16px;
+
+
+
+    /* Inner shadow */
+    --shadow-offset: 0;
+    --shadow-blur: 20px;
+    --shadow-spread: -5px;
+    --shadow-color: rgba(255, 255, 255, 0.7);
+
+    /* Painted glass */
+    --tint-color: 255, 255, 255;
+    --tint-opacity: 0.4;
+
+    /* Background frost */
+    --frost-blur: 2px;
+
+    /* SVG noise/distortion */
+    --noise-frequency: 0.008;
+    --distortion-strength: 77;
+
+    /* Outer shadow blur */
+    --outer-shadow-blur: 24px;
 }
 
 body {
@@ -1069,14 +1091,30 @@ input.form-control::placeholder {
     justify-content: center;
     padding: 2rem;
 }
+
+.auth-bg{
+ background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1920');
+ background-size: cover;
+background-position: center;
+ transition: background-image 0.5s ease-in-out;
+}
+
+
 .auth-card {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     padding: 3rem;
     width: 100%;
     max-width: 450px;
+
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
+
+
 .auth-logo {
     display: flex;
     align-items: center;
@@ -1095,23 +1133,36 @@ input.form-control::placeholder {
 .auth-tab {
     flex: 1;
     padding: 0.75rem;
-    border: 2px solid var(--border-color);
-    background: white;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s;
     font-weight: 600;
+
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 .auth-tab.active {
     background: var(--primary-color);
     color: white;
     border-color: var(--primary-color);
+    
 }
 .auth-form {
     display: none;
 }
 .auth-form.active {
     display: block;
+}
+.form-control {
+   background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 .error-message {
     background: #FEE2E2;
