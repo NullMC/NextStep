@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="static/CSS/index.css">
     <link rel="shortcut icon" href="static/CSS/IMG/LogoNextStep.png" type="image/x-icon">
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3152605527157384"
-     crossorigin="anonymous"></script>
+    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="nextstep" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
 </head>
 <body>
     <nav class="navbar">
@@ -26,34 +26,13 @@
             </div>
 
             <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="chi-siamo.html">Chi Siamo</a>
-                <a href="guide.html">Guide</a>
-                <a href="risorse.html">Risorse</a>
-                <a href="come-funziona.html">Come Funziona</a>
-            </div>
+                <button class="btn btn-primary" onclick="checkLogin()" id="auth-btn">
+                    <i class="fas fa-user"></i> Accedi
+                </button>
 
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-
-        <div class="mobile-menu" id="mobileMenu">
-            <div class="mobile-nav-links">
-                <a href="index.html">Home</a>
-                <a href="chi-siamo.html">Chi Siamo</a>
-                <a href="guide.html">Guide</a>
-                <a href="risorse.html">Risorse</a>
-                <a href="come-funziona.html">Come Funziona</a>
             </div>
         </div>
     </nav>
-    
-    <div style="position: fixed; top: 80px; right: 20px; z-index: 999;">
-        <button class="btn btn-primary" onclick="checkLogin()" id="auth-btn">
-            <i class="fas fa-user"></i> Accedi
-        </button>
-    </div>
 
     <section class="hero-carousel">
         <div class="carousel-container">
@@ -88,9 +67,14 @@
 
     <section class="editorial-intro">
         <div class="editorial-container">
-            <div class="editorial-header">
-                <h1>Orientamento Scolastico: La Scelta che Definisce il Tuo Futuro</h1>
-                <p class="editorial-lead">Il passaggio dalla scuola media alla scuola superiore rappresenta una delle decisioni più significative nel percorso formativo di uno studente. NextStep ti aiuta a compiere questa scelta in modo consapevole, attraverso un metodo scientifico e personalizzato.</p>
+            <div class="editorial-cta">
+                <div class="cta-content">
+                    <h3>Inizia il Tuo Percorso di Orientamento</h3>
+                    <p>Il questionario richiede circa 5-7 minuti. Rispondi con sincerità: non esistono risposte giuste o sbagliate, solo quelle che rispecchiano autenticamente chi sei.</p>
+                    <button class="btn btn-primary btn-large" onclick="document.querySelector('.quiz-container').scrollIntoView({ behavior: 'smooth' })">
+                        <i class="fas fa-arrow-down"></i> Vai al Questionario
+                    </button>
+                </div>
             </div>
 
             <div class="editorial-grid">
@@ -139,31 +123,9 @@
                     <p>Inoltre, se sei già registrato, puoi salvare i tuoi risultati, confrontarli nel tempo e condividerli con genitori e orientatori scolastici. Questo approccio trasforma un semplice questionario in uno strumento di dialogo educativo continuativo.</p>
                 </div>
             </div>
-
-            <div class="editorial-cta">
-                <div class="cta-content">
-                    <h3>Inizia il Tuo Percorso di Orientamento</h3>
-                    <p>Il questionario richiede circa 5-7 minuti. Rispondi con sincerità: non esistono risposte giuste o sbagliate, solo quelle che rispecchiano autenticamente chi sei.</p>
-                    <button class="btn btn-primary btn-large" onclick="document.querySelector('.quiz-container').scrollIntoView({ behavior: 'smooth' })">
-                        <i class="fas fa-arrow-down"></i> Vai al Questionario
-                    </button>
-                </div>
-            </div>
         </div>
     </section>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3152605527157384"
-     crossorigin="anonymous"></script>
-    <!-- orizzDisplay -->
-    <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-3152605527157384"
-        data-ad-slot="3814749121"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
 
     <div class="main-container">
         <div class="quiz-container">
@@ -417,19 +379,6 @@
             </div>
         </div>
 
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3152605527157384"
-     crossorigin="anonymous"></script>
-    <!-- orizzDisplay2 -->
-    <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-3152605527157384"
-        data-ad-slot="1140306715"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-
         <div class="info-carousel-section">
             <h2 class="section-title">Perché scegliere NextStep</h2>
             <div class="info-carousel">
@@ -534,18 +483,6 @@
         </div>
     </div>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3152605527157384"
-     crossorigin="anonymous"></script>
-    <!-- orizzDisplay3 -->
-    <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-3152605527157384"
-        data-ad-slot="7793522585"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
 
     <footer class="footer">
         <div class="footer-content">

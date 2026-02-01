@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Pagine da non indicizzare
+Disallow: /api/
+Disallow: /static/JS/data/
